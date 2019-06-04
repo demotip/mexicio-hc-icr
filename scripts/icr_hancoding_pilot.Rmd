@@ -62,7 +62,9 @@ Okay, now let's look at agreement. At least for these two coders, it doesn't loo
 
 ratings <- select(data_wide, Person_5, Person_6) 
 
-table(ratings) %>% kable(.)
+table(ratings) %>% kable(., escape = TRUE)
+# %>%
+#   column_spec(1:5, width = "10em")
 
 agree(ratings)
 ```

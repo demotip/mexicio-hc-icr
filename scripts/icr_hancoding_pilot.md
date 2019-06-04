@@ -58,7 +58,7 @@ I won’t do more until I figure how who the unique coders are
 ``` r
 ratings <- select(data_wide, Person_5, Person_6) 
 
-table(ratings) %>% kable(.)
+table(ratings) %>% kable(., escape = TRUE)
 ```
 
 <table>
@@ -312,6 +312,9 @@ Toda
 </table>
 
 ``` r
+# %>%
+#   column_spec(1:5, width = "10em")
+
 agree(ratings)
 ```
 
