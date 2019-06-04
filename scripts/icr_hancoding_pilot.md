@@ -30,9 +30,11 @@ icr <- icr %>% mutate(unique_coder =
                                   IPAddress %in% "67.71.216.6" ~ "Person_6",
                                   IPAddress %in% "158.143.29.226" ~ "Person_7")) 
 
-
+icr <- mutate(icr, folio_id = ifelse(grepl("'", Q19),
+                                    trimws(Q19),
+                                    trimws(str_c("'", Q19))))
 #get rid of Dan???
-icr2 <- icr %>% filter(Q19 %in% unique_codes$folio_id & unique_coder != "Person_7")
+icr2 <- icr %>% filter(folio_id  %in% unique_codes$folio_id & unique_coder != "Person_7")
 
 icr2 <- mutate(icr2, Q14 = factor(Q14, levels = c("Poca o nada", 
                                                   "Menos de la mitad", 
@@ -43,7 +45,7 @@ icr2 <- mutate(icr2, Q14 = factor(Q14, levels = c("Poca o nada",
 #table(icr$unique_coder)
 
 
-data_wide <- reshape2::dcast(icr2,  Q19 ~ unique_coder, value.var="Q14") %>%
+data_wide <- reshape2::dcast(icr2,  folio_id ~ unique_coder, value.var="Q14") %>%
   mutate_at(vars(contains("Person")),  function(x) factor(x, levels = c("Poca o nada", 
                                                   "Menos de la mitad", 
                                                   "Aproximadamente la mitad",
@@ -56,9 +58,9 @@ doesn’t look great… If we condensed the categories it would look better.
 I won’t do more until I figure how who the unique coders are
 
 ``` r
-ratings <- select(data_wide, Person_5, Person_6) 
+ratings <- select(data_wide, folio_id, contains("Person")) 
 
-table(ratings) %>% kable(., escape = TRUE)
+ratings %>% kable(., escape = TRUE)
 ```
 
 <table>
@@ -69,35 +71,37 @@ table(ratings) %>% kable(., escape = TRUE)
 
 <th style="text-align:left;">
 
-</th>
-
-<th style="text-align:right;">
-
-Poca o nada
+folio\_id
 
 </th>
 
-<th style="text-align:right;">
+<th style="text-align:left;">
 
-Menos de la mitad
-
-</th>
-
-<th style="text-align:right;">
-
-Aproximadamente la mitad
+Person 1
 
 </th>
 
-<th style="text-align:right;">
+<th style="text-align:left;">
 
-La mayoría
+Person\_3
 
 </th>
 
-<th style="text-align:right;">
+<th style="text-align:left;">
 
-Toda
+Person\_4
+
+</th>
+
+<th style="text-align:left;">
+
+Person\_5
+
+</th>
+
+<th style="text-align:left;">
+
+Person\_6
 
 </th>
 
@@ -111,83 +115,9 @@ Toda
 
 <td style="text-align:left;">
 
-Poca o nada
+’0000700014312
 
 </td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-Menos de la mitad
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
 
 <td style="text-align:left;">
 
@@ -195,39 +125,23 @@ Aproximadamente la mitad
 
 </td>
 
-<td style="text-align:right;">
+<td style="text-align:left;">
 
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
+Aproximadamente la mitad
 
 </td>
 
-<td style="text-align:right;">
+<td style="text-align:left;">
 
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
+Aproximadamente la mitad
 
 </td>
 
-<td style="text-align:right;">
+<td style="text-align:left;">
 
-0
+Aproximadamente la mitad
 
 </td>
-
-</tr>
-
-<tr>
 
 <td style="text-align:left;">
 
@@ -235,33 +149,43 @@ La mayoría
 
 </td>
 
-<td style="text-align:right;">
+</tr>
 
-0
+<tr>
 
-</td>
+<td style="text-align:left;">
 
-<td style="text-align:right;">
-
-0
+’0000900153514
 
 </td>
 
-<td style="text-align:right;">
+<td style="text-align:left;">
 
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
+Menos de la mitad
 
 </td>
 
-<td style="text-align:right;">
+<td style="text-align:left;">
 
-1
+Menos de la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+Menos de la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
 
 </td>
 
@@ -271,37 +195,317 @@ La mayoría
 
 <td style="text-align:left;">
 
+’0001700170212
+
+</td>
+
+<td style="text-align:left;">
+
 Toda
 
 </td>
 
-<td style="text-align:right;">
+<td style="text-align:left;">
 
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
+Poca o nada
 
 </td>
 
-<td style="text-align:right;">
+<td style="text-align:left;">
 
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
+Aproximadamente la mitad
 
 </td>
 
-<td style="text-align:right;">
+<td style="text-align:left;">
 
-4
+Menos de la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002000146408
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100496813
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064101001113
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0413100001103
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+<td style="text-align:left;">
+
+Menos de la mitad
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1026500126612
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1031500032012
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Menos de la mitad
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1610100114315
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+Menos de la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
 
 </td>
 
@@ -314,24 +518,29 @@ Toda
 ``` r
 # %>%
 #   column_spec(1:5, width = "10em")
+```
 
-agree(ratings)
+It’s hard to get agreement out of all the coders of the 8 where we have
+all observations we get 3 thare the same across the board
+
+``` r
+agree(select(ratings, contains("Person")))
 ```
 
     ##  Percentage agreement (Tolerance=0)
     ## 
-    ##  Subjects = 10 
-    ##    Raters = 2 
-    ##   %-agree = 50
+    ##  Subjects = 8 
+    ##    Raters = 5 
+    ##   %-agree = 37.5
 
 This is not a sufficient Kripp alpha.
 
 ``` r
-kripp.alpha(t(ratings), method = "ordinal")
+kripp.alpha(t(select(ratings, contains("Person"))), method = "ordinal")
 ```
 
     ##  Krippendorff's alpha
     ## 
     ##  Subjects = 10 
-    ##    Raters = 2 
-    ##     alpha = 0.366
+    ##    Raters = 5 
+    ##     alpha = 0.55
