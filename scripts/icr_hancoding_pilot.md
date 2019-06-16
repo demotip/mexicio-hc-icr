@@ -6,9 +6,8 @@ Aaron Erlich
 ## Inter Coder Reliability
 
 I need to get the same 10 which were coded by everyone. As far as I can
-tell, it appears that only **two** of the coders coded these. I am not
-really sure why…I hope it’s not a sampling thing. We should double check
-that…
+tell, it appears that only **five** of the coders coded these. I believe
+Dan used a different system.
 
 ``` r
 pacman::p_load(tidyverse, irr, kableExtra)
@@ -22,7 +21,7 @@ icr <- icr %>% slice(-(1:5))
 
 #deal with person who coded from a differet location (uggh)
 icr <- icr %>% mutate(unique_coder = 
-                        case_when(IPAddress %in% c("134.48.232.19", "174.103.168.235") ~ "Person 1",
+                        case_when(IPAddress %in% c("134.48.232.19", "174.103.168.235") ~ "Person_1",
                                   IPAddress %in% "174.60.143.107 " ~ "Person_2",
                                   IPAddress %in% "189.146.112.34" ~ "Person_3",
                                   IPAddress %in% "200.56.56.9" ~ "Person_4",
@@ -53,9 +52,11 @@ data_wide <- reshape2::dcast(icr2,  folio_id ~ unique_coder, value.var="Q14") %>
                                                   "Toda")))
 ```
 
-Okay, now let’s look at agreement. At least for these two coders, it
-doesn’t look great… If we condensed the categories it would look better.
-I won’t do more until I figure how who the unique coders are
+Okay, now let’s look at agreement. At least for these c coders, it lokes
+like, mainly for *Toda* folks are in agreement. For the middle
+categories, it is challenging. If we condensed the categories it would
+look better. I won’t do more until I figure how who the unique coders
+are
 
 ``` r
 ratings <- select(data_wide, folio_id, contains("Person")) 
@@ -77,7 +78,7 @@ folio\_id
 
 <th style="text-align:left;">
 
-Person 1
+Person\_1
 
 </th>
 
@@ -520,8 +521,8 @@ Toda
 #   column_spec(1:5, width = "10em")
 ```
 
-It’s hard to get agreement out of all the coders of the 8 where we have
-all observations we get 3 thare the same across the board
+It’s hard to get agreement out of all the coders of the 8, where we have
+all observations we get 3 thare the same across the board.
 
 ``` r
 agree(select(ratings, contains("Person")))
@@ -533,7 +534,7 @@ agree(select(ratings, contains("Person")))
     ##    Raters = 5 
     ##   %-agree = 37.5
 
-This is not a sufficient Kripp alpha.
+This is not a sufficient Kripp alpha, but it is getting there.
 
 ``` r
 kripp.alpha(t(select(ratings, contains("Person"))), method = "ordinal")
