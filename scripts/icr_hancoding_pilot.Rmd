@@ -18,7 +18,7 @@ I need to get the same 10 which were coded by everyone. As far as I can tell, it
 
 ```{r}
 pacman::p_load(tidyverse, irr, kableExtra)
-icr <- read_csv("./data_raw/Big Data y Acceso a Info en México_June 3, 2019_13.43.csv")
+icr <- read_csv("./data_raw/Big Data y Acceso a Info en México_June 18, 2019_07.36.csv")
 unique_codes <- read_csv("./data_raw/all_coders_coded.csv")
 
 #remove gardage rows
@@ -51,7 +51,7 @@ icr2 <- mutate(icr2, Q14 = factor(Q14, levels = c("Poca o nada",
 #table(icr$unique_coder)
 
 
-data_wide <- reshape2::dcast(icr2,  folio_id ~ unique_coder, value.var="Q14") %>%
+data_wide <- reshape2::dcast(icr2,  folio_id ~ unique_coder, value.var="Q14", sum, na.rm) %>%
   mutate_at(vars(contains("Person")),  function(x) factor(x, levels = c("Poca o nada", 
                                                   "Menos de la mitad", 
                                                   "Aproximadamente la mitad",

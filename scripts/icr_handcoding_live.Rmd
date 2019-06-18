@@ -1,0 +1,133 @@
+---
+title: "Examine Pilot Data"
+author: "Aaron Erlich"
+date: "03/06/2019"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+knitr::opts_chunk$set(echo = TRUE, 
+                      message = FALSE,
+                      warning = FALSE)
+
+```
+
+## Inter Coder Reliability
+
+I need to get the same 10 which were coded by everyone. As far as I can tell, it appears that only **five** of the coders coded these. I believe Dan used a different system.
+
+```{r}
+ROUND <- "full_pilot1"
+pacman::p_load(tidyverse, tidyselect, irr, kableExtra, irrNA)
+
+icr <- read_csv("./data_raw/Big Data y Acceso a Info en México_June 18, 2019_07.36.csv",)
+fs_ps1 <- readRDS("./data_raw/full_sample_post_p1.rds") %>%
+  filter(round == ROUND)
+
+#remove gardage rows
+icr2 <- icr %>% slice(-(1:2)) %>%
+  filter(!(is.na(RecipientEmail)), Progress==100)
+
+#table(icr)
+
+#deal with person who coded from a differet location (uggh)
+
+
+icr2 <- mutate(icr, folio_id = ifelse(grepl("'", S1),
+                                    trimws(S1),
+                                    trimws(str_c("'", S1))))
+
+icr2 <- mutate(icr2, coder_id = str_extract(RecipientEmail, "^[[:alnum:]]+"))
+
+
+ to_eval <- filter(icr2, folio_id %in% fs_ps1$FOLIO)
+
+#get rid of Dan???
+
+binary_vars <- vars_select(names(to_eval), matches("S6_|S10_"))
+
+to_eval<- to_eval %>% mutate_at(vars(binary_vars),
+                                list(~dplyr::recode(., `Sí` = 1, `No` = 0, .default = NA_real_)))
+
+# to_eval <- mutate(icr2, Q14 = factor(Q14, levels = c("Poca o nada", 
+#                                                   "Menos de la mitad", 
+#                                                   "Aproximadamente la mitad",
+#                                                   "La mayoría",
+#                                                   "Toda")))
+
+#table(icr$unique_coder)
+
+#output where a second coder is missing ----
+number_times_coded <- to_eval %>%
+  group_by(folio_id) %>%
+  summarise(count = n())
+
+
+n_coder <- filter(number_times_coded, count > 1)
+one_coder <-  filter(number_times_coded, count == 1)
+```
+
+These have only bee coded once
+
+```{r}
+kable(cat(one_coder$folio_id))
+```
+
+```{r, results='asis'}
+to_eval <- filter(to_eval, folio_id %in% n_coder$folio_id)
+coder_ids <- unique(to_eval$coder_id)
+
+for(i in 1:length(binary_vars)) {
+  data_wide <- reshape2::dcast(to_eval,  folio_id ~ coder_id , value.var= binary_vars[i], mean)
+  #data_wide <- data_wide %>% select(-folio_id) %>%
+  data_wide$rater_var <- apply(data_wide[, coder_ids], 1, var, na.rm = TRUE)
+  
+ print( sprintf("Binary variable %s", binary_vars[i]))
+  
+  ratings_out <- data_wide %>%
+    filter(rater_var > 0 | is.na(rater_var))
+
+#capture the number of coders, get observations with at least 2. 
+#output where there is disagreement only
+ output <-  ratings_out %>% kable(., escape = TRUE, digit = 2, )
+print(output)
+
+to_stat <- select(data_wide, -folio_id, -rater_var)
+print(kable(iccNA(to_stat)$ICCs))
+
+cat("\n\n")
+
+
+kendallW <- kendallNA(to_stat)
+print(sprintf("Kendalls W is: %s", kendallW$`Kendall's W`))
+#iprint(kripp.alpha(t(to_stat), method = "nominal"))
+cat("\n\n")
+}
+```
+
+Okay, now let's look at agreement. At least for these c coders, it lokes like, mainly for *Toda* folks are in agreement. For the middle categories, it is challenging. If we condensed the categories it would look better. I won't do more until I figure how who the unique coders are
+```{r}
+
+# ratings <- select(data_wide, folio_id, contains("Person")) 
+# 
+# ratings %>% kable(., escape = TRUE)
+# 
+# kripp.alpha(t(select(ratings, contains("Person"))), method = "ordinal")
+
+# %>%
+#   column_spec(1:5, width = "10em")
+```
+
+It's hard to get agreement out of all the coders of the 8, where we have all observations we get 3 thare the same across the board.
+```{r}
+
+# agree(select(ratings, contains("@")))
+```
+
+This is not a sufficient Kripp alpha, but it is getting there. 
+```{r}
+# kripp.alpha(t(select(ratings, contains("Person"))), method = "ordinal")
+
+```
+
