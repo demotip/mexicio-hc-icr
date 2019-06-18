@@ -3,6 +3,8 @@ title: "Examine Pilot Data"
 author: "Aaron Erlich"
 date: "03/06/2019"
 output: github_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -15,39 +17,91 @@ knitr::opts_chunk$set(echo = TRUE,
 
 ## Inter Coder Reliability
 
-I need to get the same 10 which were coded by everyone. As far as I can tell, it appears that only **five** of the coders coded these. I believe Dan used a different system.
+Specify the wave over which you want to check intercoder reliability in the `ROUND` variable.
+
+Before, anything else, we need to do some cleaup
 
 ```{r}
 ROUND <- "full_pilot1"
-pacman::p_load(tidyverse, tidyselect, irr, kableExtra, irrNA)
+pacman::p_load(tidyverse, tidyselect, irr, kableExtra, irrNA, lubridate, splitstackshape)
 
-icr <- read_csv("./data_raw/Big Data y Acceso a Info en México_June 18, 2019_07.36.csv",)
+icr <- read_csv("./data_raw/Big Data y Acceso a Info en México_June 18, 2019_07.csv")
+
 fs_ps1 <- readRDS("./data_raw/full_sample_post_p1.rds") %>%
   filter(round == ROUND)
 
-#remove gardage rows
-icr2 <- icr %>% slice(-(1:2)) %>%
-  filter(!(is.na(RecipientEmail)), Progress==100)
+#remove garbage rows
+#omit all dates before June 8 
+#or where there is no associated email
+icr2 <- icr %>% 
+  filter(!(is.na(RecipientEmail)), Progress==100) 
+#cleanup folio_id
 
-#table(icr)
-
-#deal with person who coded from a differet location (uggh)
-
-
-icr2 <- mutate(icr, folio_id = ifelse(grepl("'", S1),
+icr2 <- mutate(icr2, folio_id = ifelse(grepl("'", S1),
                                     trimws(S1),
                                     trimws(str_c("'", S1))))
 
 icr2 <- mutate(icr2, coder_id = str_extract(RecipientEmail, "^[[:alnum:]]+"))
 
+icr2 <- icr2 %>%
+  mutate(start_date = date(StartDate)) %>%
+  filter(start_date >= date("2019-06-08") )
 
- to_eval <- filter(icr2, folio_id %in% fs_ps1$FOLIO)
+#get rid of dpublicated by taking the one with the last start time time
+icr2 <- icr2 %>% group_by(folio_id, coder_id ) %>%
+  filter(StartDate==max(StartDate)) %>%
+    mutate(duplicate = n()>1) %>%
+  ungroup()
 
-#get rid of Dan???
+stopifnot(sum(icr2$duplicate) ==0)
 
-binary_vars <- vars_select(names(to_eval), matches("S6_|S10_"))
+check_alls <- c("S7", "S8", "S11")
 
-to_eval<- to_eval %>% mutate_at(vars(binary_vars),
+icr2 <- concat.split.expanded(icr2, "S7", sep = ",", 
+                      mode = "binary", 
+                      type = "character",
+                      fill = 0, drop = FALSE)
+
+icr2 <- concat.split.expanded(icr2, "S8", sep = ",", 
+                      mode = "binary", 
+                      type = "character",
+                      fill = 0, drop = FALSE)
+
+
+icr2 <- concat.split.expanded(icr2, "S11", sep = ",", 
+                      mode = "binary", 
+                      type = "character",
+                      fill = 0, drop = FALSE)
+
+#icr2 <- bind_cols(icr2, s7_cols, s8_cols, s11_cols)
+
+icr2 <- mutate(icr2, R5 = factor(R5, levels = c("Poca o nada", 
+                                                  "Menos de la mitad", 
+                                                  "Aproximadamente la mitad",
+                                                  "La mayoría",
+                                                  "Toda")))
+
+icr2 <- mutate(icr2, R7 = factor(R7, levels = c("Poca o nada", 
+                                                  "Menos de la mitad", 
+                                                  "Aproximadamente la mitad",
+                                                  "La mayoría",
+                                                  "Toda")))
+
+```
+
+#make short username
+
+```{r}
+#only examine folios in wave of interested
+to_eval <- filter(icr2, folio_id %in% fs_ps1$FOLIO)
+
+binary_vars <- vars_select(names(to_eval), matches("S7_|S8_[^4]|S11_"))
+
+yes_nos <- vars_select(names(to_eval), matches("S6_|S10_"))
+
+all_dummy <- c(binary_vars, yes_nos)
+
+to_eval<- to_eval %>% mutate_at(vars(yes_nos),
                                 list(~dplyr::recode(., `Sí` = 1, `No` = 0, .default = NA_real_)))
 
 # to_eval <- mutate(icr2, Q14 = factor(Q14, levels = c("Poca o nada", 
@@ -78,56 +132,81 @@ kable(cat(one_coder$folio_id))
 to_eval <- filter(to_eval, folio_id %in% n_coder$folio_id)
 coder_ids <- unique(to_eval$coder_id)
 
-for(i in 1:length(binary_vars)) {
-  data_wide <- reshape2::dcast(to_eval,  folio_id ~ coder_id , value.var= binary_vars[i], mean)
+bad_folios <- vector()
+
+for(i in 1:length(all_dummy)) {
+  data_wide <- reshape2::dcast(to_eval,  folio_id ~ coder_id , value.var= all_dummy[i], mean)
   #data_wide <- data_wide %>% select(-folio_id) %>%
   data_wide$rater_var <- apply(data_wide[, coder_ids], 1, var, na.rm = TRUE)
+    data_wide$num_coders <- apply(data_wide[, coder_ids], 1, function(x)
+      length(na.omit(x)))
+
   
- print( sprintf("Binary variable %s", binary_vars[i]))
+  print( sprintf("Binary variable %s", binary_vars[i]))
   
   ratings_out <- data_wide %>%
     filter(rater_var > 0 | is.na(rater_var))
 
 #capture the number of coders, get observations with at least 2. 
 #output where there is disagreement only
- output <-  ratings_out %>% kable(., escape = TRUE, digit = 2, )
-print(output)
+  output <-  ratings_out %>% kable(., escape = TRUE, digit = 2)
+  print(output)
 
-to_stat <- select(data_wide, -folio_id, -rater_var)
-print(kable(iccNA(to_stat)$ICCs))
+  bad_folios <- c(bad_folios, ratings_out$folio_id)
 
-cat("\n\n")
+  to_stat <- select(data_wide, -folio_id, -rater_var, -num_coders)
+  print(kable(iccNA(to_stat)$ICCs))
+    print(sprintf("CORRELATION MATRIX"))
+
+print(kable(cor(to_stat, use = "pairwise.complete.obs"), digit = 2))
+  cat("\n\n")
+
+  kendallW <- kendallNA(to_stat)
+  print(sprintf("Kendalls W is: %s", kendallW$`Kendall's W`))
+  #print(kripp.alpha(t(to_stat), method = "nominal"))
+  cat("\n\n")
+}
+
+```
+
+```{r, results = "asis"}
+for(i in (c("R5", "R7"))) {
+
+data_wide <-
+  reshape2::dcast(to_eval,  folio_id ~ coder_id, value.var= i ) %>%
+  mutate_at(vars(contains("Person")),  function(x) factor(x, levels = c("Poca o nada", 
+                                                  "Menos de la mitad", 
+                                                  "Aproximadamente la mitad",
+                                                  "La mayoría",
+                                                  "Toda"), ordered = TRUE))
+
+  data_wide$rater_var <- apply(data_wide[, coder_ids], 1, function(x)
+                               length(na.omit(unique(x))))
+  
+  data_wide$num_coders <- apply(data_wide[, coder_ids], 1, function(x)
+      length(na.omit(x)))
+  
+  ratings_out <- data_wide %>%
+    filter(rater_var > 1)
+
+#capture the number of coders, get observations with at least 2. 
+#output where there is disagreement only
+  output <-  ratings_out %>% kable(., escape = TRUE, digit = 2)
+  print(output)
+  bad_folios <- c(bad_folios, ratings_out$folio_id)
+
+  to_stat <- select(data_wide, -folio_id, -rater_var, -num_coders)
+  #print(kable(iccNA(to_stat)$ICCs))
 
 
-kendallW <- kendallNA(to_stat)
-print(sprintf("Kendalls W is: %s", kendallW$`Kendall's W`))
-#iprint(kripp.alpha(t(to_stat), method = "nominal"))
-cat("\n\n")
+  #kendallW <- kendallNA(to_stat)
+  #print(sprintf("Kendalls W is: %s", kendallW$`Kendall's W`))
+  print(kripp.alpha(t(to_stat), method = "ordinal"))
+  cat("\n\n")
 }
 ```
 
-Okay, now let's look at agreement. At least for these c coders, it lokes like, mainly for *Toda* folks are in agreement. For the middle categories, it is challenging. If we condensed the categories it would look better. I won't do more until I figure how who the unique coders are
-```{r}
-
-# ratings <- select(data_wide, folio_id, contains("Person")) 
-# 
-# ratings %>% kable(., escape = TRUE)
-# 
-# kripp.alpha(t(select(ratings, contains("Person"))), method = "ordinal")
-
-# %>%
-#   column_spec(1:5, width = "10em")
+What ar the folios that have the most issues.
+```{r, results='asis'}
+print(kable(sort(table(bad_folios))))
 ```
-
-It's hard to get agreement out of all the coders of the 8, where we have all observations we get 3 thare the same across the board.
-```{r}
-
-# agree(select(ratings, contains("@")))
-```
-
-This is not a sufficient Kripp alpha, but it is getting there. 
-```{r}
-# kripp.alpha(t(select(ratings, contains("Person"))), method = "ordinal")
-
-```
-
