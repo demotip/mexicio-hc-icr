@@ -24,26 +24,30 @@ fs_ps1 <- readRDS("./data_raw/full_sample_post_p1.rds") %>%
 #or where there is no associated email
 icr2 <- icr %>% 
   filter(!(is.na(RecipientEmail)), Progress==100) 
-#cleanup folio_id
 
+#cleanup folio_id
 icr2 <- mutate(icr2, folio_id = ifelse(grepl("'", S1),
                                     trimws(S1),
                                     trimws(str_c("'", S1))))
 
+#get short coder_id
 icr2 <- mutate(icr2, coder_id = str_extract(RecipientEmail, "^[[:alnum:]]+"))
 
+#omit earlier coding
 icr2 <- icr2 %>%
   mutate(start_date = date(StartDate)) %>%
   filter(start_date >= date("2019-06-08") )
 
-#get rid of dpublicated by taking the one with the last start time time
+#get rid of dublicated by taking the one with the last start time time
 icr2 <- icr2 %>% group_by(folio_id, coder_id ) %>%
   filter(StartDate==max(StartDate)) %>%
     mutate(duplicate = n()>1) %>%
   ungroup()
 
+#check
 stopifnot(sum(icr2$duplicate) ==0)
 
+#where there are checkboxes
 check_alls <- c("S7", "S8", "S11")
 
 icr2 <- concat.split.expanded(icr2, "S7", sep = ",", 
@@ -64,6 +68,7 @@ icr2 <- concat.split.expanded(icr2, "S11", sep = ",",
 
 #icr2 <- bind_cols(icr2, s7_cols, s8_cols, s11_cols)
 
+#ordinal
 icr2 <- mutate(icr2, R5 = factor(R5, levels = c("Poca o nada", 
                                                   "Menos de la mitad", 
                                                   "Aproximadamente la mitad",
@@ -83,24 +88,20 @@ icr2 <- mutate(icr2, R7 = factor(R7, levels = c("Poca o nada",
 #only examine folios in wave of interested
 to_eval <- filter(icr2, folio_id %in% fs_ps1$FOLIO)
 
+missing_folios <- fs_ps1$FOLIO[!(fs_ps1$FOLIO %in% to_eval$folio_id)]
+
 binary_vars <- vars_select(names(to_eval), matches("S7_|S8_[^4]|S11_"))
 
 yes_nos <- vars_select(names(to_eval), matches("S6_|S10_"))
 
 all_dummy <- c(binary_vars, yes_nos)
 
-to_eval<- to_eval %>% mutate_at(vars(yes_nos),
-                                list(~dplyr::recode(., `Sí` = 1, `No` = 0, .default = NA_real_)))
+to_eval<- to_eval %>% 
+  mutate_at(vars(yes_nos),
+            list(~dplyr::recode(., `Sí` = 1,
+                                `No` = 0, 
+                                .default = NA_real_)))
 
-# to_eval <- mutate(icr2, Q14 = factor(Q14, levels = c("Poca o nada", 
-#                                                   "Menos de la mitad", 
-#                                                   "Aproximadamente la mitad",
-#                                                   "La mayoría",
-#                                                   "Toda")))
-
-#table(icr$unique_coder)
-
-#output where a second coder is missing ----
 number_times_coded <- to_eval %>%
   group_by(folio_id) %>%
   summarise(count = n())
@@ -110,7 +111,25 @@ n_coder <- filter(number_times_coded, count > 1)
 one_coder <-  filter(number_times_coded, count == 1)
 ```
 
-These have only bee coded once
+These have only bee coded once or not at all for this wave of data entry
+
+``` r
+kable(cat(missing_folios))
+```
+
+    ## '1215100138911 '0064100551415 '1816400174209 '13434 '0064103030312 '0001100366708 '0064100272013 '0000900060011 '1820000005214 '0210000076309 '1220000015610 '0001200292112 '0064100319507 '0063700328414 '1611100061508 '1511100045309 '0681200014207 '0001100502111 '0411100036106 '0000600019613 '0000600024610 '0000800013207 '0912100048710 '1131800010115 '0001500069106 '1850000060008 '1411100034409 '0063500110314 '1115100056514 '0002000155613 '0064100730107 '0917600003408 '0063700531114 '0001100109006 '1026500043108 '0001300069114 '0002000051413 '0001000062110 '1613100027605 '0001100077115 '0000600247213 '0413100024610 '0000700049211 '1221500003108 '0002700002114 '0912100036110 '0001000019203 '0001100341111 '0210000090507 '0001000057812 '1610100168713 '0610100167711 '0000600170709 '1114100004905 '1031500036414 '1215100121912 '1610100016415 '0000700048104 '0000600291210 '0001100081703 '0000600007209 '0001100099410 '0000400190015 '2136 '0064100033311 '0001200376812 '0001300025410 '0673800130909 '1117100000109 '0411100055106 '0411100030814 '2510100095613 '0817000010910 '0000400111912 '1031500027807 '0610400025214 '1615100011805 '0002700158815 '0002700057714 '0063700279309 '0063300006713 '1113100013613 '1850000101409 '0810000004911 '0002700067612 '1117100008409 '5311000000910 '0064100029408 '0063700179110 '0063700065013 '1111200046115 '0917500004813 '1857600008809 '0064100029003 '1220000006706 '1221500003113 '0001200317608 '0210000078606 '1031500024406 '0000500098606 '0001400015513 '1113100023410 '0001400002203 '1615100021912 '0001600091108 '0610100051615 '0001200365514 '0000900078812
+
+<table>
+
+<tbody>
+
+<tr>
+
+</tr>
+
+</tbody>
+
+</table>
 
 ``` r
 kable(cat(one_coder$folio_id))
@@ -131,6 +150,7 @@ kable(cat(one_coder$folio_id))
 </table>
 
 ``` r
+#get only multiply coded folios
 to_eval <- filter(to_eval, folio_id %in% n_coder$folio_id)
 coder_ids <- unique(to_eval$coder_id)
 
@@ -143,7 +163,6 @@ for(i in 1:length(all_dummy)) {
     data_wide$num_coders <- apply(data_wide[, coder_ids], 1, function(x)
       length(na.omit(x)))
 
-  
   print( sprintf("Binary variable %s", binary_vars[i]))
   
   ratings_out <- data_wide %>%

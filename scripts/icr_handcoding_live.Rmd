@@ -35,26 +35,30 @@ fs_ps1 <- readRDS("./data_raw/full_sample_post_p1.rds") %>%
 #or where there is no associated email
 icr2 <- icr %>% 
   filter(!(is.na(RecipientEmail)), Progress==100) 
-#cleanup folio_id
 
+#cleanup folio_id
 icr2 <- mutate(icr2, folio_id = ifelse(grepl("'", S1),
                                     trimws(S1),
                                     trimws(str_c("'", S1))))
 
+#get short coder_id
 icr2 <- mutate(icr2, coder_id = str_extract(RecipientEmail, "^[[:alnum:]]+"))
 
+#omit earlier coding
 icr2 <- icr2 %>%
   mutate(start_date = date(StartDate)) %>%
   filter(start_date >= date("2019-06-08") )
 
-#get rid of dpublicated by taking the one with the last start time time
+#get rid of dublicated by taking the one with the last start time time
 icr2 <- icr2 %>% group_by(folio_id, coder_id ) %>%
   filter(StartDate==max(StartDate)) %>%
     mutate(duplicate = n()>1) %>%
   ungroup()
 
+#check
 stopifnot(sum(icr2$duplicate) ==0)
 
+#where there are checkboxes
 check_alls <- c("S7", "S8", "S11")
 
 icr2 <- concat.split.expanded(icr2, "S7", sep = ",", 
@@ -75,6 +79,7 @@ icr2 <- concat.split.expanded(icr2, "S11", sep = ",",
 
 #icr2 <- bind_cols(icr2, s7_cols, s8_cols, s11_cols)
 
+#ordinal
 icr2 <- mutate(icr2, R5 = factor(R5, levels = c("Poca o nada", 
                                                   "Menos de la mitad", 
                                                   "Aproximadamente la mitad",
@@ -95,24 +100,20 @@ icr2 <- mutate(icr2, R7 = factor(R7, levels = c("Poca o nada",
 #only examine folios in wave of interested
 to_eval <- filter(icr2, folio_id %in% fs_ps1$FOLIO)
 
+missing_folios <- fs_ps1$FOLIO[!(fs_ps1$FOLIO %in% to_eval$folio_id)]
+
 binary_vars <- vars_select(names(to_eval), matches("S7_|S8_[^4]|S11_"))
 
 yes_nos <- vars_select(names(to_eval), matches("S6_|S10_"))
 
 all_dummy <- c(binary_vars, yes_nos)
 
-to_eval<- to_eval %>% mutate_at(vars(yes_nos),
-                                list(~dplyr::recode(., `Sí` = 1, `No` = 0, .default = NA_real_)))
+to_eval<- to_eval %>% 
+  mutate_at(vars(yes_nos),
+            list(~dplyr::recode(., `Sí` = 1,
+                                `No` = 0, 
+                                .default = NA_real_)))
 
-# to_eval <- mutate(icr2, Q14 = factor(Q14, levels = c("Poca o nada", 
-#                                                   "Menos de la mitad", 
-#                                                   "Aproximadamente la mitad",
-#                                                   "La mayoría",
-#                                                   "Toda")))
-
-#table(icr$unique_coder)
-
-#output where a second coder is missing ----
 number_times_coded <- to_eval %>%
   group_by(folio_id) %>%
   summarise(count = n())
@@ -122,13 +123,15 @@ n_coder <- filter(number_times_coded, count > 1)
 one_coder <-  filter(number_times_coded, count == 1)
 ```
 
-These have only bee coded once
+These have only bee coded once or not at all for this wave of data entry
 
 ```{r}
+kable(cat(missing_folios))
 kable(cat(one_coder$folio_id))
 ```
 
 ```{r, results='asis'}
+#get only multiply coded folios
 to_eval <- filter(to_eval, folio_id %in% n_coder$folio_id)
 coder_ids <- unique(to_eval$coder_id)
 
@@ -141,7 +144,6 @@ for(i in 1:length(all_dummy)) {
     data_wide$num_coders <- apply(data_wide[, coder_ids], 1, function(x)
       length(na.omit(x)))
 
-  
   print( sprintf("Binary variable %s", binary_vars[i]))
   
   ratings_out <- data_wide %>%
