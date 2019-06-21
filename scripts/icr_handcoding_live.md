@@ -14,7 +14,7 @@ Before, anything else, we need to do some cleaup
 ROUND <- "full_pilot1"
 pacman::p_load(tidyverse, tidyselect, irr, kableExtra, irrNA, lubridate, splitstackshape)
 
-icr <- read_csv("./data_raw/Big Data y Acceso a Info en México_June 18, 2019_07.csv")
+icr <- read_csv("./data_raw/Big Data y Acceso a Info en México_June 21, 2019_14.17.csv")
 
 fs_ps1 <- readRDS("./data_raw/full_sample_post_p1.rds") %>%
   filter(round == ROUND)
@@ -94,7 +94,7 @@ binary_vars <- vars_select(names(to_eval), matches("S7_|S8_[^4]|S11_"))
 
 yes_nos <- vars_select(names(to_eval), matches("S6_|S10_"))
 
-all_dummy <- c(binary_vars, yes_nos)
+all_dummy <- str_sort(c(binary_vars, yes_nos), numeric = TRUE)
 
 to_eval<- to_eval %>% 
   mutate_at(vars(yes_nos),
@@ -117,8 +117,6 @@ These have only bee coded once or not at all for this wave of data entry
 kable(cat(missing_folios))
 ```
 
-    ## '1215100138911 '0064100551415 '1816400174209 '13434 '0064103030312 '0001100366708 '0064100272013 '0000900060011 '1820000005214 '0210000076309 '1220000015610 '0001200292112 '0064100319507 '0063700328414 '1611100061508 '1511100045309 '0681200014207 '0001100502111 '0411100036106 '0000600019613 '0000600024610 '0000800013207 '0912100048710 '1131800010115 '0001500069106 '1850000060008 '1411100034409 '0063500110314 '1115100056514 '0002000155613 '0064100730107 '0917600003408 '0063700531114 '0001100109006 '1026500043108 '0001300069114 '0002000051413 '0001000062110 '1613100027605 '0001100077115 '0000600247213 '0413100024610 '0000700049211 '1221500003108 '0002700002114 '0912100036110 '0001000019203 '0001100341111 '0210000090507 '0001000057812 '1610100168713 '0610100167711 '0000600170709 '1114100004905 '1031500036414 '1215100121912 '1610100016415 '0000700048104 '0000600291210 '0001100081703 '0000600007209 '0001100099410 '0000400190015 '2136 '0064100033311 '0001200376812 '0001300025410 '0673800130909 '1117100000109 '0411100055106 '0411100030814 '2510100095613 '0817000010910 '0000400111912 '1031500027807 '0610400025214 '1615100011805 '0002700158815 '0002700057714 '0063700279309 '0063300006713 '1113100013613 '1850000101409 '0810000004911 '0002700067612 '1117100008409 '5311000000910 '0064100029408 '0063700179110 '0063700065013 '1111200046115 '0917500004813 '1857600008809 '0064100029003 '1220000006706 '1221500003113 '0001200317608 '0210000078606 '1031500024406 '0000500098606 '0001400015513 '1113100023410 '0001400002203 '1615100021912 '0001600091108 '0610100051615 '0001200365514 '0000900078812
-
 <table>
 
 <tbody>
@@ -135,7 +133,7 @@ kable(cat(missing_folios))
 kable(cat(one_coder$folio_id))
 ```
 
-    ## '0000400020312 '0000400124810 '0000400155810 '0000400317213 '0000500062605 '0000600021806 '0000600035210 '0000600149312 '0000600199813 '0000600286311 '0000700001309 '0000700003014 '0000700012515 '0000700013215 '0000700069107 '0000700100909 '0000700207914 '0000800073014 '0000800101312 '0000900030811 '0000900130914 '0000900247913 '0000900248713 '0001000162110 '0001100086412 '0001100171606 '0001100183308 '0001100246213 '0001100289115 '0001100373615 '0001100395711 '0001100570007 '0001200061814 '0001200067405 '0001200121815 '0001200150109 '0001200202407 '0001200265707 '0001200313314 '0001300000410 '0001300002110 '0001300003707 '0001400043706 '0001700020906 '0001700027708 '0001700078810 '0001700156608 '0001700198605 '0002000100913 '0002000120512 '0002100021114 '0002200038205 '0002200056808 '0002200158108 '0002700040515 '0002700053513 '0002700099113 '0002700122913 '0002700185215 '0063500015815 '0063700025011 '0063700030110 '0063700057807 '0063700238212 '0063700261615 '0063700381813 '0064100060013 '0064100332409 '0064100522913 '0064100566114 '0064100740610 '0064100818910 '0064101095409 '0064101519911 '0064101676309 '0064102219210 '0064102522611 '0064102525911 '0064103177313 '0210000035314 '0210000132008 '0411100009107 '0413100024507 '0441000013414 '0610100023908 '0610100064610 '0610100066912 '0612100019614 '0632000013606 '0673800045808 '0673800046914 '0673800119808 '0673800138707 '0674700008307 '0678000017911 '0681200028512 '0681200032313 '0681200050914 '0814000011913 '0912100016013 '0912100016603 '0912100031114 '0912100034910 '0918600000510 '0933800014509 '1026500013908 '1110000000112 '1111200003612 '1111200007709 '1111200025508 '1111500016413 '1111500024807 '1111500050314 '1113100032713 '1114100042113 '1114100052713 '1119500000306 '1132100013412 '1215100061809 '1215100127013 '1219700011408 '1220000000309 '1222300007013 '1222600012909 '1224500002815 '1232900010213 '1407500014609 '1411100030410 '1412000005508 '1507500005612 '1511100015108 '1511100022411 '1610100013408 '1610100027310 '1610100032814 '1610100091713 '1613100000607 '1613100039512 '1613100054314 '1615100020609 '17765 '1810000004907 '1816400010805 '1816400083714 '1816400107212 '1816400134811 '1819100004013 '1850000028006 '1857200172714 '1857500022812 '1857500071010 '1857600005803 '1857600021710 '1857700015910 '19213 '2014300001807 '2015000001314 '2015000003612 '2031200003314 '2099900005613 '2099900021410 '2135500004809 '2510100035511 '2510100061415 '252 '26625 '27705 '27869 '2901000010314 '29725 '3670000008013 '4220700001412 '6184 '7394
+    ## '0000500098606 '0000900078812 '0001200365514 '0001200376812 '0001300025410 '0001400002203 '0001400015513 '0001600091108 '0002000051413 '0064100033311 '0210000078606 '0610100051615 '0673800130909 '1031500024406 '1113100023410 '1615100021912 '1820000005214 '2510100095613
 
 <table>
 
@@ -163,10 +161,10 @@ for(i in 1:length(all_dummy)) {
     data_wide$num_coders <- apply(data_wide[, coder_ids], 1, function(x)
       length(na.omit(x)))
 
-  print( sprintf("Binary variable %s", binary_vars[i]))
+  print( sprintf("Binary variable %s", all_dummy[i]))
   
   ratings_out <- data_wide %>%
-    filter(rater_var > 0 | is.na(rater_var))
+    filter(rater_var > 0 | is.na(rater_var)) %>% sample_n(5)
 
 #capture the number of coders, get observations with at least 2. 
 #output where there is disagreement only
@@ -188,6 +186,3790 @@ print(kable(cor(to_stat, use = "pairwise.complete.obs"), digit = 2))
   cat("\n\n")
 }
 ```
+
+\[1\] “Binary variable S6\_1”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001200073410
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.25
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0678000010912
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1114100004905
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0821000005107
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1111200025211
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.3000415
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.2260342
+
+</td>
+
+<td style="text-align:right;">
+
+0.3740388
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5326432
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.4370896
+
+</td>
+
+<td style="text-align:right;">
+
+0.6137091
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.3189910
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.2460474
+
+</td>
+
+<td style="text-align:right;">
+
+0.3917447
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5546426
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.4644551
+
+</td>
+
+<td style="text-align:right;">
+
+0.6313851
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.3230204
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.2493785
+
+</td>
+
+<td style="text-align:right;">
+
+0.3962475
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5592043
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.4690221
+
+</td>
+
+<td style="text-align:right;">
+
+0.6356965
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.31
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.65
+
+</td>
+
+<td style="text-align:right;">
+
+0.70
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.31
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.39
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.3
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.09
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.30
+
+</td>
+
+<td style="text-align:right;">
+
+1.0
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.65
+
+</td>
+
+<td style="text-align:right;">
+
+0.39
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.09
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.48
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+0.70
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.48
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.595486143914009”
+
+\[1\] “Binary variable S6\_2”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002100030807
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0917500004813
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002000155613
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1411100034409
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001600284910
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5129854
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.4477213
+
+</td>
+
+<td style="text-align:right;">
+
+0.5750657
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.7368795
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.6830831
+
+</td>
+
+<td style="text-align:right;">
+
+0.7825194
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5222898
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.4579471
+
+</td>
+
+<td style="text-align:right;">
+
+0.5834233
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.7440407
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.6919351
+
+</td>
+
+<td style="text-align:right;">
+
+0.7883071
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5250407
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.4605713
+
+</td>
+
+<td style="text-align:right;">
+
+0.5861825
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.7461354
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.6941973
+
+</td>
+
+<td style="text-align:right;">
+
+0.7901891
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.74
+
+</td>
+
+<td style="text-align:right;">
+
+0.61
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.68
+
+</td>
+
+<td style="text-align:right;">
+
+0.48
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.74
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.34
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.66
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.07
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+0.61
+
+</td>
+
+<td style="text-align:right;">
+
+0.34
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.65
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.09
+
+</td>
+
+<td style="text-align:right;">
+
+0.48
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.65
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.30
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.68
+
+</td>
+
+<td style="text-align:right;">
+
+0.66
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.09
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.38
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+0.48
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.07
+
+</td>
+
+<td style="text-align:right;">
+
+0.48
+
+</td>
+
+<td style="text-align:right;">
+
+0.30
+
+</td>
+
+<td style="text-align:right;">
+
+0.38
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.722166194668984”
+
+\[1\] “Binary variable S6\_3”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’27705
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1111500024807
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001000019203
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1215100138911
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0416000007815
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.2316019
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.1571136
+
+</td>
+
+<td style="text-align:right;">
+
+0.3072835
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.4448679
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.3313681
+
+</td>
+
+<td style="text-align:right;">
+
+0.5411589
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.3003158
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.2274860
+
+</td>
+
+<td style="text-align:right;">
+
+0.3733491
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5329682
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.4384756
+
+</td>
+
+<td style="text-align:right;">
+
+0.6133836
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.3078724
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.2339461
+
+</td>
+
+<td style="text-align:right;">
+
+0.3816438
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5418455
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.4481119
+
+</td>
+
+<td style="text-align:right;">
+
+0.6213500
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.40
+
+</td>
+
+<td style="text-align:right;">
+
+0.26
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+0.26
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.40
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.28
+
+</td>
+
+<td style="text-align:right;">
+
+0.67
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+0.26
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.31
+
+</td>
+
+<td style="text-align:right;">
+
+0.12
+
+</td>
+
+<td style="text-align:right;">
+
+0.55
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.31
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.50
+
+</td>
+
+<td style="text-align:right;">
+
+0.28
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.26
+
+</td>
+
+<td style="text-align:right;">
+
+0.28
+
+</td>
+
+<td style="text-align:right;">
+
+0.12
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.50
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.13
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+0.67
+
+</td>
+
+<td style="text-align:right;">
+
+0.55
+
+</td>
+
+<td style="text-align:right;">
+
+0.28
+
+</td>
+
+<td style="text-align:right;">
+
+0.13
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.57329651236436”
+
+\[1\] “Binary variable S6\_4”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0917900001507
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2510100061415
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1111200025211
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1816400107212
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000800101312
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.2741820
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.1998635
+
+</td>
+
+<td style="text-align:right;">
+
+0.3489418
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5010880
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.3990827
+
+</td>
+
+<td style="text-align:right;">
+
+0.5876273
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.2749114
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.2007253
+
+</td>
+
+<td style="text-align:right;">
+
+0.3495494
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5020035
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.4004084
+
+</td>
+
+<td style="text-align:right;">
+
+0.5882553
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.2754019
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.2010498
+
+</td>
+
+<td style="text-align:right;">
+
+0.3501647
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5026183
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.4008592
+
+</td>
+
+<td style="text-align:right;">
+
+0.5889300
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.60
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.15
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.07
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.60
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.03
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.05
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.79
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.12
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.79
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.38
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.15
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.03
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.12
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.24
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.07
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.05
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+0.38
+
+</td>
+
+<td style="text-align:right;">
+
+0.24
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.524347158532948”
 
 \[1\] “Binary variable S7\_Datos agregados (base de datos)”
 
@@ -261,7 +4043,13 @@ num\_coders
 
 <td style="text-align:left;">
 
-’0000400209014
+’0063500110314
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
 
 </td>
 
@@ -280,6 +4068,58 @@ NaN
 <td style="text-align:right;">
 
 0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063700065013
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
 
 </td>
 
@@ -319,13 +4159,31 @@ NaN
 
 <td style="text-align:left;">
 
-’0000900248810
+’1857600005803
 
 </td>
 
 <td style="text-align:right;">
 
 0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
 
 </td>
 
@@ -343,13 +4201,53 @@ NaN
 
 <td style="text-align:right;">
 
-NaN
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1615100031912
 
 </td>
 
 <td style="text-align:right;">
 
 0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
 
 </td>
 
@@ -413,7 +4311,779 @@ NaN
 
 <td style="text-align:right;">
 
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.3004540
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.2264529
+
+</td>
+
+<td style="text-align:right;">
+
+0.3744379
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5331319
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.4376782
+
+</td>
+
+<td style="text-align:right;">
+
+0.6141130
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.3105482
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.2374556
+
+</td>
+
+<td style="text-align:right;">
+
+0.3835949
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5449536
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.4528226
+
+</td>
+
+<td style="text-align:right;">
+
+0.6233551
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.3144541
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.2406446
+
+</td>
+
+<td style="text-align:right;">
+
+0.3879954
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5494582
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.4572820
+
+</td>
+
+<td style="text-align:right;">
+
+0.6276417
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.41
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.52
+
+</td>
+
+<td style="text-align:right;">
+
+0.63
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.41
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.34
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.11
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.52
+
+</td>
+
+<td style="text-align:right;">
+
+0.34
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.31
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+0.63
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.11
+
+</td>
+
+<td style="text-align:right;">
+
+0.31
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.564094658629249”
+
+\[1\] “Binary variable S7\_Múltiples datos”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0610100166512
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
 NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1511100022411
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
 
 </td>
 
@@ -435,7 +5105,7 @@ NaN
 
 <td style="text-align:left;">
 
-’0064100400810
+’0001100183308
 
 </td>
 
@@ -447,65 +5117,7 @@ NaN
 
 <td style="text-align:right;">
 
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
 0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000030806
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
 
 </td>
 
@@ -551,7 +5163,31 @@ NaN
 
 <td style="text-align:left;">
 
-’0411100072013
+’0001300041011
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
 
 </td>
 
@@ -564,6 +5200,40 @@ NaN
 <td style="text-align:right;">
 
 1
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000700207914
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
 
 </td>
 
@@ -605,11 +5275,685 @@ NaN
 
 </tr>
 
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
 <tr>
 
 <td style="text-align:left;">
 
-’0610100109913
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6487536
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5950812
+
+</td>
+
+<td style="text-align:right;">
+
+0.6982081
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8308164
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7962258
+
+</td>
+
+<td style="text-align:right;">
+
+0.8601623
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6537985
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.6008195
+
+</td>
+
+<td style="text-align:right;">
+
+0.7025969
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8339158
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.8000608
+
+</td>
+
+<td style="text-align:right;">
+
+0.8626651
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6564403
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.6035373
+
+</td>
+
+<td style="text-align:right;">
+
+0.7050897
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8355289
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.8018798
+
+</td>
+
+<td style="text-align:right;">
+
+0.8640699
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.76
+
+</td>
+
+<td style="text-align:right;">
+
+0.79
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.61
+
+</td>
+
+<td style="text-align:right;">
+
+0.64
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.76
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.78
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.63
+
+</td>
+
+<td style="text-align:right;">
+
+0.79
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+0.79
+
+</td>
+
+<td style="text-align:right;">
+
+0.78
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+0.71
+
+</td>
+
+<td style="text-align:right;">
+
+0.68
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+0.49
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.61
+
+</td>
+
+<td style="text-align:right;">
+
+0.63
+
+</td>
+
+<td style="text-align:right;">
+
+0.71
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.72
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+0.64
+
+</td>
+
+<td style="text-align:right;">
+
+0.79
+
+</td>
+
+<td style="text-align:right;">
+
+0.68
+
+</td>
+
+<td style="text-align:right;">
+
+0.49
+
+</td>
+
+<td style="text-align:right;">
+
+0.72
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.789054297325443”
+
+\[1\] “Binary variable S7\_Múltiples documentos”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1026500043108
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
 
 </td>
 
@@ -622,6 +5966,150 @@ NaN
 <td style="text-align:right;">
 
 NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002000155613
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000900247913
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000900156715
 
 </td>
 
@@ -645,47 +6133,7 @@ NaN
 
 <td style="text-align:right;">
 
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0908500003207
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
+1
 
 </td>
 
@@ -703,19 +6151,13 @@ NaN
 
 <td style="text-align:right;">
 
-NaN
+0.33
 
 </td>
 
 <td style="text-align:right;">
 
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
+3
 
 </td>
 
@@ -725,65 +6167,7 @@ NaN
 
 <td style="text-align:left;">
 
-’1219700039614
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1615100031912
+’26625
 
 </td>
 
@@ -891,25 +6275,25 @@ ICC(1)
 
 <td style="text-align:right;">
 
-0.4108691
+0.6574526
 
 </td>
 
 <td style="text-align:right;">
 
-2.3e-06
+0
 
 </td>
 
 <td style="text-align:right;">
 
-0.2426032
+0.6046897
 
 </td>
 
 <td style="text-align:right;">
 
-0.5610342
+0.7059700
 
 </td>
 
@@ -925,25 +6309,25 @@ ICC(k)
 
 <td style="text-align:right;">
 
-0.6115822
+0.8361452
 
 </td>
 
 <td style="text-align:right;">
 
-2.3e-06
+0
 
 </td>
 
 <td style="text-align:right;">
 
-0.4196723
+0.8026442
 
 </td>
 
 <td style="text-align:right;">
 
-0.7426335
+0.8645668
 
 </td>
 
@@ -959,25 +6343,25 @@ ICC(A,1)
 
 <td style="text-align:right;">
 
-0.4279950
+0.6644864
 
 </td>
 
 <td style="text-align:right;">
 
-9.0e-07
+0
 
 </td>
 
 <td style="text-align:right;">
 
-0.2616378
+0.6125170
 
 </td>
 
 <td style="text-align:right;">
 
-0.5753267
+0.7122061
 
 </td>
 
@@ -993,25 +6377,25 @@ ICC(A,k)
 
 <td style="text-align:right;">
 
-0.6281539
+0.8404005
 
 </td>
 
 <td style="text-align:right;">
 
-9.0e-07
+0
 
 </td>
 
 <td style="text-align:right;">
 
-0.4446325
+0.8078011
 
 </td>
 
 <td style="text-align:right;">
 
-0.7535556
+0.8680660
 
 </td>
 
@@ -1027,25 +6411,25 @@ ICC(C,1)
 
 <td style="text-align:right;">
 
-0.4278552
+0.6647753
 
 </td>
 
 <td style="text-align:right;">
 
-9.0e-07
+0
 
 </td>
 
 <td style="text-align:right;">
 
-0.2609081
+0.6127611
 
 </td>
 
 <td style="text-align:right;">
 
-0.5754928
+0.7125139
 
 </td>
 
@@ -1061,25 +6445,25 @@ ICC(C,k)
 
 <td style="text-align:right;">
 
-0.6280206
+0.8405743
 
 </td>
 
 <td style="text-align:right;">
 
-9.0e-07
+0
 
 </td>
 
 <td style="text-align:right;">
 
-0.4435140
+0.8079575
 
 </td>
 
 <td style="text-align:right;">
 
-0.7537363
+0.8682398
 
 </td>
 
@@ -1159,7 +6543,13 @@ andrea
 
 <td style="text-align:right;">
 
-0.46
+0.75
+
+</td>
+
+<td style="text-align:right;">
+
+0.78
 
 </td>
 
@@ -1171,19 +6561,13 @@ NA
 
 <td style="text-align:right;">
 
-NA
+0.60
 
 </td>
 
 <td style="text-align:right;">
 
-0.45
-
-</td>
-
-<td style="text-align:right;">
-
-NA
+0.81
 
 </td>
 
@@ -1199,7 +6583,7 @@ carmen
 
 <td style="text-align:right;">
 
-0.46
+0.75
 
 </td>
 
@@ -1211,7 +6595,7 @@ carmen
 
 <td style="text-align:right;">
 
-NA
+0.79
 
 </td>
 
@@ -1223,13 +6607,13 @@ NA
 
 <td style="text-align:right;">
 
-0.24
+0.58
 
 </td>
 
 <td style="text-align:right;">
 
-NA
+0.42
 
 </td>
 
@@ -1245,37 +6629,37 @@ edithimg
 
 <td style="text-align:right;">
 
-NA
+0.78
 
 </td>
 
 <td style="text-align:right;">
 
-NA
+0.79
 
 </td>
 
 <td style="text-align:right;">
 
-NA
+1.00
 
 </td>
 
 <td style="text-align:right;">
 
-NA
+0.86
 
 </td>
 
 <td style="text-align:right;">
 
-NA
+0.86
 
 </td>
 
 <td style="text-align:right;">
 
-NA
+0.65
 
 </td>
 
@@ -1303,25 +6687,25 @@ NA
 
 <td style="text-align:right;">
 
-NA
+0.86
 
 </td>
 
 <td style="text-align:right;">
 
-1
+1.00
 
 </td>
 
 <td style="text-align:right;">
 
-NA
+1.00
 
 </td>
 
 <td style="text-align:right;">
 
-1
+0.72
 
 </td>
 
@@ -1337,25 +6721,19 @@ katia
 
 <td style="text-align:right;">
 
-0.45
+0.60
 
 </td>
 
 <td style="text-align:right;">
 
-0.24
+0.58
 
 </td>
 
 <td style="text-align:right;">
 
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
+0.86
 
 </td>
 
@@ -1367,7 +6745,13 @@ NA
 
 <td style="text-align:right;">
 
-NA
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
 
 </td>
 
@@ -1383,37 +6767,37 @@ sandra
 
 <td style="text-align:right;">
 
-NA
+0.81
 
 </td>
 
 <td style="text-align:right;">
 
-NA
+0.42
 
 </td>
 
 <td style="text-align:right;">
 
-NA
+0.65
 
 </td>
 
 <td style="text-align:right;">
 
-1
+0.72
 
 </td>
 
 <td style="text-align:right;">
 
-NA
+0.50
 
 </td>
 
 <td style="text-align:right;">
 
-1
+1.00
 
 </td>
 
@@ -1423,9 +6807,9 @@ NA
 
 </table>
 
-\[1\] “Kendalls W is: 0.672169415037198”
+\[1\] “Kendalls W is: 0.79223787601887”
 
-\[1\] “Binary variable S7\_Múltiples datos”
+\[1\] “Binary variable S7\_Un dato”
 
 <table>
 
@@ -1497,7 +6881,7 @@ num\_coders
 
 <td style="text-align:left;">
 
-’0000500058507
+’0063700328414
 
 </td>
 
@@ -1555,7 +6939,27561 @@ NaN
 
 <td style="text-align:left;">
 
-’0000500102110
+’1511100067610
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0817000010910
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001700078810
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1119500000306
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5749413
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5143664
+
+</td>
+
+<td style="text-align:right;">
+
+0.6317306
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.7824328
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7379499
+
+</td>
+
+<td style="text-align:right;">
+
+0.8201711
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5787378
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5187100
+
+</td>
+
+<td style="text-align:right;">
+
+0.6350167
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.7850688
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7412882
+
+</td>
+
+<td style="text-align:right;">
+
+0.8222553
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5813768
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5213088
+
+</td>
+
+<td style="text-align:right;">
+
+0.6375966
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.7868912
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7432913
+
+</td>
+
+<td style="text-align:right;">
+
+0.8238724
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.81
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.58
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.81
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.57
+
+</td>
+
+<td style="text-align:right;">
+
+0.52
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.67
+
+</td>
+
+<td style="text-align:right;">
+
+0.84
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.67
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.52
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.58
+
+</td>
+
+<td style="text-align:right;">
+
+0.57
+
+</td>
+
+<td style="text-align:right;">
+
+0.84
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.52
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+0.52
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+0.52
+
+</td>
+
+<td style="text-align:right;">
+
+0.52
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.750336814578704”
+
+\[1\] “Binary variable S7\_Un documento”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’29725
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001200073410
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063500015815
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063700025011
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1412000005508
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5952741
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5364564
+
+</td>
+
+<td style="text-align:right;">
+
+0.6501537
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.7963557
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7547195
+
+</td>
+
+<td style="text-align:right;">
+
+0.8316791
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6055100
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5475039
+
+</td>
+
+<td style="text-align:right;">
+
+0.6594751
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8031874
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7628619
+
+</td>
+
+<td style="text-align:right;">
+
+0.8373752
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6045439
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5465273
+
+</td>
+
+<td style="text-align:right;">
+
+0.6585495
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8025476
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7621509
+
+</td>
+
+<td style="text-align:right;">
+
+0.8368120
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.59
+
+</td>
+
+<td style="text-align:right;">
+
+0.55
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.67
+
+</td>
+
+<td style="text-align:right;">
+
+0.61
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.59
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.85
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.66
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.07
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+0.55
+
+</td>
+
+<td style="text-align:right;">
+
+0.85
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.65
+
+</td>
+
+<td style="text-align:right;">
+
+0.69
+
+</td>
+
+<td style="text-align:right;">
+
+0.44
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.65
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.62
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.67
+
+</td>
+
+<td style="text-align:right;">
+
+0.66
+
+</td>
+
+<td style="text-align:right;">
+
+0.69
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.58
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+0.61
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.07
+
+</td>
+
+<td style="text-align:right;">
+
+0.44
+
+</td>
+
+<td style="text-align:right;">
+
+0.62
+
+</td>
+
+<td style="text-align:right;">
+
+0.58
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.755287751527495”
+
+\[1\] “Binary variable S8\_¿cuál?”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0210000015405
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1857600021710
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000900247913
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001200313314
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1116100021513
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.1720856
+
+</td>
+
+<td style="text-align:right;">
+
+1.6e-06
+
+</td>
+
+<td style="text-align:right;">
+
+0.0980638
+
+</td>
+
+<td style="text-align:right;">
+
+0.2483489
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.3559334
+
+</td>
+
+<td style="text-align:right;">
+
+1.6e-06
+
+</td>
+
+<td style="text-align:right;">
+
+0.2242505
+
+</td>
+
+<td style="text-align:right;">
+
+0.4676507
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.1836840
+
+</td>
+
+<td style="text-align:right;">
+
+3.0e-07
+
+</td>
+
+<td style="text-align:right;">
+
+0.1101290
+
+</td>
+
+<td style="text-align:right;">
+
+0.2593693
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.3743206
+
+</td>
+
+<td style="text-align:right;">
+
+3.0e-07
+
+</td>
+
+<td style="text-align:right;">
+
+0.2476181
+
+</td>
+
+<td style="text-align:right;">
+
+0.4821380
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.1853422
+
+</td>
+
+<td style="text-align:right;">
+
+3.0e-07
+
+</td>
+
+<td style="text-align:right;">
+
+0.1111021
+
+</td>
+
+<td style="text-align:right;">
+
+0.2615847
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.3769052
+
+</td>
+
+<td style="text-align:right;">
+
+3.0e-07
+
+</td>
+
+<td style="text-align:right;">
+
+0.2494264
+
+</td>
+
+<td style="text-align:right;">
+
+0.4850321
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.40
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.19
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.40
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.17
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.43
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.19
+
+</td>
+
+<td style="text-align:right;">
+
+0.17
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.43
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.483631634650783”
+
+\[1\] “Binary variable S8\_Actividades de la institución”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1026500043108
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0612100019614
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064103230113
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1610100168713
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1215100061809
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.4976562
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.4313846
+
+</td>
+
+<td style="text-align:right;">
+
+0.5609217
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.7248172
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.6685546
+
+</td>
+
+<td style="text-align:right;">
+
+0.7725494
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.4935171
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.4270087
+
+</td>
+
+<td style="text-align:right;">
+
+0.5570598
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.7215023
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.6640589
+
+</td>
+
+<td style="text-align:right;">
+
+0.7700831
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5041481
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.4382552
+
+</td>
+
+<td style="text-align:right;">
+
+0.5669468
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.7299664
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.6747203
+
+</td>
+
+<td style="text-align:right;">
+
+0.7768259
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.59
+
+</td>
+
+<td style="text-align:right;">
+
+0.51
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+0.46
+
+</td>
+
+<td style="text-align:right;">
+
+0.45
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.59
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.55
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.48
+
+</td>
+
+<td style="text-align:right;">
+
+0.67
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+0.51
+
+</td>
+
+<td style="text-align:right;">
+
+0.55
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.65
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+0.53
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.65
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+0.43
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.46
+
+</td>
+
+<td style="text-align:right;">
+
+0.48
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.47
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+0.45
+
+</td>
+
+<td style="text-align:right;">
+
+0.67
+
+</td>
+
+<td style="text-align:right;">
+
+0.53
+
+</td>
+
+<td style="text-align:right;">
+
+0.43
+
+</td>
+
+<td style="text-align:right;">
+
+0.47
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.68888124551363”
+
+\[1\] “Binary variable S8\_Contrataciones con externos”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0912100016013
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0610100092815
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100319507
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000900216813
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0912100065110
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.7155751
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.6694165
+
+</td>
+
+<td style="text-align:right;">
+
+0.7574446
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8699454
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.8433551
+
+</td>
+
+<td style="text-align:right;">
+
+0.8925042
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.7182068
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.6724491
+
+</td>
+
+<td style="text-align:right;">
+
+0.7597073
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8714055
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.8451627
+
+</td>
+
+<td style="text-align:right;">
+
+0.8936829
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.7190604
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.6732984
+
+</td>
+
+<td style="text-align:right;">
+
+0.7605288
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8718778
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.8456654
+
+</td>
+
+<td style="text-align:right;">
+
+0.8941111
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.72
+
+</td>
+
+<td style="text-align:right;">
+
+0.52
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.78
+
+</td>
+
+<td style="text-align:right;">
+
+0.88
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.72
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.55
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.74
+
+</td>
+
+<td style="text-align:right;">
+
+0.87
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+0.52
+
+</td>
+
+<td style="text-align:right;">
+
+0.55
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.54
+
+</td>
+
+<td style="text-align:right;">
+
+0.66
+
+</td>
+
+<td style="text-align:right;">
+
+0.69
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.54
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.65
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.78
+
+</td>
+
+<td style="text-align:right;">
+
+0.74
+
+</td>
+
+<td style="text-align:right;">
+
+0.66
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.83
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+0.88
+
+</td>
+
+<td style="text-align:right;">
+
+0.87
+
+</td>
+
+<td style="text-align:right;">
+
+0.69
+
+</td>
+
+<td style="text-align:right;">
+
+0.65
+
+</td>
+
+<td style="text-align:right;">
+
+0.83
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.825821100757579”
+
+\[1\] “Binary variable S8\_estadísticas y resultados”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1610100027310
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001700078810
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1411100030410
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001100373615
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1111200046115
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.4181165
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.3475724
+
+</td>
+
+<td style="text-align:right;">
+
+0.4867272
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6564128
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5861646
+
+</td>
+
+<td style="text-align:right;">
+
+0.7160101
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.4295172
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.3600493
+
+</td>
+
+<td style="text-align:right;">
+
+0.4970159
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6668646
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5991347
+
+</td>
+
+<td style="text-align:right;">
+
+0.7244221
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.4355892
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.3658050
+
+</td>
+
+<td style="text-align:right;">
+
+0.5031738
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6723375
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.6053012
+
+</td>
+
+<td style="text-align:right;">
+
+0.7291975
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+0.54
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.38
+
+</td>
+
+<td style="text-align:right;">
+
+0.63
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.68
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.03
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+0.54
+
+</td>
+
+<td style="text-align:right;">
+
+0.68
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.69
+
+</td>
+
+<td style="text-align:right;">
+
+0.45
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.67
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.38
+
+</td>
+
+<td style="text-align:right;">
+
+0.03
+
+</td>
+
+<td style="text-align:right;">
+
+0.69
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.77
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+0.63
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.45
+
+</td>
+
+<td style="text-align:right;">
+
+0.67
+
+</td>
+
+<td style="text-align:right;">
+
+0.77
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.635980505180514”
+
+\[1\] “Binary variable S8\_Estructura de la institución”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1111200007709
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1117100000109
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2510100061415
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001100171309
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002700040515
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6638601
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.6117801
+
+</td>
+
+<td style="text-align:right;">
+
+0.7116776
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8400235
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.8073155
+
+</td>
+
+<td style="text-align:right;">
+
+0.8677724
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6637443
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.6118085
+
+</td>
+
+<td style="text-align:right;">
+
+0.7114679
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8399538
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.8073149
+
+</td>
+
+<td style="text-align:right;">
+
+0.8676660
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6670166
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.6152445
+
+</td>
+
+<td style="text-align:right;">
+
+0.7145079
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8419197
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.8095781
+
+</td>
+
+<td style="text-align:right;">
+
+0.8693517
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.65
+
+</td>
+
+<td style="text-align:right;">
+
+0.73
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.63
+
+</td>
+
+<td style="text-align:right;">
+
+0.71
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.65
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.58
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.55
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+0.73
+
+</td>
+
+<td style="text-align:right;">
+
+0.58
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.57
+
+</td>
+
+<td style="text-align:right;">
+
+0.87
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.66
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.63
+
+</td>
+
+<td style="text-align:right;">
+
+0.55
+
+</td>
+
+<td style="text-align:right;">
+
+0.57
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.59
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+0.71
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.87
+
+</td>
+
+<td style="text-align:right;">
+
+0.66
+
+</td>
+
+<td style="text-align:right;">
+
+0.59
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.785290245257444”
+
+\[1\] “Binary variable S8\_Evaluaciones”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1610100091713
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0610100064610
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1215100138911
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1111200007709
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064103030312
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.4181165
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.3475724
+
+</td>
+
+<td style="text-align:right;">
+
+0.4867272
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6564128
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5861646
+
+</td>
+
+<td style="text-align:right;">
+
+0.7160101
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.4295172
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.3600493
+
+</td>
+
+<td style="text-align:right;">
+
+0.4970159
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6668646
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5991347
+
+</td>
+
+<td style="text-align:right;">
+
+0.7244221
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.4355892
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.3658050
+
+</td>
+
+<td style="text-align:right;">
+
+0.5031738
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6723375
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.6053012
+
+</td>
+
+<td style="text-align:right;">
+
+0.7291975
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+0.54
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.38
+
+</td>
+
+<td style="text-align:right;">
+
+0.63
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.68
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.03
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+0.54
+
+</td>
+
+<td style="text-align:right;">
+
+0.68
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.69
+
+</td>
+
+<td style="text-align:right;">
+
+0.45
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.67
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.38
+
+</td>
+
+<td style="text-align:right;">
+
+0.03
+
+</td>
+
+<td style="text-align:right;">
+
+0.69
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.77
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+0.63
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.45
+
+</td>
+
+<td style="text-align:right;">
+
+0.67
+
+</td>
+
+<td style="text-align:right;">
+
+0.77
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.635980505180514”
+
+\[1\] “Binary variable S8\_gasto”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000400209014
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064101584110
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0610100023908
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2014300001807
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2135500004809
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6378552
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5830723
+
+</td>
+
+<td style="text-align:right;">
+
+0.6884622
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8240348
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7880577
+
+</td>
+
+<td style="text-align:right;">
+
+0.8545570
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6390297
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5844958
+
+</td>
+
+<td style="text-align:right;">
+
+0.6894245
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8247713
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7890361
+
+</td>
+
+<td style="text-align:right;">
+
+0.8551133
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6403935
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5858322
+
+</td>
+
+<td style="text-align:right;">
+
+0.6907572
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8256249
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7899496
+
+</td>
+
+<td style="text-align:right;">
+
+0.8558846
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.54
+
+</td>
+
+<td style="text-align:right;">
+
+0.42
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.57
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.10
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.54
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.72
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.68
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+0.42
+
+</td>
+
+<td style="text-align:right;">
+
+0.72
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.71
+
+</td>
+
+<td style="text-align:right;">
+
+0.76
+
+</td>
+
+<td style="text-align:right;">
+
+0.84
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.71
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.69
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.57
+
+</td>
+
+<td style="text-align:right;">
+
+0.68
+
+</td>
+
+<td style="text-align:right;">
+
+0.76
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.60
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.10
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.84
+
+</td>
+
+<td style="text-align:right;">
+
+0.69
+
+</td>
+
+<td style="text-align:right;">
+
+0.60
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.751892413531897”
+
+\[1\] “Binary variable S8\_Otro”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000900247913
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001100570007
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1615100031912
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000600149312
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1857200172714
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.1720856
+
+</td>
+
+<td style="text-align:right;">
+
+1.6e-06
+
+</td>
+
+<td style="text-align:right;">
+
+0.0980638
+
+</td>
+
+<td style="text-align:right;">
+
+0.2483489
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.3559334
+
+</td>
+
+<td style="text-align:right;">
+
+1.6e-06
+
+</td>
+
+<td style="text-align:right;">
+
+0.2242505
+
+</td>
+
+<td style="text-align:right;">
+
+0.4676507
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.1836840
+
+</td>
+
+<td style="text-align:right;">
+
+3.0e-07
+
+</td>
+
+<td style="text-align:right;">
+
+0.1101290
+
+</td>
+
+<td style="text-align:right;">
+
+0.2593693
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.3743206
+
+</td>
+
+<td style="text-align:right;">
+
+3.0e-07
+
+</td>
+
+<td style="text-align:right;">
+
+0.2476181
+
+</td>
+
+<td style="text-align:right;">
+
+0.4821380
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.1853422
+
+</td>
+
+<td style="text-align:right;">
+
+3.0e-07
+
+</td>
+
+<td style="text-align:right;">
+
+0.1111021
+
+</td>
+
+<td style="text-align:right;">
+
+0.2615847
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.3769052
+
+</td>
+
+<td style="text-align:right;">
+
+3.0e-07
+
+</td>
+
+<td style="text-align:right;">
+
+0.2494264
+
+</td>
+
+<td style="text-align:right;">
+
+0.4850321
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.40
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.19
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.40
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.17
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.43
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.19
+
+</td>
+
+<td style="text-align:right;">
+
+0.17
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.43
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.483631634650783”
+
+\[1\] “Binary variable S8\_permisos”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002700053513
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1511100015108
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002700040515
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001200067405
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000700001309
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.4058433
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.3347807
+
+</td>
+
+<td style="text-align:right;">
+
+0.4751572
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6448971
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5722943
+
+</td>
+
+<td style="text-align:right;">
+
+0.7064918
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.4220531
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.3522027
+
+</td>
+
+<td style="text-align:right;">
+
+0.4900348
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6600481
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5909993
+
+</td>
+
+<td style="text-align:right;">
+
+0.7187478
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.4264757
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.3562632
+
+</td>
+
+<td style="text-align:right;">
+
+0.4946206
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6640989
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5953770
+
+</td>
+
+<td style="text-align:right;">
+
+0.7223885
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.44
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.37
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.44
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.63
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.44
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+<td style="text-align:right;">
+
+0.63
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.45
+
+</td>
+
+<td style="text-align:right;">
+
+0.54
+
+</td>
+
+<td style="text-align:right;">
+
+0.61
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.45
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.42
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.37
+
+</td>
+
+<td style="text-align:right;">
+
+0.44
+
+</td>
+
+<td style="text-align:right;">
+
+0.54
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.27
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.61
+
+</td>
+
+<td style="text-align:right;">
+
+0.42
+
+</td>
+
+<td style="text-align:right;">
+
+0.27
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.645740947665241”
+
+\[1\] “Binary variable S8\_personal”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000800101312
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0674700008307
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000900005113
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064101095409
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001100570007
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6638601
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.6117801
+
+</td>
+
+<td style="text-align:right;">
+
+0.7116776
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8400235
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.8073155
+
+</td>
+
+<td style="text-align:right;">
+
+0.8677724
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6637443
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.6118085
+
+</td>
+
+<td style="text-align:right;">
+
+0.7114679
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8399538
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.8073149
+
+</td>
+
+<td style="text-align:right;">
+
+0.8676660
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6670166
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.6152445
+
+</td>
+
+<td style="text-align:right;">
+
+0.7145079
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8419197
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.8095781
+
+</td>
+
+<td style="text-align:right;">
+
+0.8693517
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.65
+
+</td>
+
+<td style="text-align:right;">
+
+0.73
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.63
+
+</td>
+
+<td style="text-align:right;">
+
+0.71
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.65
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.58
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.55
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+0.73
+
+</td>
+
+<td style="text-align:right;">
+
+0.58
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.57
+
+</td>
+
+<td style="text-align:right;">
+
+0.87
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.66
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.63
+
+</td>
+
+<td style="text-align:right;">
+
+0.55
+
+</td>
+
+<td style="text-align:right;">
+
+0.57
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.59
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+0.71
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.87
+
+</td>
+
+<td style="text-align:right;">
+
+0.66
+
+</td>
+
+<td style="text-align:right;">
+
+0.59
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.785290245257444”
+
+\[1\] “Binary variable S8\_Presupuesto”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064102522611
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001200073410
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.25
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0210000030806
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2014300001807
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002000005615
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6378552
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5830723
+
+</td>
+
+<td style="text-align:right;">
+
+0.6884622
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8240348
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7880577
+
+</td>
+
+<td style="text-align:right;">
+
+0.8545570
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6390297
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5844958
+
+</td>
+
+<td style="text-align:right;">
+
+0.6894245
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8247713
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7890361
+
+</td>
+
+<td style="text-align:right;">
+
+0.8551133
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6403935
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5858322
+
+</td>
+
+<td style="text-align:right;">
+
+0.6907572
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8256249
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7899496
+
+</td>
+
+<td style="text-align:right;">
+
+0.8558846
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.54
+
+</td>
+
+<td style="text-align:right;">
+
+0.42
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.57
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.10
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.54
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.72
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.68
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+0.42
+
+</td>
+
+<td style="text-align:right;">
+
+0.72
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.71
+
+</td>
+
+<td style="text-align:right;">
+
+0.76
+
+</td>
+
+<td style="text-align:right;">
+
+0.84
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.71
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.69
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.57
+
+</td>
+
+<td style="text-align:right;">
+
+0.68
+
+</td>
+
+<td style="text-align:right;">
+
+0.76
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.60
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.10
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.84
+
+</td>
+
+<td style="text-align:right;">
+
+0.69
+
+</td>
+
+<td style="text-align:right;">
+
+0.60
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.751892413531897”
+
+\[1\] “Binary variable S8\_recursos humanos”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064101996410
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001300003707
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1026500013908
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100522913
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0610100066912
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6638601
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.6117801
+
+</td>
+
+<td style="text-align:right;">
+
+0.7116776
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8400235
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.8073155
+
+</td>
+
+<td style="text-align:right;">
+
+0.8677724
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6637443
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.6118085
+
+</td>
+
+<td style="text-align:right;">
+
+0.7114679
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8399538
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.8073149
+
+</td>
+
+<td style="text-align:right;">
+
+0.8676660
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6670166
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.6152445
+
+</td>
+
+<td style="text-align:right;">
+
+0.7145079
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8419197
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.8095781
+
+</td>
+
+<td style="text-align:right;">
+
+0.8693517
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.65
+
+</td>
+
+<td style="text-align:right;">
+
+0.73
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.63
+
+</td>
+
+<td style="text-align:right;">
+
+0.71
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.65
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.58
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.55
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+0.73
+
+</td>
+
+<td style="text-align:right;">
+
+0.58
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.57
+
+</td>
+
+<td style="text-align:right;">
+
+0.87
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.66
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.63
+
+</td>
+
+<td style="text-align:right;">
+
+0.55
+
+</td>
+
+<td style="text-align:right;">
+
+0.57
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.59
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+0.71
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.87
+
+</td>
+
+<td style="text-align:right;">
+
+0.66
+
+</td>
+
+<td style="text-align:right;">
+
+0.59
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.785290245257444”
+
+\[1\] “Binary variable S8\_Regulatorio”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002700053513
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100319507
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001700203910
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001000162110
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0912100016603
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.4058433
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.3347807
+
+</td>
+
+<td style="text-align:right;">
+
+0.4751572
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6448971
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5722943
+
+</td>
+
+<td style="text-align:right;">
+
+0.7064918
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.4220531
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.3522027
+
+</td>
+
+<td style="text-align:right;">
+
+0.4900348
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6600481
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5909993
+
+</td>
+
+<td style="text-align:right;">
+
+0.7187478
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.4264757
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.3562632
+
+</td>
+
+<td style="text-align:right;">
+
+0.4946206
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6640989
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5953770
+
+</td>
+
+<td style="text-align:right;">
+
+0.7223885
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.44
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.37
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.44
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.63
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.44
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+<td style="text-align:right;">
+
+0.63
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.45
+
+</td>
+
+<td style="text-align:right;">
+
+0.54
+
+</td>
+
+<td style="text-align:right;">
+
+0.61
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.45
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.42
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.37
+
+</td>
+
+<td style="text-align:right;">
+
+0.44
+
+</td>
+
+<td style="text-align:right;">
+
+0.54
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.27
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.61
+
+</td>
+
+<td style="text-align:right;">
+
+0.42
+
+</td>
+
+<td style="text-align:right;">
+
+0.27
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.645740947665241”
+
+\[1\] “Binary variable S10\_1”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0817000010910
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000600291210
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0673800045808
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000900248810
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0637000025309
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.2642022
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.1898058
+
+</td>
+
+<td style="text-align:right;">
+
+0.3392155
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.4884067
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.3838086
+
+</td>
+
+<td style="text-align:right;">
+
+0.5771456
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.2877537
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.2139387
+
+</td>
+
+<td style="text-align:right;">
+
+0.3618408
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5178775
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.4198519
+
+</td>
+
+<td style="text-align:right;">
+
+0.6011875
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.2892708
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.2150700
+
+</td>
+
+<td style="text-align:right;">
+
+0.3636395
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5197225
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.4214627
+
+</td>
+
+<td style="text-align:right;">
+
+0.6030660
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.30
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.08
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.39
+
+</td>
+
+<td style="text-align:right;">
+
+0.62
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.30
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.10
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+0.34
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.08
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.10
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.06
+
+</td>
+
+<td style="text-align:right;">
+
+0.38
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.05
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.39
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.06
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.41
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+0.62
+
+</td>
+
+<td style="text-align:right;">
+
+0.34
+
+</td>
+
+<td style="text-align:right;">
+
+0.38
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.05
+
+</td>
+
+<td style="text-align:right;">
+
+0.41
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.551681836308334”
+
+\[1\] “Binary variable S10\_2”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063500110314
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001200265707
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0610100092815
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002200038205
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0612100019614
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5735198
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5128261
+
+</td>
+
+<td style="text-align:right;">
+
+0.6304394
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.7814414
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7367558
+
+</td>
+
+<td style="text-align:right;">
+
+0.8193517
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5928679
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5332151
+
+</td>
+
+<td style="text-align:right;">
+
+0.6484073
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.7947327
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7522405
+
+</td>
+
+<td style="text-align:right;">
+
+0.8306361
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5893023
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5299202
+
+</td>
+
+<td style="text-align:right;">
+
+0.6447770
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.7923158
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7498257
+
+</td>
+
+<td style="text-align:right;">
+
+0.8283557
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.60
+
+</td>
+
+<td style="text-align:right;">
+
+0.27
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.73
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.60
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.84
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.05
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+0.27
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.66
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.73
+
+</td>
+
+<td style="text-align:right;">
+
+0.84
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.63
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.05
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.66
+
+</td>
+
+<td style="text-align:right;">
+
+0.63
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.722969610949358”
+
+\[1\] “Binary variable S10\_3”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000700048104
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1112500008310
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1613100056411
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063700328414
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0912100048710
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.4549869
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.3862256
+
+</td>
+
+<td style="text-align:right;">
+
+0.5212886
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6894005
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.6258967
+
+</td>
+
+<td style="text-align:right;">
+
+0.7432759
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.4602235
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.3917834
+
+</td>
+
+<td style="text-align:right;">
+
+0.5261437
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6939001
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.6313672
+
+</td>
+
+<td style="text-align:right;">
+
+0.7469658
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.4604222
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.3919105
+
+</td>
+
+<td style="text-align:right;">
+
+0.5263895
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6940699
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.6314798
+
+</td>
+
+<td style="text-align:right;">
+
+0.7471586
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.49
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.31
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.08
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.49
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.24
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.31
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.81
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.08
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.24
+
+</td>
+
+<td style="text-align:right;">
+
+0.81
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.666347565269899”
+
+\[1\] “Binary variable S10\_4”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001100502111
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2136
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1857600018305
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000700003014
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1111200025211
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.1556294
+
+</td>
+
+<td style="text-align:right;">
+
+1.22e-05
+
+</td>
+
+<td style="text-align:right;">
+
+0.0818795
+
+</td>
+
+<td style="text-align:right;">
+
+0.2319062
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.3288801
+
+</td>
+
+<td style="text-align:right;">
+
+1.22e-05
+
+</td>
+
+<td style="text-align:right;">
+
+0.1916660
+
+</td>
+
+<td style="text-align:right;">
+
+0.4452899
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.1540992
+
+</td>
+
+<td style="text-align:right;">
+
+1.29e-05
+
+</td>
+
+<td style="text-align:right;">
+
+0.0809108
+
+</td>
+
+<td style="text-align:right;">
+
+0.2299128
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.3263047
+
+</td>
+
+<td style="text-align:right;">
+
+1.29e-05
+
+</td>
+
+<td style="text-align:right;">
+
+0.1897342
+
+</td>
+
+<td style="text-align:right;">
+
+0.4424807
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.1552809
+
+</td>
+
+<td style="text-align:right;">
+
+1.29e-05
+
+</td>
+
+<td style="text-align:right;">
+
+0.0814937
+
+</td>
+
+<td style="text-align:right;">
+
+0.2315941
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.3282945
+
+</td>
+
+<td style="text-align:right;">
+
+1.29e-05
+
+</td>
+
+<td style="text-align:right;">
+
+0.1908705
+
+</td>
+
+<td style="text-align:right;">
+
+0.4448570
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.01
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.01
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.01
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.68
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.06
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.68
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.05
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.01
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.43
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.06
+
+</td>
+
+<td style="text-align:right;">
+
+\-0.05
+
+</td>
+
+<td style="text-align:right;">
+
+0.43
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.406780781235751”
+
+\[1\] “Binary variable S11\_colonia”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1816400010805
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064102522611
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063700065013
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1857500071010
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001200067405
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5821062
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5221380
+
+</td>
+
+<td style="text-align:right;">
+
+0.6382322
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.7873934
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7439249
+
+</td>
+
+<td style="text-align:right;">
+
+0.8242713
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6081770
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5507457
+
+</td>
+
+<td style="text-align:right;">
+
+0.6616512
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8049485
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7652047
+
+</td>
+
+<td style="text-align:right;">
+
+0.8387026
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6113822
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5539981
+
+</td>
+
+<td style="text-align:right;">
+
+0.6647132
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8070547
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7675801
+
+</td>
+
+<td style="text-align:right;">
+
+0.8405369
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.54
+
+</td>
+
+<td style="text-align:right;">
+
+0.80
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.67
+
+</td>
+
+<td style="text-align:right;">
+
+0.53
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.54
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.79
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.46
+
+</td>
+
+<td style="text-align:right;">
+
+0.46
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+0.80
+
+</td>
+
+<td style="text-align:right;">
+
+0.79
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.92
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.67
+
+</td>
+
+<td style="text-align:right;">
+
+0.46
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.88
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+0.53
+
+</td>
+
+<td style="text-align:right;">
+
+0.46
+
+</td>
+
+<td style="text-align:right;">
+
+0.92
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+<td style="text-align:right;">
+
+0.88
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.757278069247416”
+
+\[1\] “Binary variable S11\_cuando la información fue generada o cuando
+ocurrió un evento (una referencia temporal más específica que un año)”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100060013
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0918600000510
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063700261615
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1113100032713
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064103030312
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5802537
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5201273
+
+</td>
+
+<td style="text-align:right;">
+
+0.6365522
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.7861166
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7423870
+
+</td>
+
+<td style="text-align:right;">
+
+0.8232160
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5941595
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5353042
+
+</td>
+
+<td style="text-align:right;">
+
+0.6491033
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.7956047
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7538665
+
+</td>
+
+<td style="text-align:right;">
+
+0.8310289
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5945837
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5356678
+
+</td>
+
+<td style="text-align:right;">
+
+0.6495547
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.7958907
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7541321
+
+</td>
+
+<td style="text-align:right;">
+
+0.8313102
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.55
+
+</td>
+
+<td style="text-align:right;">
+
+0.76
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+0.65
+
+</td>
+
+<td style="text-align:right;">
+
+0.36
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.55
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.60
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+<td style="text-align:right;">
+
+0.69
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+0.76
+
+</td>
+
+<td style="text-align:right;">
+
+0.60
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.65
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.81
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.65
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.59
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.65
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.67
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+0.36
+
+</td>
+
+<td style="text-align:right;">
+
+0.69
+
+</td>
+
+<td style="text-align:right;">
+
+0.81
+
+</td>
+
+<td style="text-align:right;">
+
+0.59
+
+</td>
+
+<td style="text-align:right;">
+
+0.67
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.759431807300371”
+
+\[1\] “Binary variable S11\_etc.)”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1857600021710
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001000087410
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002700122913
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1111500050314
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002000100913
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5821062
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5221380
+
+</td>
+
+<td style="text-align:right;">
+
+0.6382322
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.7873934
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7439249
+
+</td>
+
+<td style="text-align:right;">
+
+0.8242713
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6081770
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5507457
+
+</td>
+
+<td style="text-align:right;">
+
+0.6616512
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8049485
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7652047
+
+</td>
+
+<td style="text-align:right;">
+
+0.8387026
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6113822
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5539981
+
+</td>
+
+<td style="text-align:right;">
+
+0.6647132
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8070547
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7675801
+
+</td>
+
+<td style="text-align:right;">
+
+0.8405369
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.54
+
+</td>
+
+<td style="text-align:right;">
+
+0.80
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.67
+
+</td>
+
+<td style="text-align:right;">
+
+0.53
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.54
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.79
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.46
+
+</td>
+
+<td style="text-align:right;">
+
+0.46
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+0.80
+
+</td>
+
+<td style="text-align:right;">
+
+0.79
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.92
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.67
+
+</td>
+
+<td style="text-align:right;">
+
+0.46
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.88
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+0.53
+
+</td>
+
+<td style="text-align:right;">
+
+0.46
+
+</td>
+
+<td style="text-align:right;">
+
+0.92
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+<td style="text-align:right;">
+
+0.88
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.757278069247416”
+
+\[1\] “Binary variable S11\_por ejemplo”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1850000028006
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100551415
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1222600012909
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000400020312
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000900185907
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5343251
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.4705638
+
+</td>
+
+<td style="text-align:right;">
+
+0.5946733
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.7531300
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7026561
+
+</td>
+
+<td style="text-align:right;">
+
+0.7959511
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5624578
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5008676
+
+</td>
+
+<td style="text-align:right;">
+
+0.6203704
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.7736439
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7273774
+
+</td>
+
+<td style="text-align:right;">
+
+0.8128992
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5624311
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5007906
+
+</td>
+
+<td style="text-align:right;">
+
+0.6203796
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.7736248
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7273108
+
+</td>
+
+<td style="text-align:right;">
+
+0.8129082
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.62
+
+</td>
+
+<td style="text-align:right;">
+
+0.63
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.62
+
+</td>
+
+<td style="text-align:right;">
+
+0.52
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.62
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.75
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.49
+
+</td>
+
+<td style="text-align:right;">
+
+0.44
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+0.63
+
+</td>
+
+<td style="text-align:right;">
+
+0.75
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.48
+
+</td>
+
+<td style="text-align:right;">
+
+0.45
+
+</td>
+
+<td style="text-align:right;">
+
+0.65
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.48
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.46
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.62
+
+</td>
+
+<td style="text-align:right;">
+
+0.49
+
+</td>
+
+<td style="text-align:right;">
+
+0.45
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+0.52
+
+</td>
+
+<td style="text-align:right;">
+
+0.44
+
+</td>
+
+<td style="text-align:right;">
+
+0.65
+
+</td>
+
+<td style="text-align:right;">
+
+0.46
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.727894966473928”
+
+\[1\] “Binary variable S11\_Un documento específico por nombre o número”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000900247913
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2510100035511
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0681200014207
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063700025011
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001000162110
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5700087
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5090238
+
+</td>
+
+<td style="text-align:right;">
+
+0.6272484
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.7789824
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7337941
+
+</td>
+
+<td style="text-align:right;">
+
+0.8173192
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5892186
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5300964
+
+</td>
+
+<td style="text-align:right;">
+
+0.6445141
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.7922589
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7499406
+
+</td>
+
+<td style="text-align:right;">
+
+0.8282025
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5922423
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5331188
+
+</td>
+
+<td style="text-align:right;">
+
+0.6474373
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.7943097
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7522276
+
+</td>
+
+<td style="text-align:right;">
+
+0.8300036
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.62
+
+</td>
+
+<td style="text-align:right;">
+
+0.88
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.43
+
+</td>
+
+<td style="text-align:right;">
+
+0.48
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.62
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.52
+
+</td>
+
+<td style="text-align:right;">
+
+0.67
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+0.88
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.83
+
+</td>
+
+<td style="text-align:right;">
+
+0.69
+
+</td>
+
+<td style="text-align:right;">
+
+0.73
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.83
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.70
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.43
+
+</td>
+
+<td style="text-align:right;">
+
+0.52
+
+</td>
+
+<td style="text-align:right;">
+
+0.69
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.63
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+0.48
+
+</td>
+
+<td style="text-align:right;">
+
+0.67
+
+</td>
+
+<td style="text-align:right;">
+
+0.73
+
+</td>
+
+<td style="text-align:right;">
+
+0.70
+
+</td>
+
+<td style="text-align:right;">
+
+0.63
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.753568911801142”
+
+\[1\] “Binary variable S11\_Un lugar específico (una referencia más
+específica que el nombre de un estado”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1511100022411
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002700122913
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0917900001507
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100332409
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1610100091713
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5821062
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5221380
+
+</td>
+
+<td style="text-align:right;">
+
+0.6382322
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.7873934
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7439249
+
+</td>
+
+<td style="text-align:right;">
+
+0.8242713
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6081770
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5507457
+
+</td>
+
+<td style="text-align:right;">
+
+0.6616512
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8049485
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7652047
+
+</td>
+
+<td style="text-align:right;">
+
+0.8387026
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6113822
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5539981
+
+</td>
+
+<td style="text-align:right;">
+
+0.6647132
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8070547
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7675801
+
+</td>
+
+<td style="text-align:right;">
+
+0.8405369
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.54
+
+</td>
+
+<td style="text-align:right;">
+
+0.80
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.67
+
+</td>
+
+<td style="text-align:right;">
+
+0.53
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.54
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.79
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.46
+
+</td>
+
+<td style="text-align:right;">
+
+0.46
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+0.80
+
+</td>
+
+<td style="text-align:right;">
+
+0.79
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.92
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.67
+
+</td>
+
+<td style="text-align:right;">
+
+0.46
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.88
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+0.53
+
+</td>
+
+<td style="text-align:right;">
+
+0.46
+
+</td>
+
+<td style="text-align:right;">
+
+0.92
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+<td style="text-align:right;">
+
+0.88
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.757278069247416”
+
+\[1\] “Binary variable S11\_un municipio”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2136
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064102525911
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0810000004911
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1117100000109
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064102522611
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5821062
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5221380
+
+</td>
+
+<td style="text-align:right;">
+
+0.6382322
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.7873934
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7439249
+
+</td>
+
+<td style="text-align:right;">
+
+0.8242713
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6081770
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5507457
+
+</td>
+
+<td style="text-align:right;">
+
+0.6616512
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8049485
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7652047
+
+</td>
+
+<td style="text-align:right;">
+
+0.8387026
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6113822
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5539981
+
+</td>
+
+<td style="text-align:right;">
+
+0.6647132
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8070547
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7675801
+
+</td>
+
+<td style="text-align:right;">
+
+0.8405369
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.54
+
+</td>
+
+<td style="text-align:right;">
+
+0.80
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.67
+
+</td>
+
+<td style="text-align:right;">
+
+0.53
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.54
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.79
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.46
+
+</td>
+
+<td style="text-align:right;">
+
+0.46
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+0.80
+
+</td>
+
+<td style="text-align:right;">
+
+0.79
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.92
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.67
+
+</td>
+
+<td style="text-align:right;">
+
+0.46
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.88
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+0.53
+
+</td>
+
+<td style="text-align:right;">
+
+0.46
+
+</td>
+
+<td style="text-align:right;">
+
+0.92
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+<td style="text-align:right;">
+
+0.88
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.757278069247416”
+
+\[1\] “Binary variable S11\_una empresa u ONG)”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002000155613
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100029408
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0413100024507
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0681200032313
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001100183308
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6232898
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5670723
+
+</td>
+
+<td style="text-align:right;">
+
+0.6753997
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8147831
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7769145
+
+</td>
+
+<td style="text-align:right;">
+
+0.8469101
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6268877
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5711632
+
+</td>
+
+<td style="text-align:right;">
+
+0.6785318
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8170888
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7797935
+
+</td>
+
+<td style="text-align:right;">
+
+0.8487573
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6283941
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5726380
+
+</td>
+
+<td style="text-align:right;">
+
+0.6800058
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.8180502
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7808252
+
+</td>
+
+<td style="text-align:right;">
+
+0.8496243
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.61
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.61
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.61
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.70
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.62
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+<td style="text-align:right;">
+
+0.70
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.46
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.57
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.46
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.76
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.61
+
+</td>
+
+<td style="text-align:right;">
+
+0.62
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.57
+
+</td>
+
+<td style="text-align:right;">
+
+0.76
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.784090376235521”
+
+\[1\] “Binary variable S11\_Una fecha específica”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000700100909
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1215100127013
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0821000005107
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000700013215
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064101676309
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5802537
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5201273
+
+</td>
+
+<td style="text-align:right;">
+
+0.6365522
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.7861166
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7423870
+
+</td>
+
+<td style="text-align:right;">
+
+0.8232160
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5941595
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5353042
+
+</td>
+
+<td style="text-align:right;">
+
+0.6491033
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.7956047
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7538665
+
+</td>
+
+<td style="text-align:right;">
+
+0.8310289
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.5945837
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5356678
+
+</td>
+
+<td style="text-align:right;">
+
+0.6495547
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.7958907
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.7541321
+
+</td>
+
+<td style="text-align:right;">
+
+0.8313102
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.55
+
+</td>
+
+<td style="text-align:right;">
+
+0.76
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+0.65
+
+</td>
+
+<td style="text-align:right;">
+
+0.36
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.55
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.60
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+<td style="text-align:right;">
+
+0.69
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+0.76
+
+</td>
+
+<td style="text-align:right;">
+
+0.60
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.65
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.81
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.65
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.59
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.65
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.67
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+0.36
+
+</td>
+
+<td style="text-align:right;">
+
+0.69
+
+</td>
+
+<td style="text-align:right;">
+
+0.81
+
+</td>
+
+<td style="text-align:right;">
+
+0.59
+
+</td>
+
+<td style="text-align:right;">
+
+0.67
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.759431807300371”
+
+\[1\] “Binary variable S11\_Una institución pública específica (una
+referencia más específica que el nombre de la dependencia”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0912100065110
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064101519911
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063700025011
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1610100027310
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0681200037513
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+ICC
+
+</th>
+
+<th style="text-align:right;">
+
+p-value
+
+</th>
+
+<th style="text-align:right;">
+
+lower CI limit
+
+</th>
+
+<th style="text-align:right;">
+
+upper CI limit
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.3772620
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.3051359
+
+</td>
+
+<td style="text-align:right;">
+
+0.4480859
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6169620
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5386478
+
+</td>
+
+<td style="text-align:right;">
+
+0.6834023
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.3874211
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.3156745
+
+</td>
+
+<td style="text-align:right;">
+
+0.4577102
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(A,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6270762
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5508736
+
+</td>
+
+<td style="text-align:right;">
+
+0.6917371
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,1)
+
+</td>
+
+<td style="text-align:right;">
+
+0.3875222
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.3157111
+
+</td>
+
+<td style="text-align:right;">
+
+0.4578577
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+ICC(C,k)
+
+</td>
+
+<td style="text-align:right;">
+
+0.6271757
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.5508997
+
+</td>
+
+<td style="text-align:right;">
+
+0.6918727
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “CORRELATION MATRIX”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+andrea
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+<td style="text-align:right;">
+
+0.51
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.43
+
+</td>
+
+<td style="text-align:right;">
+
+0.29
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.49
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.39
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+edithimg
+
+</td>
+
+<td style="text-align:right;">
+
+0.51
+
+</td>
+
+<td style="text-align:right;">
+
+0.49
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.1
+
+</td>
+
+<td style="text-align:right;">
+
+0.54
+
+</td>
+
+<td style="text-align:right;">
+
+0.21
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.10
+
+</td>
+
+<td style="text-align:right;">
+
+1.0
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.20
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.43
+
+</td>
+
+<td style="text-align:right;">
+
+0.39
+
+</td>
+
+<td style="text-align:right;">
+
+0.54
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.31
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+sandra
+
+</td>
+
+<td style="text-align:right;">
+
+0.29
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.21
+
+</td>
+
+<td style="text-align:right;">
+
+0.2
+
+</td>
+
+<td style="text-align:right;">
+
+0.31
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+\[1\] “Kendalls W is: 0.616677775356448”
+
+\[1\] “Binary variable S11\_Una organización no gubernamental específica
+(por ejemplo”
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+folio\_id
+
+</th>
+
+<th style="text-align:right;">
+
+andrea
+
+</th>
+
+<th style="text-align:right;">
+
+carmen
+
+</th>
+
+<th style="text-align:right;">
+
+edithimg
+
+</th>
+
+<th style="text-align:right;">
+
+jesicatapia
+
+</th>
+
+<th style="text-align:right;">
+
+katia
+
+</th>
+
+<th style="text-align:right;">
+
+sandra
+
+</th>
+
+<th style="text-align:right;">
+
+rater\_var
+
+</th>
+
+<th style="text-align:right;">
+
+num\_coders
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0637000025309
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001100183308
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000900248713
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1215100127013
 
 </td>
 
@@ -1631,400 +34569,6 @@ NaN
 
 <td style="text-align:right;">
 
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001300041011
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0002100030807
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064100400810
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064100581414
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000015405
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000140808
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0411100072013
-
-</td>
-
-<td style="text-align:right;">
-
 1
 
 </td>
@@ -2032,250 +34576,6 @@ NaN
 <td style="text-align:right;">
 
 0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0413000000715
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100166512
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0908500003207
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1109000003915
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-1
 
 </td>
 
@@ -2300,296 +34600,6 @@ NaN
 <td style="text-align:right;">
 
 3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1111200025211
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1132100010608
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1511100067610
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1800100011015
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1857500010303
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
 
 </td>
 
@@ -2649,7 +34659,7 @@ ICC(1)
 
 <td style="text-align:right;">
 
-0.6060262
+0.6232898
 
 </td>
 
@@ -2661,13 +34671,13 @@ ICC(1)
 
 <td style="text-align:right;">
 
-0.4689557
+0.5670723
 
 </td>
 
 <td style="text-align:right;">
 
-0.7180759
+0.6753997
 
 </td>
 
@@ -2683,7 +34693,7 @@ ICC(k)
 
 <td style="text-align:right;">
 
-0.7764297
+0.8147831
 
 </td>
 
@@ -2695,13 +34705,13 @@ ICC(k)
 
 <td style="text-align:right;">
 
-0.6659679
+0.7769145
 
 </td>
 
 <td style="text-align:right;">
 
-0.8518619
+0.8469101
 
 </td>
 
@@ -2717,7 +34727,7 @@ ICC(A,1)
 
 <td style="text-align:right;">
 
-0.6057017
+0.6268877
 
 </td>
 
@@ -2729,13 +34739,13 @@ ICC(A,1)
 
 <td style="text-align:right;">
 
-0.4699639
+0.5711632
 
 </td>
 
 <td style="text-align:right;">
 
-0.7172245
+0.6785318
 
 </td>
 
@@ -2751,7 +34761,7 @@ ICC(A,k)
 
 <td style="text-align:right;">
 
-0.7761938
+0.8170888
 
 </td>
 
@@ -2763,13 +34773,13 @@ ICC(A,k)
 
 <td style="text-align:right;">
 
-0.6669761
+0.7797935
 
 </td>
 
 <td style="text-align:right;">
 
-0.8512986
+0.8487573
 
 </td>
 
@@ -2785,7 +34795,7 @@ ICC(C,1)
 
 <td style="text-align:right;">
 
-0.6091704
+0.6283941
 
 </td>
 
@@ -2797,13 +34807,13 @@ ICC(C,1)
 
 <td style="text-align:right;">
 
-0.4723009
+0.5726380
 
 </td>
 
 <td style="text-align:right;">
 
-0.7207060
+0.6800058
 
 </td>
 
@@ -2819,7 +34829,7 @@ ICC(C,k)
 
 <td style="text-align:right;">
 
-0.7787106
+0.8180502
 
 </td>
 
@@ -2831,13 +34841,13 @@ ICC(C,k)
 
 <td style="text-align:right;">
 
-0.6689482
+0.7808252
 
 </td>
 
 <td style="text-align:right;">
 
-0.8534984
+0.8496243
 
 </td>
 
@@ -2917,31 +34927,31 @@ andrea
 
 <td style="text-align:right;">
 
-0.69
+0.61
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
 
 </td>
 
 <td style="text-align:right;">
 
 NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.61
 
 </td>
 
 <td style="text-align:right;">
 
 1.00
-
-</td>
-
-<td style="text-align:right;">
-
-0.54
-
-</td>
-
-<td style="text-align:right;">
-
-NA
 
 </td>
 
@@ -2957,1475 +34967,13 @@ carmen
 
 <td style="text-align:right;">
 
-0.69
+0.61
 
 </td>
 
 <td style="text-align:right;">
 
 1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.59
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.77
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-0.41
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-0.54
-
-</td>
-
-<td style="text-align:right;">
-
-0.59
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.77
-
-</td>
-
-<td style="text-align:right;">
-
-0.41
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.769250576783373”
-
-\[1\] “Binary variable S7\_Múltiples documentos”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000500102110
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900185907
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001100189506
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001600284910
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064101584110
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000015405
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0413000000715
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0636300016008
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0912000029214
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1117100054412
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1610100144507
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’2000100002903
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6352459
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5047481
-
-</td>
-
-<td style="text-align:right;">
-
-0.7405243
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7972396
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.6970595
-
-</td>
-
-<td style="text-align:right;">
-
-0.8656505
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6703127
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5432037
-
-</td>
-
-<td style="text-align:right;">
-
-0.7691640
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8211181
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7282306
-
-</td>
-
-<td style="text-align:right;">
-
-0.8827746
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6591597
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5339871
-
-</td>
-
-<td style="text-align:right;">
-
-0.7588788
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8136485
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7212157
-
-</td>
-
-<td style="text-align:right;">
-
-0.8766286
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.48
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.46
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-1.0
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.87
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-1.0
-
-</td>
-
-<td style="text-align:right;">
-
-NA
 
 </td>
 
@@ -4435,28 +34983,6 @@ NA
 
 </td>
 
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-0.48
-
-</td>
-
-<td style="text-align:right;">
-
-0.46
-
-</td>
-
 <td style="text-align:right;">
 
 NA
@@ -4465,1111 +34991,7 @@ NA
 
 <td style="text-align:right;">
 
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.87
-
-</td>
-
-<td style="text-align:right;">
-
-0.7
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.789598068028146”
-
-\[1\] “Binary variable S7\_Un dato”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000500058507
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001000087410
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.5
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001700203910
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064100400810
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.5
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0413100058710
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.5
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0636300016008
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.5
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0637000025309
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0908500003207
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.5
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0917900001507
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1111200025211
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.5
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7195885
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.6110607
-
-</td>
-
-<td style="text-align:right;">
-
-0.8038613
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8528037
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7800769
-
-</td>
-
-<td style="text-align:right;">
-
-0.9024675
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7335122
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.6297482
-
-</td>
-
-<td style="text-align:right;">
-
-0.8138511
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8613869
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7934286
-
-</td>
-
-<td style="text-align:right;">
-
-0.9079981
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7351629
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.6308165
-
-</td>
-
-<td style="text-align:right;">
-
-0.8154674
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8623941
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7941399
-
-</td>
-
-<td style="text-align:right;">
-
-0.9089000
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.68
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
+0.62
 
 </td>
 
@@ -5586,11914 +35008,6 @@ NA
 <td style="text-align:left;">
 
 edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.79
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.44
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-0.68
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.79
-
-</td>
-
-<td style="text-align:right;">
-
-0.44
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.85942709454659”
-
-\[1\] “Binary variable S7\_Un documento”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001100189506
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001200073410
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001400025309
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001700203910
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064100581414
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100166512
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0637000025309
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0912000029214
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0917900001507
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0918900000214
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1610100144507
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1615100031912
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.5948676
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.4554238
-
-</td>
-
-<td style="text-align:right;">
-
-0.7094329
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7682519
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.6537496
-
-</td>
-
-<td style="text-align:right;">
-
-0.8464432
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6725886
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5415902
-
-</td>
-
-<td style="text-align:right;">
-
-0.7725729
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8226284
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7264199
-
-</td>
-
-<td style="text-align:right;">
-
-0.8848964
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6550636
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5288740
-
-</td>
-
-<td style="text-align:right;">
-
-0.7557798
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8108762
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7170684
-
-</td>
-
-<td style="text-align:right;">
-
-0.8747933
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-0.68
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-0.66
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-0.68
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.46
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.68
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-0.55
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-0.66
-
-</td>
-
-<td style="text-align:right;">
-
-0.46
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.68
-
-</td>
-
-<td style="text-align:right;">
-
-0.55
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.789580111602076”
-
-\[1\] “Binary variable S8\_¿cuál?”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001300010014
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064103230113
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000015405
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000030806
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0416000007815
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0944800002908
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1111500045614
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1116100021513
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1615100031912
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.2343653
-
-</td>
-
-<td style="text-align:right;">
-
-0.0051988
-
-</td>
-
-<td style="text-align:right;">
-
-0.0551824
-
-</td>
-
-<td style="text-align:right;">
-
-0.4074133
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.4086661
-
-</td>
-
-<td style="text-align:right;">
-
-0.0051988
-
-</td>
-
-<td style="text-align:right;">
-
-0.1164993
-
-</td>
-
-<td style="text-align:right;">
-
-0.6081809
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.2793968
-
-</td>
-
-<td style="text-align:right;">
-
-0.0009773
-
-</td>
-
-<td style="text-align:right;">
-
-0.1044012
-
-</td>
-
-<td style="text-align:right;">
-
-0.4460718
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.4667705
-
-</td>
-
-<td style="text-align:right;">
-
-0.0009773
-
-</td>
-
-<td style="text-align:right;">
-
-0.2089828
-
-</td>
-
-<td style="text-align:right;">
-
-0.6449594
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.2832749
-
-</td>
-
-<td style="text-align:right;">
-
-0.0009773
-
-</td>
-
-<td style="text-align:right;">
-
-0.1050138
-
-</td>
-
-<td style="text-align:right;">
-
-0.4514874
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.4715475
-
-</td>
-
-<td style="text-align:right;">
-
-0.0009773
-
-</td>
-
-<td style="text-align:right;">
-
-0.2094283
-
-</td>
-
-<td style="text-align:right;">
-
-0.6501455
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-0.69
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-0.69
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.68
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.68
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.546872444808064”
-
-\[1\] “Binary variable S8\_Actividades de la institución”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000500058507
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900005113
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900113814
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.25
-
-</td>
-
-<td style="text-align:right;">
-
-4
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900248810
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001000146208
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001100189506
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001200073410
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001300041011
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001600284910
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001700203910
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0002000005615
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064100581414
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000015405
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000030806
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0413100058710
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100077906
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100092815
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100109913
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100166512
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0908500003207
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0912100065110
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1108300002007
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1111500045614
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1610100109713
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1615100031912
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1857500010303
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’2010000003412
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’2135500006106
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’3098
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.3864821
-
-</td>
-
-<td style="text-align:right;">
-
-8.70e-06
-
-</td>
-
-<td style="text-align:right;">
-
-0.2157803
-
-</td>
-
-<td style="text-align:right;">
-
-0.5404948
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.5871553
-
-</td>
-
-<td style="text-align:right;">
-
-8.70e-06
-
-</td>
-
-<td style="text-align:right;">
-
-0.3831765
-
-</td>
-
-<td style="text-align:right;">
-
-0.7264482
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.3658669
-
-</td>
-
-<td style="text-align:right;">
-
-2.17e-05
-
-</td>
-
-<td style="text-align:right;">
-
-0.1958576
-
-</td>
-
-<td style="text-align:right;">
-
-0.5216173
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.5657058
-
-</td>
-
-<td style="text-align:right;">
-
-2.17e-05
-
-</td>
-
-<td style="text-align:right;">
-
-0.3552154
-
-</td>
-
-<td style="text-align:right;">
-
-0.7110001
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.3701739
-
-</td>
-
-<td style="text-align:right;">
-
-2.17e-05
-
-</td>
-
-<td style="text-align:right;">
-
-0.1974410
-
-</td>
-
-<td style="text-align:right;">
-
-0.5269383
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.5702499
-
-</td>
-
-<td style="text-align:right;">
-
-2.17e-05
-
-</td>
-
-<td style="text-align:right;">
-
-0.3570883
-
-</td>
-
-<td style="text-align:right;">
-
-0.7154900
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-0.37
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.0
-
-</td>
-
-<td style="text-align:right;">
-
-0.25
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-0.37
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.42
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.83
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.0
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.30
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-0.25
-
-</td>
-
-<td style="text-align:right;">
-
-0.42
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.83
-
-</td>
-
-<td style="text-align:right;">
-
-0.3
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.648782481067849”
-
-\[1\] “Binary variable S8\_Contrataciones con externos”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000500047705
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000500102110
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900216813
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001200073410
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064100581414
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064101996410
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100092815
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0821000005107
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0912000029214
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0912100065110
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1109000003915
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1114100000412
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1615100031912
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.5542254
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.4067632
-
-</td>
-
-<td style="text-align:right;">
-
-0.6776181
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7373228
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.6075389
-
-</td>
-
-<td style="text-align:right;">
-
-0.8259495
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.5566097
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.4100309
-
-</td>
-
-<td style="text-align:right;">
-
-0.6793036
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7391886
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.6108739
-
-</td>
-
-<td style="text-align:right;">
-
-0.8270236
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.5572632
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.4098549
-
-</td>
-
-<td style="text-align:right;">
-
-0.6802391
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7396988
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.6105861
-
-</td>
-
-<td style="text-align:right;">
-
-0.8276713
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-0.66
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.68
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-0.66
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.32
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-\-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.37
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-\-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.65
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-0.68
-
-</td>
-
-<td style="text-align:right;">
-
-0.32
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.37
-
-</td>
-
-<td style="text-align:right;">
-
-0.65
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.753836241360979”
-
-\[1\] “Binary variable S8\_estadísticas y resultados”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000400209014
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900248810
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001000146208
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001300010014
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001300041011
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0002000005615
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0411100072013
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100109913
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0636300016008
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0908500003207
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0912000029214
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1026500058813
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1511100067610
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’2135500006106
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.4867569
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.3280897
-
-</td>
-
-<td style="text-align:right;">
-
-0.6236157
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6816482
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5243566
-
-</td>
-
-<td style="text-align:right;">
-
-0.7890594
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.4859304
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.3285627
-
-</td>
-
-<td style="text-align:right;">
-
-0.6222651
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6809299
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5251075
-
-</td>
-
-<td style="text-align:right;">
-
-0.7880367
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.4888210
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.3299161
-
-</td>
-
-<td style="text-align:right;">
-
-0.6255437
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6834382
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5264196
-
-</td>
-
-<td style="text-align:right;">
-
-0.7904248
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.0
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-0.5
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-1.0
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-1.0
-
-</td>
-
-<td style="text-align:right;">
-
-0.68
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-0.5
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-1.0
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.68
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.616039668454384”
-
-\[1\] “Binary variable S8\_Estructura de la institución”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000500047705
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000500102110
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900005113
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001100171309
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064101996410
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000015405
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0416000007815
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0912000029214
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1111200025211
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1111500045614
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1615100031912
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’3098
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6613839
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5372119
-
-</td>
-
-<td style="text-align:right;">
-
-0.7603820
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8151472
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7238150
-
-</td>
-
-<td style="text-align:right;">
-
-0.8775162
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6605313
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5370120
-
-</td>
-
-<td style="text-align:right;">
-
-0.7593862
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8145732
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7237249
-
-</td>
-
-<td style="text-align:right;">
-
-0.8769075
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6625279
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5381995
-
-</td>
-
-<td style="text-align:right;">
-
-0.7614233
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8159163
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7246085
-
-</td>
-
-<td style="text-align:right;">
-
-0.8781300
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-0.48
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.47
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-0.48
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.48
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.77
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-0.47
-
-</td>
-
-<td style="text-align:right;">
-
-0.48
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.77
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.758934905776391”
-
-\[1\] “Binary variable S8\_Evaluaciones”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000400209014
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900248810
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001000146208
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001300010014
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001300041011
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0002000005615
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0411100072013
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100109913
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0636300016008
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0908500003207
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0912000029214
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1026500058813
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1511100067610
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’2135500006106
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.4867569
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.3280897
-
-</td>
-
-<td style="text-align:right;">
-
-0.6236157
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6816482
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5243566
-
-</td>
-
-<td style="text-align:right;">
-
-0.7890594
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.4859304
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.3285627
-
-</td>
-
-<td style="text-align:right;">
-
-0.6222651
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6809299
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5251075
-
-</td>
-
-<td style="text-align:right;">
-
-0.7880367
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.4888210
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.3299161
-
-</td>
-
-<td style="text-align:right;">
-
-0.6255437
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6834382
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5264196
-
-</td>
-
-<td style="text-align:right;">
-
-0.7904248
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.0
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-0.5
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-1.0
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-1.0
-
-</td>
-
-<td style="text-align:right;">
-
-0.68
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-0.5
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-1.0
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.68
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.616039668454384”
-
-\[1\] “Binary variable S8\_gasto”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900248810
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001200073410
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0002000005615
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064100400810
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064101584110
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064101735111
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000030806
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0410100003506
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0413100058710
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0944800002908
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1116100021513
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1857600018305
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’2135500006106
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6600292
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5355188
-
-</td>
-
-<td style="text-align:right;">
-
-0.7593579
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8142349
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7224518
-
-</td>
-
-<td style="text-align:right;">
-
-0.8769116
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6611402
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5364174
-
-</td>
-
-<td style="text-align:right;">
-
-0.7603968
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8149832
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7231950
-
-</td>
-
-<td style="text-align:right;">
-
-0.8775193
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6592960
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5341574
-
-</td>
-
-<td style="text-align:right;">
-
-0.7589818
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8137404
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7213533
-
-</td>
-
-<td style="text-align:right;">
-
-0.8766895
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-0.77
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
 
 </td>
 
@@ -17505,2385 +35019,7 @@ NA
 
 <td style="text-align:right;">
 
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-0.77
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.67
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.71
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-0.56
-
-</td>
-
-<td style="text-align:right;">
-
-0.67
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.71
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.810701990942247”
-
-\[1\] “Binary variable S8\_Otro”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001300010014
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064103230113
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000015405
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000030806
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0416000007815
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0944800002908
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1111500045614
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1116100021513
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1615100031912
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.2343653
-
-</td>
-
-<td style="text-align:right;">
-
-0.0051988
-
-</td>
-
-<td style="text-align:right;">
-
-0.0551824
-
-</td>
-
-<td style="text-align:right;">
-
-0.4074133
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.4086661
-
-</td>
-
-<td style="text-align:right;">
-
-0.0051988
-
-</td>
-
-<td style="text-align:right;">
-
-0.1164993
-
-</td>
-
-<td style="text-align:right;">
-
-0.6081809
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.2793968
-
-</td>
-
-<td style="text-align:right;">
-
-0.0009773
-
-</td>
-
-<td style="text-align:right;">
-
-0.1044012
-
-</td>
-
-<td style="text-align:right;">
-
-0.4460718
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.4667705
-
-</td>
-
-<td style="text-align:right;">
-
-0.0009773
-
-</td>
-
-<td style="text-align:right;">
-
-0.2089828
-
-</td>
-
-<td style="text-align:right;">
-
-0.6449594
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.2832749
-
-</td>
-
-<td style="text-align:right;">
-
-0.0009773
-
-</td>
-
-<td style="text-align:right;">
-
-0.1050138
-
-</td>
-
-<td style="text-align:right;">
-
-0.4514874
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.4715475
-
-</td>
-
-<td style="text-align:right;">
-
-0.0009773
-
-</td>
-
-<td style="text-align:right;">
-
-0.2094283
-
-</td>
-
-<td style="text-align:right;">
-
-0.6501455
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-0.69
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-0.69
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.68
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.68
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.546872444808064”
-
-\[1\] “Binary variable S8\_permisos”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900185907
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001100189506
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001200073410
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001600284910
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001700203910
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0411100072013
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0413100058710
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0912100065110
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1026500058813
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1613100056411
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.3998514
-
-</td>
-
-<td style="text-align:right;">
-
-4.2e-06
-
-</td>
-
-<td style="text-align:right;">
-
-0.2304467
-
-</td>
-
-<td style="text-align:right;">
-
-0.5517810
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6006699
-
-</td>
-
-<td style="text-align:right;">
-
-4.2e-06
-
-</td>
-
-<td style="text-align:right;">
-
-0.4033685
-
-</td>
-
-<td style="text-align:right;">
-
-0.7354030
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.5184753
-
-</td>
-
-<td style="text-align:right;">
-
-0.0e+00
-
-</td>
-
-<td style="text-align:right;">
-
-0.3565253
-
-</td>
-
-<td style="text-align:right;">
-
-0.6529095
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7085343
-
-</td>
-
-<td style="text-align:right;">
-
-0.0e+00
-
-</td>
-
-<td style="text-align:right;">
-
-0.5545442
-
-</td>
-
-<td style="text-align:right;">
-
-0.8097406
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.5039882
-
-</td>
-
-<td style="text-align:right;">
-
-0.0e+00
-
-</td>
-
-<td style="text-align:right;">
-
-0.3474017
-
-</td>
-
-<td style="text-align:right;">
-
-0.6377986
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6964172
-
-</td>
-
-<td style="text-align:right;">
-
-0.0e+00
-
-</td>
-
-<td style="text-align:right;">
-
-0.5458363
-
-</td>
-
-<td style="text-align:right;">
-
-0.7990173
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
+0.70
 
 </td>
 
@@ -19901,25 +35037,13 @@ andrea
 
 <td style="text-align:right;">
 
-NA
+1.00
 
 </td>
 
 <td style="text-align:right;">
 
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.39
-
-</td>
-
-<td style="text-align:right;">
-
-NA
+0.57
 
 </td>
 
@@ -19929,7 +35053,19 @@ NA
 
 <td style="text-align:left;">
 
-carmen
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
 
 </td>
 
@@ -19953,111 +35089,7 @@ NA
 
 <td style="text-align:right;">
 
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
+0.76
 
 </td>
 
@@ -20073,7 +35105,13 @@ katia
 
 <td style="text-align:right;">
 
-0.39
+0.61
+
+</td>
+
+<td style="text-align:right;">
+
+0.62
 
 </td>
 
@@ -20091,19 +35129,13 @@ NA
 
 <td style="text-align:right;">
 
-1
-
-</td>
-
-<td style="text-align:right;">
-
 1.00
 
 </td>
 
 <td style="text-align:right;">
 
-NA
+1.00
 
 </td>
 
@@ -20119,1180 +35151,6 @@ sandra
 
 <td style="text-align:right;">
 
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.738430975263384”
-
-\[1\] “Binary variable S8\_personal”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000500047705
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000500102110
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900005113
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001100171309
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064101996410
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000015405
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0416000007815
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0912000029214
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1111200025211
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1111500045614
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1615100031912
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’3098
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6613839
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5372119
-
-</td>
-
-<td style="text-align:right;">
-
-0.7603820
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8151472
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7238150
-
-</td>
-
-<td style="text-align:right;">
-
-0.8775162
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6605313
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5370120
-
-</td>
-
-<td style="text-align:right;">
-
-0.7593862
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8145732
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7237249
-
-</td>
-
-<td style="text-align:right;">
-
-0.8769075
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6625279
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5381995
-
-</td>
-
-<td style="text-align:right;">
-
-0.7614233
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8159163
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7246085
-
-</td>
-
-<td style="text-align:right;">
-
-0.8781300
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-0.48
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.47
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-0.48
-
-</td>
-
-<td style="text-align:right;">
-
 1.00
 
 </td>
@@ -21305,197 +35163,19 @@ NA
 
 <td style="text-align:right;">
 
-NA
+0.57
 
 </td>
 
 <td style="text-align:right;">
 
-0.48
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
+0.76
 
 </td>
 
 <td style="text-align:right;">
 
 1.00
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.77
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-0.47
-
-</td>
-
-<td style="text-align:right;">
-
-0.48
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.77
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
 
 </td>
 
@@ -21511,16851 +35191,7 @@ NA
 
 </table>
 
-\[1\] “Kendalls W is: 0.758934905776391”
-
-\[1\] “Binary variable S8\_Presupuesto”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900248810
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001200073410
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0002000005615
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064100400810
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064101584110
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064101735111
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000030806
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0410100003506
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0413100058710
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0944800002908
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1116100021513
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1857600018305
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’2135500006106
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6600292
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5355188
-
-</td>
-
-<td style="text-align:right;">
-
-0.7593579
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8142349
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7224518
-
-</td>
-
-<td style="text-align:right;">
-
-0.8769116
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6611402
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5364174
-
-</td>
-
-<td style="text-align:right;">
-
-0.7603968
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8149832
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7231950
-
-</td>
-
-<td style="text-align:right;">
-
-0.8775193
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6592960
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5341574
-
-</td>
-
-<td style="text-align:right;">
-
-0.7589818
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8137404
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7213533
-
-</td>
-
-<td style="text-align:right;">
-
-0.8766895
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-0.77
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.56
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-0.77
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.67
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.71
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-0.56
-
-</td>
-
-<td style="text-align:right;">
-
-0.67
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.71
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.810701990942247”
-
-\[1\] “Binary variable S8\_recursos humanos”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000500047705
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000500102110
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900005113
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001100171309
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064101996410
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000015405
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0416000007815
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0912000029214
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1111200025211
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1111500045614
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1615100031912
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’3098
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6613839
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5372119
-
-</td>
-
-<td style="text-align:right;">
-
-0.7603820
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8151472
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7238150
-
-</td>
-
-<td style="text-align:right;">
-
-0.8775162
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6605313
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5370120
-
-</td>
-
-<td style="text-align:right;">
-
-0.7593862
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8145732
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7237249
-
-</td>
-
-<td style="text-align:right;">
-
-0.8769075
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6625279
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5381995
-
-</td>
-
-<td style="text-align:right;">
-
-0.7614233
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8159163
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7246085
-
-</td>
-
-<td style="text-align:right;">
-
-0.8781300
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-0.48
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.47
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-0.48
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.48
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.77
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-0.47
-
-</td>
-
-<td style="text-align:right;">
-
-0.48
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.77
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.758934905776391”
-
-\[1\] “Binary variable S8\_Regulatorio”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900185907
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001100189506
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001200073410
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001600284910
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001700203910
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0411100072013
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0413100058710
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0912100065110
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1026500058813
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1613100056411
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.3998514
-
-</td>
-
-<td style="text-align:right;">
-
-4.2e-06
-
-</td>
-
-<td style="text-align:right;">
-
-0.2304467
-
-</td>
-
-<td style="text-align:right;">
-
-0.5517810
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6006699
-
-</td>
-
-<td style="text-align:right;">
-
-4.2e-06
-
-</td>
-
-<td style="text-align:right;">
-
-0.4033685
-
-</td>
-
-<td style="text-align:right;">
-
-0.7354030
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.5184753
-
-</td>
-
-<td style="text-align:right;">
-
-0.0e+00
-
-</td>
-
-<td style="text-align:right;">
-
-0.3565253
-
-</td>
-
-<td style="text-align:right;">
-
-0.6529095
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7085343
-
-</td>
-
-<td style="text-align:right;">
-
-0.0e+00
-
-</td>
-
-<td style="text-align:right;">
-
-0.5545442
-
-</td>
-
-<td style="text-align:right;">
-
-0.8097406
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.5039882
-
-</td>
-
-<td style="text-align:right;">
-
-0.0e+00
-
-</td>
-
-<td style="text-align:right;">
-
-0.3474017
-
-</td>
-
-<td style="text-align:right;">
-
-0.6377986
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6964172
-
-</td>
-
-<td style="text-align:right;">
-
-0.0e+00
-
-</td>
-
-<td style="text-align:right;">
-
-0.5458363
-
-</td>
-
-<td style="text-align:right;">
-
-0.7990173
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-0.46
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.39
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-0.46
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-0.39
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.738430975263384”
-
-\[1\] “Binary variable S11\_colonia”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900185907
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001000087410
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001000146208
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000030806
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100166512
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1108300002007
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1116100021513
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1610100144507
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.5563651
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.4093008
-
-</td>
-
-<td style="text-align:right;">
-
-0.6793062
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7389975
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.6100411
-
-</td>
-
-<td style="text-align:right;">
-
-0.8270592
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.5736177
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.4297441
-
-</td>
-
-<td style="text-align:right;">
-
-0.6929163
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7523096
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.6298936
-
-</td>
-
-<td style="text-align:right;">
-
-0.8358919
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.5728990
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.4284966
-
-</td>
-
-<td style="text-align:right;">
-
-0.6925192
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7517617
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.6286323
-
-</td>
-
-<td style="text-align:right;">
-
-0.8356573
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.44
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.83
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-0.44
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.83
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.670360939476897”
-
-\[1\] “Binary variable S11\_cuando la información fue generada o cuando
-ocurrió un evento (una referencia temporal más específica que un año)”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900113814
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.25
-
-</td>
-
-<td style="text-align:right;">
-
-4
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064101735111
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064103230113
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000030806
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0821000005107
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1116100021513
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1613100056411
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1857500010303
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7129659
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.6025475
-
-</td>
-
-<td style="text-align:right;">
-
-0.7989649
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8486657
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7738943
-
-</td>
-
-<td style="text-align:right;">
-
-0.8997256
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7737940
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.6563662
-
-</td>
-
-<td style="text-align:right;">
-
-0.8517984
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8853604
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.8097883
-
-</td>
-
-<td style="text-align:right;">
-
-0.9288987
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7429750
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.6409844
-
-</td>
-
-<td style="text-align:right;">
-
-0.8211875
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8671315
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.8012270
-
-</td>
-
-<td style="text-align:right;">
-
-0.9120363
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-0.66
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.60
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-0.66
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.79
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.78
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-0.60
-
-</td>
-
-<td style="text-align:right;">
-
-0.79
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.78
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.833525252657699”
-
-\[1\] “Binary variable S11\_etc.)”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900185907
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001000087410
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001000146208
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000030806
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100166512
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1108300002007
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1116100021513
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1610100144507
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.5563651
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.4093008
-
-</td>
-
-<td style="text-align:right;">
-
-0.6793062
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7389975
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.6100411
-
-</td>
-
-<td style="text-align:right;">
-
-0.8270592
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.5736177
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.4297441
-
-</td>
-
-<td style="text-align:right;">
-
-0.6929163
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7523096
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.6298936
-
-</td>
-
-<td style="text-align:right;">
-
-0.8358919
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.5728990
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.4284966
-
-</td>
-
-<td style="text-align:right;">
-
-0.6925192
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7517617
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.6286323
-
-</td>
-
-<td style="text-align:right;">
-
-0.8356573
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.44
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.83
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-0.44
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.83
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.670360939476897”
-
-\[1\] “Binary variable S11\_por ejemplo”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000500102110
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900185907
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001000087410
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001000146208
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064100400810
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064101584110
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000015405
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000030806
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100166512
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0912000029214
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0912100065110
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1108300002007
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1117100054412
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1511100067610
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1857200044606
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1857500010303
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’2901000001406
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.5512250
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.4032092
-
-</td>
-
-<td style="text-align:right;">
-
-0.6752483
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7349654
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.6040168
-
-</td>
-
-<td style="text-align:right;">
-
-0.8243875
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.5884161
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.4484542
-
-</td>
-
-<td style="text-align:right;">
-
-0.7040623
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7634636
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.6474627
-
-</td>
-
-<td style="text-align:right;">
-
-0.8430123
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.5900936
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.4491639
-
-</td>
-
-<td style="text-align:right;">
-
-0.7059333
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7647128
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.6480074
-
-</td>
-
-<td style="text-align:right;">
-
-0.8442315
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-0.35
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.55
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-0.35
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.39
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.83
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.75
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-0.55
-
-</td>
-
-<td style="text-align:right;">
-
-0.39
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.83
-
-</td>
-
-<td style="text-align:right;">
-
-0.75
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.744055071135618”
-
-\[1\] “Binary variable S11\_Un documento específico por nombre o número”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900113814
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.25
-
-</td>
-
-<td style="text-align:right;">
-
-4
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001300010014
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0416000007815
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100109913
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0637000025309
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1111500045614
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1112500008310
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1615100031912
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1800100011015
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’2901000001406
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6478136
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5203042
-
-</td>
-
-<td style="text-align:right;">
-
-0.7500984
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8059309
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7100451
-
-</td>
-
-<td style="text-align:right;">
-
-0.8714094
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6773983
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5547012
-
-</td>
-
-<td style="text-align:right;">
-
-0.7734779
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8258049
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7375655
-
-</td>
-
-<td style="text-align:right;">
-
-0.8852144
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6707969
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5485713
-
-</td>
-
-<td style="text-align:right;">
-
-0.7676553
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8214398
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7328717
-
-</td>
-
-<td style="text-align:right;">
-
-0.8817867
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-0.54
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.53
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-0.54
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.83
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-0.53
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.83
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.821403260188337”
-
-\[1\] “Binary variable S11\_Un lugar específico (una referencia más
-específica que el nombre de un estado”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900185907
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001000087410
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001000146208
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000030806
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100166512
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1108300002007
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1116100021513
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1610100144507
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.5563651
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.4093008
-
-</td>
-
-<td style="text-align:right;">
-
-0.6793062
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7389975
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.6100411
-
-</td>
-
-<td style="text-align:right;">
-
-0.8270592
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.5736177
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.4297441
-
-</td>
-
-<td style="text-align:right;">
-
-0.6929163
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7523096
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.6298936
-
-</td>
-
-<td style="text-align:right;">
-
-0.8358919
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.5728990
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.4284966
-
-</td>
-
-<td style="text-align:right;">
-
-0.6925192
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7517617
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.6286323
-
-</td>
-
-<td style="text-align:right;">
-
-0.8356573
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.44
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.83
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-0.44
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.83
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.670360939476897”
-
-\[1\] “Binary variable S11\_un municipio”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900185907
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001000087410
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001000146208
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000030806
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100166512
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1108300002007
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1116100021513
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1610100144507
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.5563651
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.4093008
-
-</td>
-
-<td style="text-align:right;">
-
-0.6793062
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7389975
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.6100411
-
-</td>
-
-<td style="text-align:right;">
-
-0.8270592
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.5736177
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.4297441
-
-</td>
-
-<td style="text-align:right;">
-
-0.6929163
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7523096
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.6298936
-
-</td>
-
-<td style="text-align:right;">
-
-0.8358919
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.5728990
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.4284966
-
-</td>
-
-<td style="text-align:right;">
-
-0.6925192
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7517617
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.6286323
-
-</td>
-
-<td style="text-align:right;">
-
-0.8356573
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.44
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.83
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-0.44
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.83
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.670360939476897”
-
-\[1\] “Binary variable S11\_una empresa u ONG)”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064101584110
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.5
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0637000025309
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8127725
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7339757
-
-</td>
-
-<td style="text-align:right;">
-
-0.8714179
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.9074146
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.8616700
-
-</td>
-
-<td style="text-align:right;">
-
-0.9386527
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8372161
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7598033
-
-</td>
-
-<td style="text-align:right;">
-
-0.8911679
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.9207076
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.8768956
-
-</td>
-
-<td style="text-align:right;">
-
-0.9487582
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8241701
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7491439
-
-</td>
-
-<td style="text-align:right;">
-
-0.8796090
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.9136629
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.8708385
-
-</td>
-
-<td style="text-align:right;">
-
-0.9428417
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.0
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.7
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.68
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-0.7
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.0
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.68
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.726698278281849”
-
-\[1\] “Binary variable S11\_Una fecha específica”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900113814
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.25
-
-</td>
-
-<td style="text-align:right;">
-
-4
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064101735111
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064103230113
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000030806
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0821000005107
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1116100021513
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1613100056411
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1857500010303
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7129659
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.6025475
-
-</td>
-
-<td style="text-align:right;">
-
-0.7989649
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8486657
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7738943
-
-</td>
-
-<td style="text-align:right;">
-
-0.8997256
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7737940
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.6563662
-
-</td>
-
-<td style="text-align:right;">
-
-0.8517984
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8853604
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.8097883
-
-</td>
-
-<td style="text-align:right;">
-
-0.9288987
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7429750
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.6409844
-
-</td>
-
-<td style="text-align:right;">
-
-0.8211875
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8671315
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.8012270
-
-</td>
-
-<td style="text-align:right;">
-
-0.9120363
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-0.66
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.60
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-0.66
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.79
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.78
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-0.60
-
-</td>
-
-<td style="text-align:right;">
-
-0.79
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.78
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.833525252657699”
-
-\[1\] “Binary variable S11\_Una institución pública específica (una
-referencia más específica que el nombre de la dependencia”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000500102110
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064100400810
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064101584110
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000015405
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000030806
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100166512
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0912000029214
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0912100065110
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0917900001507
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1108300002007
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1116100021513
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1117100054412
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1511100067610
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1610100109713
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1610100144507
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1857200044606
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1857500010303
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’2901000001406
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.3702401
-
-</td>
-
-<td style="text-align:right;">
-
-2.03e-05
-
-</td>
-
-<td style="text-align:right;">
-
-0.1980862
-
-</td>
-
-<td style="text-align:right;">
-
-0.5266969
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.5703195
-
-</td>
-
-<td style="text-align:right;">
-
-2.03e-05
-
-</td>
-
-<td style="text-align:right;">
-
-0.3580225
-
-</td>
-
-<td style="text-align:right;">
-
-0.7152928
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.4673558
-
-</td>
-
-<td style="text-align:right;">
-
-1.00e-07
-
-</td>
-
-<td style="text-align:right;">
-
-0.3009290
-
-</td>
-
-<td style="text-align:right;">
-
-0.6102027
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6645369
-
-</td>
-
-<td style="text-align:right;">
-
-1.00e-07
-
-</td>
-
-<td style="text-align:right;">
-
-0.4922572
-
-</td>
-
-<td style="text-align:right;">
-
-0.7796296
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.4583216
-
-</td>
-
-<td style="text-align:right;">
-
-1.00e-07
-
-</td>
-
-<td style="text-align:right;">
-
-0.2951406
-
-</td>
-
-<td style="text-align:right;">
-
-0.6006647
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6563883
-
-</td>
-
-<td style="text-align:right;">
-
-1.00e-07
-
-</td>
-
-<td style="text-align:right;">
-
-0.4859525
-
-</td>
-
-<td style="text-align:right;">
-
-0.7725167
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-0.39
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.43
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-0.39
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.54
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.59
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.37
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-0.43
-
-</td>
-
-<td style="text-align:right;">
-
-0.54
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.59
-
-</td>
-
-<td style="text-align:right;">
-
-0.37
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.690396846406345”
-
-\[1\] “Binary variable S11\_Una organización no gubernamental específica
-(por ejemplo”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064101584110
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.5
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0637000025309
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8127725
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7339757
-
-</td>
-
-<td style="text-align:right;">
-
-0.8714179
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.9074146
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.8616700
-
-</td>
-
-<td style="text-align:right;">
-
-0.9386527
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8372161
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7598033
-
-</td>
-
-<td style="text-align:right;">
-
-0.8911679
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.9207076
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.8768956
-
-</td>
-
-<td style="text-align:right;">
-
-0.9487582
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8241701
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.7491439
-
-</td>
-
-<td style="text-align:right;">
-
-0.8796090
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.9136629
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.8708385
-
-</td>
-
-<td style="text-align:right;">
-
-0.9428417
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.0
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.7
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.68
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-0.7
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.0
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.68
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.726698278281849”
+\[1\] “Kendalls W is: 0.784090376235521”
 
 \[1\] “Binary variable S11\_Una persona específica por nombre o por
 título”
@@ -38430,64 +35266,6 @@ num\_coders
 
 <td style="text-align:left;">
 
-’0210000015405
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.5
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
 ’0821000005107
 
 </td>
@@ -38506,6 +35284,122 @@ NaN
 
 <td style="text-align:right;">
 
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001000062110
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1511100045309
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
 NaN
 
 </td>
@@ -38530,13 +35424,129 @@ NaN
 
 <td style="text-align:right;">
 
-0.5
+0.50
 
 </td>
 
 <td style="text-align:right;">
 
 2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063700057807
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002200158108
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
 
 </td>
 
@@ -38596,7 +35606,7 @@ ICC(1)
 
 <td style="text-align:right;">
 
-0.9184438
+0.8202351
 
 </td>
 
@@ -38608,13 +35618,13 @@ ICC(1)
 
 <td style="text-align:right;">
 
-0.8808236
+0.7883347
 
 </td>
 
 <td style="text-align:right;">
 
-0.9451194
+0.8484686
 
 </td>
 
@@ -38630,7 +35640,7 @@ ICC(k)
 
 <td style="text-align:right;">
 
-0.9621569
+0.9238469
 
 </td>
 
@@ -38642,13 +35652,13 @@ ICC(k)
 
 <td style="text-align:right;">
 
-0.9434594
+0.9082769
 
 </td>
 
 <td style="text-align:right;">
 
-0.9749251
+0.9370561
 
 </td>
 
@@ -38664,7 +35674,7 @@ ICC(A,1)
 
 <td style="text-align:right;">
 
-0.9224615
+0.8220070
 
 </td>
 
@@ -38676,13 +35686,13 @@ ICC(A,1)
 
 <td style="text-align:right;">
 
-0.8862027
+0.7904126
 
 </td>
 
 <td style="text-align:right;">
 
-0.9479793
+0.8499680
 
 </td>
 
@@ -38698,7 +35708,7 @@ ICC(A,k)
 
 <td style="text-align:right;">
 
-0.9641054
+0.9246913
 
 </td>
 
@@ -38710,13 +35720,13 @@ ICC(A,k)
 
 <td style="text-align:right;">
 
-0.9461819
+0.9093135
 
 </td>
 
 <td style="text-align:right;">
 
-0.9762714
+0.9377429
 
 </td>
 
@@ -38732,7 +35742,7 @@ ICC(C,1)
 
 <td style="text-align:right;">
 
-0.9210370
+0.8223945
 
 </td>
 
@@ -38744,13 +35754,13 @@ ICC(C,1)
 
 <td style="text-align:right;">
 
-0.8843927
+0.7908007
 
 </td>
 
 <td style="text-align:right;">
 
-0.9469347
+0.8503370
 
 </td>
 
@@ -38766,7 +35776,7 @@ ICC(C,k)
 
 <td style="text-align:right;">
 
-0.9634156
+0.9248756
 
 </td>
 
@@ -38778,13 +35788,13 @@ ICC(C,k)
 
 <td style="text-align:right;">
 
-0.9452692
+0.9095060
 
 </td>
 
 <td style="text-align:right;">
 
-0.9757798
+0.9379121
 
 </td>
 
@@ -38858,37 +35868,37 @@ andrea
 
 <td style="text-align:right;">
 
-1.0
+1.00
 
 </td>
 
 <td style="text-align:right;">
 
-1
+0.83
 
 </td>
 
 <td style="text-align:right;">
 
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.9
+0.85
 
 </td>
 
 <td style="text-align:right;">
 
 NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.91
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
 
 </td>
 
@@ -38904,37 +35914,37 @@ carmen
 
 <td style="text-align:right;">
 
-1.0
+0.83
 
 </td>
 
 <td style="text-align:right;">
 
-1
+1.00
 
 </td>
 
 <td style="text-align:right;">
 
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.0
+1.00
 
 </td>
 
 <td style="text-align:right;">
 
 NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.88
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
 
 </td>
 
@@ -38950,19 +35960,7 @@ edithimg
 
 <td style="text-align:right;">
 
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
+0.85
 
 </td>
 
@@ -38974,13 +35972,25 @@ NA
 
 <td style="text-align:right;">
 
-NA
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.71
 
 </td>
 
 <td style="text-align:right;">
 
 1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.86
 
 </td>
 
@@ -39008,7 +36018,7 @@ NA
 
 <td style="text-align:right;">
 
-1
+0.71
 
 </td>
 
@@ -39020,13 +36030,13 @@ NA
 
 <td style="text-align:right;">
 
-NA
+1.00
 
 </td>
 
 <td style="text-align:right;">
 
-0.85
+0.51
 
 </td>
 
@@ -39042,37 +36052,37 @@ katia
 
 <td style="text-align:right;">
 
-0.9
+0.91
 
 </td>
 
 <td style="text-align:right;">
 
-1
+0.88
 
 </td>
 
 <td style="text-align:right;">
 
-NA
+1.00
 
 </td>
 
 <td style="text-align:right;">
 
-NA
+1.00
 
 </td>
 
 <td style="text-align:right;">
 
-1.0
+1.00
 
 </td>
 
 <td style="text-align:right;">
 
-NA
+0.88
 
 </td>
 
@@ -39088,31 +36098,31 @@ sandra
 
 <td style="text-align:right;">
 
-NA
+1.00
 
 </td>
 
 <td style="text-align:right;">
 
-NA
+1.00
 
 </td>
 
 <td style="text-align:right;">
 
-1
+0.86
 
 </td>
 
 <td style="text-align:right;">
 
-0.85
+0.51
 
 </td>
 
 <td style="text-align:right;">
 
-NA
+0.88
 
 </td>
 
@@ -39128,7 +36138,7 @@ NA
 
 </table>
 
-\[1\] “Kendalls W is: 0.95776768192637”
+\[1\] “Kendalls W is: 0.898169284397459”
 
 \[1\] “Binary variable S11\_una subsecretaría o área interna)”
 
@@ -39202,13 +36212,31 @@ num\_coders
 
 <td style="text-align:left;">
 
-’0000500102110
+’0000400209014
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
 
 </td>
 
 <td style="text-align:right;">
 
 1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
 
 </td>
 
@@ -39220,25 +36248,7 @@ num\_coders
 
 <td style="text-align:right;">
 
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
 1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
 
 </td>
 
@@ -39251,760 +36261,6 @@ NaN
 <td style="text-align:right;">
 
 3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064100400810
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064101584110
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000015405
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000030806
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100166512
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0912000029214
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0912100065110
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0917900001507
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1108300002007
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1116100021513
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1117100054412
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1511100067610
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1610100109713
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
 
 </td>
 
@@ -40032,7 +36288,7 @@ NaN
 
 <td style="text-align:right;">
 
-NaN
+0
 
 </td>
 
@@ -40051,6 +36307,122 @@ NaN
 <td style="text-align:right;">
 
 0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000400124810
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2510100035511
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
 
 </td>
 
@@ -40072,65 +36444,13 @@ NaN
 
 <td style="text-align:left;">
 
-’1857200044606
+’0002700067612
 
 </td>
 
 <td style="text-align:right;">
 
 NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1857500010303
 
 </td>
 
@@ -40161,70 +36481,6 @@ NaN
 <td style="text-align:right;">
 
 0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’2901000001406
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
 
 </td>
 
@@ -40296,25 +36552,25 @@ ICC(1)
 
 <td style="text-align:right;">
 
-0.3702401
+0.3772620
 
 </td>
 
 <td style="text-align:right;">
 
-2.03e-05
+0
 
 </td>
 
 <td style="text-align:right;">
 
-0.1980862
+0.3051359
 
 </td>
 
 <td style="text-align:right;">
 
-0.5266969
+0.4480859
 
 </td>
 
@@ -40330,25 +36586,25 @@ ICC(k)
 
 <td style="text-align:right;">
 
-0.5703195
+0.6169620
 
 </td>
 
 <td style="text-align:right;">
 
-2.03e-05
+0
 
 </td>
 
 <td style="text-align:right;">
 
-0.3580225
+0.5386478
 
 </td>
 
 <td style="text-align:right;">
 
-0.7152928
+0.6834023
 
 </td>
 
@@ -40364,25 +36620,25 @@ ICC(A,1)
 
 <td style="text-align:right;">
 
-0.4673558
+0.3874211
 
 </td>
 
 <td style="text-align:right;">
 
-1.00e-07
+0
 
 </td>
 
 <td style="text-align:right;">
 
-0.3009290
+0.3156745
 
 </td>
 
 <td style="text-align:right;">
 
-0.6102027
+0.4577102
 
 </td>
 
@@ -40398,25 +36654,25 @@ ICC(A,k)
 
 <td style="text-align:right;">
 
-0.6645369
+0.6270762
 
 </td>
 
 <td style="text-align:right;">
 
-1.00e-07
+0
 
 </td>
 
 <td style="text-align:right;">
 
-0.4922572
+0.5508736
 
 </td>
 
 <td style="text-align:right;">
 
-0.7796296
+0.6917371
 
 </td>
 
@@ -40432,25 +36688,25 @@ ICC(C,1)
 
 <td style="text-align:right;">
 
-0.4583216
+0.3875222
 
 </td>
 
 <td style="text-align:right;">
 
-1.00e-07
+0
 
 </td>
 
 <td style="text-align:right;">
 
-0.2951406
+0.3157111
 
 </td>
 
 <td style="text-align:right;">
 
-0.6006647
+0.4578577
 
 </td>
 
@@ -40466,25 +36722,25 @@ ICC(C,k)
 
 <td style="text-align:right;">
 
-0.6563883
+0.6271757
 
 </td>
 
 <td style="text-align:right;">
 
-1.00e-07
+0
 
 </td>
 
 <td style="text-align:right;">
 
-0.4859525
+0.5508997
 
 </td>
 
 <td style="text-align:right;">
 
-0.7725167
+0.6918727
 
 </td>
 
@@ -40559,6 +36815,70 @@ andrea
 <td style="text-align:right;">
 
 1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+<td style="text-align:right;">
+
+0.51
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.43
+
+</td>
+
+<td style="text-align:right;">
+
+0.29
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+carmen
+
+</td>
+
+<td style="text-align:right;">
+
+0.56
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.49
+
+</td>
+
+<td style="text-align:right;">
+
+NA
 
 </td>
 
@@ -40574,21 +36894,49 @@ NA
 
 </td>
 
-<td style="text-align:right;">
+</tr>
 
-NA
+<tr>
 
-</td>
+<td style="text-align:left;">
 
-<td style="text-align:right;">
-
-0.43
+edithimg
 
 </td>
 
 <td style="text-align:right;">
 
-NA
+0.51
+
+</td>
+
+<td style="text-align:right;">
+
+0.49
+
+</td>
+
+<td style="text-align:right;">
+
+1.00
+
+</td>
+
+<td style="text-align:right;">
+
+0.1
+
+</td>
+
+<td style="text-align:right;">
+
+0.54
+
+</td>
+
+<td style="text-align:right;">
+
+0.21
 
 </td>
 
@@ -40598,7 +36946,59 @@ NA
 
 <td style="text-align:left;">
 
-carmen
+jesicatapia
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.10
+
+</td>
+
+<td style="text-align:right;">
+
+1.0
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0.20
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+katia
+
+</td>
+
+<td style="text-align:right;">
+
+0.43
 
 </td>
 
@@ -40610,144 +37010,6 @@ carmen
 
 <td style="text-align:right;">
 
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.54
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.59
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.37
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-0.43
-
-</td>
-
-<td style="text-align:right;">
-
 0.54
 
 </td>
@@ -40760,19 +37022,13 @@ NA
 
 <td style="text-align:right;">
 
-NA
-
-</td>
-
-<td style="text-align:right;">
-
 1.00
 
 </td>
 
 <td style="text-align:right;">
 
-NA
+0.31
 
 </td>
 
@@ -40788,7 +37044,7 @@ sandra
 
 <td style="text-align:right;">
 
-NA
+0.29
 
 </td>
 
@@ -40800,19 +37056,19 @@ NA
 
 <td style="text-align:right;">
 
-0.59
+0.21
 
 </td>
 
 <td style="text-align:right;">
 
-0.37
+0.2
 
 </td>
 
 <td style="text-align:right;">
 
-NA
+0.31
 
 </td>
 
@@ -40828,10243 +37084,7 @@ NA
 
 </table>
 
-\[1\] “Kendalls W is: 0.690396846406345”
-
-\[1\] “Binary variable NA”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900185907
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001200073410
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0678000010912
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0821000005107
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1111200025211
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1117100054412
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’2901000001406
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’3098
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.1850492
-
-</td>
-
-<td style="text-align:right;">
-
-0.0216876
-
-</td>
-
-<td style="text-align:right;">
-
-0.0054744
-
-</td>
-
-<td style="text-align:right;">
-
-0.3623394
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.3389080
-
-</td>
-
-<td style="text-align:right;">
-
-0.0216876
-
-</td>
-
-<td style="text-align:right;">
-
-0.0122751
-
-</td>
-
-<td style="text-align:right;">
-
-0.5619591
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.2015621
-
-</td>
-
-<td style="text-align:right;">
-
-0.0138764
-
-</td>
-
-<td style="text-align:right;">
-
-0.0224875
-
-</td>
-
-<td style="text-align:right;">
-
-0.3772330
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.3630344
-
-</td>
-
-<td style="text-align:right;">
-
-0.0138764
-
-</td>
-
-<td style="text-align:right;">
-
-0.0499189
-
-</td>
-
-<td style="text-align:right;">
-
-0.5774643
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.2021920
-
-</td>
-
-<td style="text-align:right;">
-
-0.0138764
-
-</td>
-
-<td style="text-align:right;">
-
-0.0220527
-
-</td>
-
-<td style="text-align:right;">
-
-0.3784664
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.3639389
-
-</td>
-
-<td style="text-align:right;">
-
-0.0138764
-
-</td>
-
-<td style="text-align:right;">
-
-0.0484446
-
-</td>
-
-<td style="text-align:right;">
-
-0.5789048
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.32
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-0.32
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.522199849423256”
-
-\[1\] “Binary variable NA”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900113814
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.25
-
-</td>
-
-<td style="text-align:right;">
-
-4
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001600284910
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0002100030807
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064100581414
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000015405
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0413100058710
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100109913
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0637000025309
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0912100065110
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1117100054412
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1800100011015
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1857200044606
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.4563337
-
-</td>
-
-<td style="text-align:right;">
-
-1e-07
-
-</td>
-
-<td style="text-align:right;">
-
-0.2934454
-
-</td>
-
-<td style="text-align:right;">
-
-0.5987658
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6545794
-
-</td>
-
-<td style="text-align:right;">
-
-1e-07
-
-</td>
-
-<td style="text-align:right;">
-
-0.4839137
-
-</td>
-
-<td style="text-align:right;">
-
-0.7711236
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.4795277
-
-</td>
-
-<td style="text-align:right;">
-
-0e+00
-
-</td>
-
-<td style="text-align:right;">
-
-0.3245046
-
-</td>
-
-<td style="text-align:right;">
-
-0.6154512
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6753332
-
-</td>
-
-<td style="text-align:right;">
-
-0e+00
-
-</td>
-
-<td style="text-align:right;">
-
-0.5203002
-
-</td>
-
-<td style="text-align:right;">
-
-0.7832324
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.4916736
-
-</td>
-
-<td style="text-align:right;">
-
-0e+00
-
-</td>
-
-<td style="text-align:right;">
-
-0.3331949
-
-</td>
-
-<td style="text-align:right;">
-
-0.6278545
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6859027
-
-</td>
-
-<td style="text-align:right;">
-
-0e+00
-
-</td>
-
-<td style="text-align:right;">
-
-0.5301064
-
-</td>
-
-<td style="text-align:right;">
-
-0.7920563
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.63
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-0.63
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.607953729258254”
-
-\[1\] “Binary variable NA”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000500047705
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000500102110
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900113814
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-4
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900216813
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900248810
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001000146208
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001300010014
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0002000005615
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0002100030807
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064100581414
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064101584110
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000030806
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0410100003506
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0413100058710
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0416000007815
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100016512
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100092815
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100166512
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1117100054412
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1857200027005
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1857500010303
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’2010000003412
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.4092035
-
-</td>
-
-<td style="text-align:right;">
-
-2.5e-06
-
-</td>
-
-<td style="text-align:right;">
-
-0.2407614
-
-</td>
-
-<td style="text-align:right;">
-
-0.5596381
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6099453
-
-</td>
-
-<td style="text-align:right;">
-
-2.5e-06
-
-</td>
-
-<td style="text-align:right;">
-
-0.4172268
-
-</td>
-
-<td style="text-align:right;">
-
-0.7415490
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.4688249
-
-</td>
-
-<td style="text-align:right;">
-
-0.0e+00
-
-</td>
-
-<td style="text-align:right;">
-
-0.3132025
-
-</td>
-
-<td style="text-align:right;">
-
-0.6062426
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6658510
-
-</td>
-
-<td style="text-align:right;">
-
-0.0e+00
-
-</td>
-
-<td style="text-align:right;">
-
-0.5071134
-
-</td>
-
-<td style="text-align:right;">
-
-0.7766402
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.4838538
-
-</td>
-
-<td style="text-align:right;">
-
-0.0e+00
-
-</td>
-
-<td style="text-align:right;">
-
-0.3242176
-
-</td>
-
-<td style="text-align:right;">
-
-0.6215135
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6791208
-
-</td>
-
-<td style="text-align:right;">
-
-0.0e+00
-
-</td>
-
-<td style="text-align:right;">
-
-0.5199606
-
-</td>
-
-<td style="text-align:right;">
-
-0.7875665
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-0.69
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-0.34
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-0.69
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.22
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.83
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-\-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-0.53
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-0.34
-
-</td>
-
-<td style="text-align:right;">
-
-0.22
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-\-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.83
-
-</td>
-
-<td style="text-align:right;">
-
-0.53
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.697806201049”
-
-\[1\] “Binary variable NA”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000700077705
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001600284910
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064100581414
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064101735111
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000015405
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100166512
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0917900001507
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1111200025211
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1116100021513
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1610100144507
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.3872709
-
-</td>
-
-<td style="text-align:right;">
-
-8.4e-06
-
-</td>
-
-<td style="text-align:right;">
-
-0.2166431
-
-</td>
-
-<td style="text-align:right;">
-
-0.5411625
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.5879611
-
-</td>
-
-<td style="text-align:right;">
-
-8.4e-06
-
-</td>
-
-<td style="text-align:right;">
-
-0.3843806
-
-</td>
-
-<td style="text-align:right;">
-
-0.7269822
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.4149717
-
-</td>
-
-<td style="text-align:right;">
-
-2.3e-06
-
-</td>
-
-<td style="text-align:right;">
-
-0.2456025
-
-</td>
-
-<td style="text-align:right;">
-
-0.5652524
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6155948
-
-</td>
-
-<td style="text-align:right;">
-
-2.3e-06
-
-</td>
-
-<td style="text-align:right;">
-
-0.4236385
-
-</td>
-
-<td style="text-align:right;">
-
-0.7458964
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.4121268
-
-</td>
-
-<td style="text-align:right;">
-
-2.3e-06
-
-</td>
-
-<td style="text-align:right;">
-
-0.2434295
-
-</td>
-
-<td style="text-align:right;">
-
-0.5623707
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6128152
-
-</td>
-
-<td style="text-align:right;">
-
-2.3e-06
-
-</td>
-
-<td style="text-align:right;">
-
-0.4207666
-
-</td>
-
-<td style="text-align:right;">
-
-0.7436698
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-0.69
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.24
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-0.69
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.43
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.68
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-0.24
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.43
-
-</td>
-
-<td style="text-align:right;">
-
-0.68
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.630543149618403”
-
-\[1\] “Binary variable NA”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900113814
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.25
-
-</td>
-
-<td style="text-align:right;">
-
-4
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900185907
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900248810
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001100171309
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001100189506
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001300041011
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064100400810
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0413100058710
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100092815
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100109913
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0637000025309
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0908500003207
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0912000029214
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0917900001507
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1800100011015
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’2000100002903
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’2106800006205
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.2986650
-
-</td>
-
-<td style="text-align:right;">
-
-0.0005172
-
-</td>
-
-<td style="text-align:right;">
-
-0.1216916
-
-</td>
-
-<td style="text-align:right;">
-
-0.4647362
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.4901708
-
-</td>
-
-<td style="text-align:right;">
-
-0.0005172
-
-</td>
-
-<td style="text-align:right;">
-
-0.2382739
-
-</td>
-
-<td style="text-align:right;">
-
-0.6621861
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.4038413
-
-</td>
-
-<td style="text-align:right;">
-
-0.0000053
-
-</td>
-
-<td style="text-align:right;">
-
-0.2308044
-
-</td>
-
-<td style="text-align:right;">
-
-0.5571934
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6046448
-
-</td>
-
-<td style="text-align:right;">
-
-0.0000053
-
-</td>
-
-<td style="text-align:right;">
-
-0.4033976
-
-</td>
-
-<td style="text-align:right;">
-
-0.7397745
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.3971779
-
-</td>
-
-<td style="text-align:right;">
-
-0.0000053
-
-</td>
-
-<td style="text-align:right;">
-
-0.2269377
-
-</td>
-
-<td style="text-align:right;">
-
-0.5498176
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.5979916
-
-</td>
-
-<td style="text-align:right;">
-
-0.0000053
-
-</td>
-
-<td style="text-align:right;">
-
-0.3985903
-
-</td>
-
-<td style="text-align:right;">
-
-0.7338560
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.35
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.48
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-\-0.07
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-0.35
-
-</td>
-
-<td style="text-align:right;">
-
-0.48
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-\-0.07
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.571030216471417”
-
-\[1\] “Binary variable NA”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064100940708
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000140808
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.5
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0637000025309
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.5
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0944800002908
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.5
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6250438
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.4921918
-
-</td>
-
-<td style="text-align:right;">
-
-0.7327166
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7900711
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.6863492
-
-</td>
-
-<td style="text-align:right;">
-
-0.8609007
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6345942
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.5025852
-
-</td>
-
-<td style="text-align:right;">
-
-0.7405889
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7967847
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.6951954
-
-</td>
-
-<td style="text-align:right;">
-
-0.8656995
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6307918
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.4987916
-
-</td>
-
-<td style="text-align:right;">
-
-0.7373112
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7941225
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.6920047
-
-</td>
-
-<td style="text-align:right;">
-
-0.8637017
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-0.86
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-\-0.07
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-0.86
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-\-0.07
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.651409557495314”
-
-\[1\] “Binary variable NA”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000500058507
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000015405
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1613100056411
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1857200027005
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’2901000001406
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.2957315
-
-</td>
-
-<td style="text-align:right;">
-
-0.0005814
-
-</td>
-
-<td style="text-align:right;">
-
-0.1186145
-
-</td>
-
-<td style="text-align:right;">
-
-0.4621558
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.4866617
-
-</td>
-
-<td style="text-align:right;">
-
-0.0005814
-
-</td>
-
-<td style="text-align:right;">
-
-0.2330309
-
-</td>
-
-<td style="text-align:right;">
-
-0.6598610
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.6576870
-
-</td>
-
-<td style="text-align:right;">
-
-0.0000000
-
-</td>
-
-<td style="text-align:right;">
-
-0.3481085
-
-</td>
-
-<td style="text-align:right;">
-
-0.8058828
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.8126535
-
-</td>
-
-<td style="text-align:right;">
-
-0.0000000
-
-</td>
-
-<td style="text-align:right;">
-
-0.4855064
-
-</td>
-
-<td style="text-align:right;">
-
-0.9083880
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.5554793
-
-</td>
-
-<td style="text-align:right;">
-
-0.0000000
-
-</td>
-
-<td style="text-align:right;">
-
-0.4077373
-
-</td>
-
-<td style="text-align:right;">
-
-0.6788330
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.7383048
-
-</td>
-
-<td style="text-align:right;">
-
-0.0000000
-
-</td>
-
-<td style="text-align:right;">
-
-0.6085007
-
-</td>
-
-<td style="text-align:right;">
-
-0.8267484
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-\-0.03
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-\-0.03
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.50366477969447”
-
-\[1\] “Binary variable NA”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-folio\_id
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-<th style="text-align:right;">
-
-rater\_var
-
-</th>
-
-<th style="text-align:right;">
-
-num\_coders
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900248810
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064101996410
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000015405
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0637000025309
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0908500003207
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0917900001507
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1816400033115
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1857600018305
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-ICC
-
-</th>
-
-<th style="text-align:right;">
-
-p-value
-
-</th>
-
-<th style="text-align:right;">
-
-lower CI limit
-
-</th>
-
-<th style="text-align:right;">
-
-upper CI limit
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.0300728
-
-</td>
-
-<td style="text-align:right;">
-
-0.3684254
-
-</td>
-
-<td style="text-align:right;">
-
-\-0.1438007
-
-</td>
-
-<td style="text-align:right;">
-
-0.2140429
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.0654206
-
-</td>
-
-<td style="text-align:right;">
-
-0.3684254
-
-</td>
-
-<td style="text-align:right;">
-
-\-0.3963373
-
-</td>
-
-<td style="text-align:right;">
-
-0.3807457
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.2425694
-
-</td>
-
-<td style="text-align:right;">
-
-0.0067380
-
-</td>
-
-<td style="text-align:right;">
-
-0.0465557
-
-</td>
-
-<td style="text-align:right;">
-
-0.4246141
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(A,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.4196276
-
-</td>
-
-<td style="text-align:right;">
-
-0.0067380
-
-</td>
-
-<td style="text-align:right;">
-
-0.0930570
-
-</td>
-
-<td style="text-align:right;">
-
-0.6265340
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,1)
-
-</td>
-
-<td style="text-align:right;">
-
-0.2268277
-
-</td>
-
-<td style="text-align:right;">
-
-0.0067380
-
-</td>
-
-<td style="text-align:right;">
-
-0.0469351
-
-</td>
-
-<td style="text-align:right;">
-
-0.4009285
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-ICC(C,k)
-
-</td>
-
-<td style="text-align:right;">
-
-0.3984399
-
-</td>
-
-<td style="text-align:right;">
-
-0.0067380
-
-</td>
-
-<td style="text-align:right;">
-
-0.1000584
-
-</td>
-
-<td style="text-align:right;">
-
-0.6017456
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “CORRELATION MATRIX”
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-</th>
-
-<th style="text-align:right;">
-
-andrea
-
-</th>
-
-<th style="text-align:right;">
-
-carmen
-
-</th>
-
-<th style="text-align:right;">
-
-edithimg
-
-</th>
-
-<th style="text-align:right;">
-
-jesicatapia
-
-</th>
-
-<th style="text-align:right;">
-
-katia
-
-</th>
-
-<th style="text-align:right;">
-
-sandra
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-andrea
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-\-0.02
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-carmen
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-edithimg
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jesicatapia
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-katia
-
-</td>
-
-<td style="text-align:right;">
-
-\-0.02
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1.00
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-sandra
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-NA
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-\[1\] “Kendalls W is: 0.43810261707989”
+\[1\] “Kendalls W is: 0.616677775356448”
 
 ``` r
 for(i in (c("R5", "R7"))) {
@@ -51173,6 +37193,122 @@ num\_coders
 
 <td style="text-align:left;">
 
+’0000800101312
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064101735111
+
+</td>
+
+<td style="text-align:left;">
+
+Menos de la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Menos de la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
 ’0210000030806
 
 </td>
@@ -51291,7 +37427,7 @@ NA
 
 Krippendorff’s alpha
 
-Subjects = 85 Raters = 6 alpha = 0.637
+Subjects = 349 Raters = 6 alpha = 0.673
 
 <table>
 
@@ -51363,6 +37499,180 @@ num\_coders
 
 <td style="text-align:left;">
 
+’0000400111912
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000400124810
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000400190015
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
 ’0000400209014
 
 </td>
@@ -51393,7 +37703,7 @@ NA
 
 <td style="text-align:left;">
 
-NA
+Aproximadamente la mitad
 
 </td>
 
@@ -51405,13 +37715,13 @@ Menos de la mitad
 
 <td style="text-align:right;">
 
-2
+3
 
 </td>
 
 <td style="text-align:right;">
 
-2
+3
 
 </td>
 
@@ -51439,7 +37749,7 @@ NA
 
 <td style="text-align:left;">
 
-NA
+La mayoría
 
 </td>
 
@@ -51463,13 +37773,13 @@ Toda
 
 <td style="text-align:right;">
 
-2
+3
 
 </td>
 
 <td style="text-align:right;">
 
-2
+3
 
 </td>
 
@@ -51537,6 +37847,644 @@ NA
 
 <td style="text-align:left;">
 
+’0000600019613
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000600021806
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000600024610
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000600035210
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000600170709
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000600247213
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000700001309
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000700003014
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000700012515
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000700048104
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000700049211
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Menos de la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
 ’0000700077705
 
 </td>
@@ -51567,7 +38515,7 @@ NA
 
 <td style="text-align:left;">
 
-NA
+La mayoría
 
 </td>
 
@@ -51585,7 +38533,181 @@ La mayoría
 
 <td style="text-align:right;">
 
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000700207914
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
 2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000800073014
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000800101312
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
 
 </td>
 
@@ -51631,7 +38753,7 @@ Toda
 
 <td style="text-align:left;">
 
-NA
+Toda
 
 </td>
 
@@ -51643,7 +38765,7 @@ NA
 
 <td style="text-align:right;">
 
-2
+3
 
 </td>
 
@@ -51653,7 +38775,31 @@ NA
 
 <td style="text-align:left;">
 
-’0000900113814
+’0000900130914
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
 
 </td>
 
@@ -51666,30 +38812,6 @@ NA
 <td style="text-align:left;">
 
 Toda
-
-</td>
-
-<td style="text-align:left;">
-
-NA
-
-</td>
-
-<td style="text-align:left;">
-
-NA
-
-</td>
-
-<td style="text-align:left;">
-
-Poca o nada
-
-</td>
-
-<td style="text-align:left;">
-
-NA
 
 </td>
 
@@ -51729,7 +38851,7 @@ NA
 
 <td style="text-align:left;">
 
-NA
+Toda
 
 </td>
 
@@ -51759,7 +38881,7 @@ Toda
 
 <td style="text-align:right;">
 
-2
+3
 
 </td>
 
@@ -51770,6 +38892,122 @@ Toda
 <td style="text-align:left;">
 
 ’0000900185907
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000900247913
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000900248713
 
 </td>
 
@@ -51885,7 +39123,355 @@ NA
 
 <td style="text-align:left;">
 
-’0001300041011
+’0001000019203
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001000057812
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001000087410
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001000146208
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001000162110
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001100081703
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001100289115
 
 </td>
 
@@ -51943,6 +39529,586 @@ NA
 
 <td style="text-align:left;">
 
+’0001100366708
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001100395711
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001100570007
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001200067405
+
+</td>
+
+<td style="text-align:left;">
+
+Menos de la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001200150109
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001200202407
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001200265707
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001200313314
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001300010014
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001300041011
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
 ’0001400025309
 
 </td>
@@ -51979,6 +40145,64 @@ Toda
 
 <td style="text-align:left;">
 
+La mayoría
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001400043706
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
 NA
 
 </td>
@@ -51991,7 +40215,7 @@ NA
 
 <td style="text-align:right;">
 
-2
+3
 
 </td>
 
@@ -52032,6 +40256,180 @@ NA
 <td style="text-align:left;">
 
 Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001700020906
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001700027708
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Menos de la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001700078810
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
 
 </td>
 
@@ -52117,6 +40515,528 @@ NA
 
 <td style="text-align:left;">
 
+’0002000120512
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002200056808
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002700053513
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002700099113
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002700122913
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002700185215
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063700030110
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063700238212
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063700381813
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
 ’0064100400810
 
 </td>
@@ -52124,6 +41044,586 @@ NA
 <td style="text-align:left;">
 
 La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100522913
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100566114
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100740610
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100818910
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064101095409
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Menos de la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064101735111
+
+</td>
+
+<td style="text-align:left;">
+
+Menos de la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Menos de la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064102525911
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0210000035314
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0210000090507
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Menos de la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0210000140808
+
+</td>
+
+<td style="text-align:left;">
+
+NA
 
 </td>
 
@@ -52153,7 +41653,239 @@ Toda
 
 <td style="text-align:left;">
 
+Poca o nada
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0411100009107
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
 NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0411100030814
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0411100036106
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0411100055106
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
 
 </td>
 
@@ -52233,6 +41965,354 @@ NA
 
 <td style="text-align:left;">
 
+’0413100024507
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0441000013414
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0610100023908
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0610100077906
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0673800045808
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0673800119808
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
 ’0678000010912
 
 </td>
@@ -52291,6 +42371,180 @@ NA
 
 <td style="text-align:left;">
 
+’0678000017911
+
+</td>
+
+<td style="text-align:left;">
+
+Menos de la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0681200028512
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0681200037513
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
 ’0912000029214
 
 </td>
@@ -52327,7 +42581,297 @@ Toda
 
 <td style="text-align:left;">
 
+Toda
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0912100036110
+
+</td>
+
+<td style="text-align:left;">
+
 NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Menos de la mitad
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0912100048710
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0917600003408
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Menos de la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0917900001507
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0933800014509
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
 
 </td>
 
@@ -52374,6 +42918,412 @@ Aproximadamente la mitad
 <td style="text-align:left;">
 
 NA
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1026500043108
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1111200003612
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1111200007709
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1111200025508
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1111500016413
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1111500024807
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1111500050314
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
 
 </td>
 
@@ -52465,6 +43415,702 @@ NA
 
 <td style="text-align:left;">
 
+’1113100013613
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1114100042113
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1114100052713
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1215100121912
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1215100127013
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1220000000309
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1220000015610
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Menos de la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1224500002815
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1411100034409
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1511100015108
+
+</td>
+
+<td style="text-align:left;">
+
+Menos de la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+<td style="text-align:left;">
+
+Menos de la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1511100022411
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1511100045309
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
 ’1511100067610
 
 </td>
@@ -52514,6 +44160,180 @@ NA
 <td style="text-align:right;">
 
 2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1610100091713
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1613100056411
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1615100020609
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
 
 </td>
 
@@ -52581,6 +44401,180 @@ NA
 
 <td style="text-align:left;">
 
+’1816400083714
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1816400107212
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Menos de la mitad
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1850000101409
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Menos de la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
 ’1857200027005
 
 </td>
@@ -52617,6 +44611,64 @@ La mayoría
 
 <td style="text-align:left;">
 
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1857500010303
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
 NA
 
 </td>
@@ -52630,6 +44682,180 @@ NA
 <td style="text-align:right;">
 
 3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1857500022812
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1857600005803
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Menos de la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1857600008809
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
 
 </td>
 
@@ -52675,6 +44901,64 @@ Toda
 
 <td style="text-align:left;">
 
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2015000001314
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
 NA
 
 </td>
@@ -52687,7 +44971,65 @@ NA
 
 <td style="text-align:right;">
 
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2031200003314
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
 2
+
+</td>
+
+<td style="text-align:right;">
+
+3
 
 </td>
 
@@ -52727,6 +45069,406 @@ NA
 
 <td style="text-align:left;">
 
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2135500004809
+
+</td>
+
+<td style="text-align:left;">
+
+Menos de la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+Menos de la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2510100061415
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’252
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+Aproximadamente la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’26625
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’27705
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Poca o nada
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’27869
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’3670000008013
+
+</td>
+
+<td style="text-align:left;">
+
+Menos de la mitad
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
 NA
 
 </td>
@@ -52734,6 +45476,70 @@ NA
 <td style="text-align:left;">
 
 La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’7394
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+La mayoría
+
+</td>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Toda
 
 </td>
 
@@ -52757,7 +45563,7 @@ La mayoría
 
 Krippendorff’s alpha
 
-Subjects = 85 Raters = 6 alpha = 0.439
+Subjects = 349 Raters = 6 alpha = 0.397
 
 What ar the folios that have the most issues.
 
@@ -52793,7 +45599,7 @@ Freq
 
 <td style="text-align:left;">
 
-’0064100940708
+’0000400020312
 
 </td>
 
@@ -52809,7 +45615,1271 @@ Freq
 
 <td style="text-align:left;">
 
-’0610100016512
+’0000400111912
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000400190015
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000500058507
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000500102110
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000600019613
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000600021806
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000600024610
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000600035210
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000600149312
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000600170709
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000600247213
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000600291210
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000700012515
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000700013215
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000700049211
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000700077705
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000700100909
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000800073014
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000900130914
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000900216813
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001000057812
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001000062110
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001000146208
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001100081703
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001100171309
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001100289115
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001100366708
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001100373615
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001100395711
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001100502111
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001200150109
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001200202407
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001300003707
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001300010014
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001400025309
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001400043706
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001700020906
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001700027708
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001700203910
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002000100913
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002000120512
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002100030807
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002200038205
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002200056808
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002200158108
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002700067612
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002700099113
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002700185215
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063500015815
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063700030110
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063700057807
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063700238212
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063700261615
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063700381813
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100029408
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100060013
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100332409
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100400810
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100551415
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100566114
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100740610
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100818910
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064101519911
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064101584110
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064101676309
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064101996410
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064103230113
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0210000015405
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0210000035314
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0210000090507
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0210000140808
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0411100009107
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0411100030814
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0411100036106
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0411100055106
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0411100072013
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0416000007815
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0441000013414
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0610100064610
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0610100066912
 
 </td>
 
@@ -52841,7 +46911,7 @@ Freq
 
 <td style="text-align:left;">
 
-’0918900000214
+’0610100166512
 
 </td>
 
@@ -52857,7 +46927,7 @@ Freq
 
 <td style="text-align:left;">
 
-’1114100000412
+’0673800119808
 
 </td>
 
@@ -52873,7 +46943,7 @@ Freq
 
 <td style="text-align:left;">
 
-’1132100010608
+’0674700008307
 
 </td>
 
@@ -52889,7 +46959,7 @@ Freq
 
 <td style="text-align:left;">
 
-’1219700039614
+’0678000017911
 
 </td>
 
@@ -52905,7 +46975,7 @@ Freq
 
 <td style="text-align:left;">
 
-’1816400033115
+’0681200014207
 
 </td>
 
@@ -52921,7 +46991,887 @@ Freq
 
 <td style="text-align:left;">
 
-’0000700077705
+’0681200028512
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0681200032313
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0810000004911
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0912000029214
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0912100016013
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0912100016603
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0912100036110
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0917500004813
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0917600003408
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0918600000510
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0933800014509
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0944800002908
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1026500013908
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1111200003612
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1111200025508
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1111200046115
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1111500016413
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1113100013613
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1113100032713
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1114100004905
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1114100042113
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1114100052713
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1116100021513
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1119500000306
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1215100061809
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1215100121912
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1220000000309
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1220000015610
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1222600012909
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1224500002815
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1411100030410
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1412000005508
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1610100144507
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1610100168713
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1615100020609
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1816400010805
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1816400083714
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1850000028006
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1850000101409
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1857200027005
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1857200172714
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1857500010303
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1857500022812
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1857500071010
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1857600008809
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1857600018305
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2010000003412
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2015000001314
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2031200003314
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2106800006205
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’252
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’27869
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’29725
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’3670000008013
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’7394
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000400124810
 
 </td>
 
@@ -52937,7 +47887,7 @@ Freq
 
 <td style="text-align:left;">
 
-’0000900156715
+’0000700001309
 
 </td>
 
@@ -52953,7 +47903,7 @@ Freq
 
 <td style="text-align:left;">
 
-’0000900216813
+’0000700003014
 
 </td>
 
@@ -52969,7 +47919,7 @@ Freq
 
 <td style="text-align:left;">
 
-’0001400025309
+’0000700048104
 
 </td>
 
@@ -52985,7 +47935,7 @@ Freq
 
 <td style="text-align:left;">
 
-’0210000140808
+’0000700207914
 
 </td>
 
@@ -53001,7 +47951,423 @@ Freq
 
 <td style="text-align:left;">
 
-’0413000000715
+’0000900005113
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000900185907
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000900248713
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000900248810
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001000019203
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001000087410
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001200265707
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001200313314
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001600284910
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002000005615
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002700040515
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063500110314
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063700065013
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063700328414
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100319507
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100522913
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064101095409
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064101735111
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064102525911
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064103030312
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0210000030806
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0413100024507
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0610100023908
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0610100092815
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0612100019614
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0637000025309
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0673800045808
 
 </td>
 
@@ -53033,7 +48399,87 @@ Freq
 
 <td style="text-align:left;">
 
-’1109000003915
+’0681200037513
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0817000010910
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0912100048710
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0912100065110
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1111500024807
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1111500050314
 
 </td>
 
@@ -53065,7 +48511,7 @@ Freq
 
 <td style="text-align:left;">
 
-’2000100002903
+’1117100000109
 
 </td>
 
@@ -53081,7 +48527,7 @@ Freq
 
 <td style="text-align:left;">
 
-’2106800006205
+’1215100138911
 
 </td>
 
@@ -53097,13 +48543,13 @@ Freq
 
 <td style="text-align:left;">
 
-’0002100030807
+’1411100034409
 
 </td>
 
 <td style="text-align:right;">
 
-3
+2
 
 </td>
 
@@ -53113,13 +48559,13 @@ Freq
 
 <td style="text-align:left;">
 
-’0410100003506
+’1511100015108
 
 </td>
 
 <td style="text-align:right;">
 
-3
+2
 
 </td>
 
@@ -53129,605 +48575,13 @@ Freq
 
 <td style="text-align:left;">
 
-’1610100109713
+’1511100045309
 
 </td>
 
 <td style="text-align:right;">
 
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1857200027005
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1857600018305
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’2010000003412
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000400209014
-
-</td>
-
-<td style="text-align:right;">
-
-4
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001100171309
-
-</td>
-
-<td style="text-align:right;">
-
-4
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064103230113
-
-</td>
-
-<td style="text-align:right;">
-
-4
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100092815
-
-</td>
-
-<td style="text-align:right;">
-
-4
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0636300016008
-
-</td>
-
-<td style="text-align:right;">
-
-4
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1026500058813
-
-</td>
-
-<td style="text-align:right;">
-
-4
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1800100011015
-
-</td>
-
-<td style="text-align:right;">
-
-4
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1857200044606
-
-</td>
-
-<td style="text-align:right;">
-
-4
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000500047705
-
-</td>
-
-<td style="text-align:right;">
-
-5
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000500058507
-
-</td>
-
-<td style="text-align:right;">
-
-5
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900005113
-
-</td>
-
-<td style="text-align:right;">
-
-5
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001700203910
-
-</td>
-
-<td style="text-align:right;">
-
-5
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064101735111
-
-</td>
-
-<td style="text-align:right;">
-
-5
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064101996410
-
-</td>
-
-<td style="text-align:right;">
-
-5
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0821000005107
-
-</td>
-
-<td style="text-align:right;">
-
-5
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1613100056411
-
-</td>
-
-<td style="text-align:right;">
-
-5
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’2135500006106
-
-</td>
-
-<td style="text-align:right;">
-
-5
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’3098
-
-</td>
-
-<td style="text-align:right;">
-
-5
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001000087410
-
-</td>
-
-<td style="text-align:right;">
-
-6
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001100189506
-
-</td>
-
-<td style="text-align:right;">
-
-6
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001300010014
-
-</td>
-
-<td style="text-align:right;">
-
-6
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0944800002908
-
-</td>
-
-<td style="text-align:right;">
-
-6
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’2901000001406
-
-</td>
-
-<td style="text-align:right;">
-
-6
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001300041011
-
-</td>
-
-<td style="text-align:right;">
-
-7
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001600284910
-
-</td>
-
-<td style="text-align:right;">
-
-7
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0002000005615
-
-</td>
-
-<td style="text-align:right;">
-
-7
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064100581414
-
-</td>
-
-<td style="text-align:right;">
-
-7
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0411100072013
-
-</td>
-
-<td style="text-align:right;">
-
-7
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0416000007815
-
-</td>
-
-<td style="text-align:right;">
-
-7
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100109913
-
-</td>
-
-<td style="text-align:right;">
-
-7
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0917900001507
-
-</td>
-
-<td style="text-align:right;">
-
-7
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1111200025211
-
-</td>
-
-<td style="text-align:right;">
-
-7
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1111500045614
-
-</td>
-
-<td style="text-align:right;">
-
-7
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1117100054412
-
-</td>
-
-<td style="text-align:right;">
-
-7
+2
 
 </td>
 
@@ -53743,7 +48597,7 @@ Freq
 
 <td style="text-align:right;">
 
-7
+2
 
 </td>
 
@@ -53753,13 +48607,269 @@ Freq
 
 <td style="text-align:left;">
 
-’0000900113814
+’1610100027310
 
 </td>
 
 <td style="text-align:right;">
 
-8
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1613100056411
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1816400107212
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1857600005803
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1857600021710
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2014300001807
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2135500004809
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2136
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2510100035511
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’26625
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’27705
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000400209014
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000900156715
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001000162110
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001100183308
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001100570007
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001200067405
+
+</td>
+
+<td style="text-align:right;">
+
+3
 
 </td>
 
@@ -53775,7 +48885,7 @@ Freq
 
 <td style="text-align:right;">
 
-8
+3
 
 </td>
 
@@ -53785,13 +48895,13 @@ Freq
 
 <td style="text-align:left;">
 
-’0908500003207
+’0001300041011
 
 </td>
 
 <td style="text-align:right;">
 
-8
+3
 
 </td>
 
@@ -53801,13 +48911,13 @@ Freq
 
 <td style="text-align:left;">
 
-’0912100065110
+’0001700078810
 
 </td>
 
 <td style="text-align:right;">
 
-8
+3
 
 </td>
 
@@ -53817,13 +48927,13 @@ Freq
 
 <td style="text-align:left;">
 
-’1108300002007
+’0002000155613
 
 </td>
 
 <td style="text-align:right;">
 
-8
+3
 
 </td>
 
@@ -53833,13 +48943,13 @@ Freq
 
 <td style="text-align:left;">
 
-’1857500010303
+’0002700053513
 
 </td>
 
 <td style="text-align:right;">
 
-8
+3
 
 </td>
 
@@ -53849,13 +48959,13 @@ Freq
 
 <td style="text-align:left;">
 
-’0001000146208
+’0002700122913
 
 </td>
 
 <td style="text-align:right;">
 
-9
+3
 
 </td>
 
@@ -53865,13 +48975,13 @@ Freq
 
 <td style="text-align:left;">
 
-’0064101584110
+’0063700025011
 
 </td>
 
 <td style="text-align:right;">
 
-9
+3
 
 </td>
 
@@ -53881,13 +48991,13 @@ Freq
 
 <td style="text-align:left;">
 
-’0413100058710
+’0064102522611
 
 </td>
 
 <td style="text-align:right;">
 
-9
+3
 
 </td>
 
@@ -53897,13 +49007,13 @@ Freq
 
 <td style="text-align:left;">
 
-’0637000025309
+’0821000005107
 
 </td>
 
 <td style="text-align:right;">
 
-9
+3
 
 </td>
 
@@ -53913,13 +49023,13 @@ Freq
 
 <td style="text-align:left;">
 
-’1610100144507
+’0917900001507
 
 </td>
 
 <td style="text-align:right;">
 
-9
+3
 
 </td>
 
@@ -53929,13 +49039,13 @@ Freq
 
 <td style="text-align:left;">
 
-’0000900248810
+’1026500043108
 
 </td>
 
 <td style="text-align:right;">
 
-10
+3
 
 </td>
 
@@ -53945,13 +49055,13 @@ Freq
 
 <td style="text-align:left;">
 
-’0064100400810
+’1111200007709
 
 </td>
 
 <td style="text-align:right;">
 
-10
+3
 
 </td>
 
@@ -53961,13 +49071,13 @@ Freq
 
 <td style="text-align:left;">
 
-’0000500102110
+’1111200025211
 
 </td>
 
 <td style="text-align:right;">
 
-11
+3
 
 </td>
 
@@ -53977,13 +49087,13 @@ Freq
 
 <td style="text-align:left;">
 
-’0000900185907
+’1215100127013
 
 </td>
 
 <td style="text-align:right;">
 
-11
+3
 
 </td>
 
@@ -53993,13 +49103,61 @@ Freq
 
 <td style="text-align:left;">
 
-’0610100166512
+’1511100022411
 
 </td>
 
 <td style="text-align:right;">
 
-12
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1610100091713
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2510100061415
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000800101312
+
+</td>
+
+<td style="text-align:right;">
+
+4
 
 </td>
 
@@ -54015,7 +49173,7 @@ Freq
 
 <td style="text-align:right;">
 
-12
+4
 
 </td>
 
@@ -54025,61 +49183,13 @@ Freq
 
 <td style="text-align:left;">
 
-’0912000029214
+’0000900247913
 
 </td>
 
 <td style="text-align:right;">
 
-13
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1116100021513
-
-</td>
-
-<td style="text-align:right;">
-
-13
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000015405
-
-</td>
-
-<td style="text-align:right;">
-
-16
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000030806
-
-</td>
-
-<td style="text-align:right;">
-
-17
+5
 
 </td>
 

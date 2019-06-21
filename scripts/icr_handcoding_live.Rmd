@@ -25,7 +25,7 @@ Before, anything else, we need to do some cleaup
 ROUND <- "full_pilot1"
 pacman::p_load(tidyverse, tidyselect, irr, kableExtra, irrNA, lubridate, splitstackshape)
 
-icr <- read_csv("./data_raw/Big Data y Acceso a Info en México_June 18, 2019_07.csv")
+icr <- read_csv("./data_raw/Big Data y Acceso a Info en México_June 21, 2019_14.17.csv")
 
 fs_ps1 <- readRDS("./data_raw/full_sample_post_p1.rds") %>%
   filter(round == ROUND)
@@ -106,7 +106,7 @@ binary_vars <- vars_select(names(to_eval), matches("S7_|S8_[^4]|S11_"))
 
 yes_nos <- vars_select(names(to_eval), matches("S6_|S10_"))
 
-all_dummy <- c(binary_vars, yes_nos)
+all_dummy <- str_sort(c(binary_vars, yes_nos), numeric = TRUE)
 
 to_eval<- to_eval %>% 
   mutate_at(vars(yes_nos),
@@ -144,10 +144,10 @@ for(i in 1:length(all_dummy)) {
     data_wide$num_coders <- apply(data_wide[, coder_ids], 1, function(x)
       length(na.omit(x)))
 
-  print( sprintf("Binary variable %s", binary_vars[i]))
+  print( sprintf("Binary variable %s", all_dummy[i]))
   
   ratings_out <- data_wide %>%
-    filter(rater_var > 0 | is.na(rater_var))
+    filter(rater_var > 0 | is.na(rater_var)) %>% sample_n(5)
 
 #capture the number of coders, get observations with at least 2. 
 #output where there is disagreement only
