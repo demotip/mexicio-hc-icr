@@ -164,11 +164,14 @@ for(i in 1:length(all_dummy)) {
   print( sprintf("Binary variable %s", all_dummy[i]))
   
   ratings_out <- data_wide %>%
-    filter(rater_var > 0 | is.na(rater_var)) %>% sample_n(5)
+    filter(rater_var > 0 | is.na(rater_var)) 
 
 #capture the number of coders, get observations with at least 2. 
 #output where there is disagreement only
-  output <-  ratings_out %>% kable(., escape = TRUE, digit = 2)
+  output <-  ratings_out %>% 
+    sample_n(5) %>%
+    kable(., escape = TRUE, digit = 2)
+  
   print(output)
 
   bad_folios <- c(bad_folios, ratings_out$folio_id)
@@ -259,6 +262,122 @@ num\_coders
 
 <td style="text-align:left;">
 
+’0000900248713
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000900060011
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
 ’0001200073410
 
 </td>
@@ -317,7 +436,7 @@ NaN
 
 <td style="text-align:left;">
 
-’0678000010912
+’0000900185907
 
 </td>
 
@@ -375,7 +494,7 @@ NaN
 
 <td style="text-align:left;">
 
-’1114100004905
+’1215100121912
 
 </td>
 
@@ -424,122 +543,6 @@ NaN
 <td style="text-align:right;">
 
 2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0821000005107
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1111200025211
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
 
 </td>
 
@@ -1205,25 +1208,7 @@ num\_coders
 
 <td style="text-align:left;">
 
-’0002100030807
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
+’0918900000214
 
 </td>
 
@@ -1236,6 +1221,24 @@ NaN
 <td style="text-align:right;">
 
 NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
 
 </td>
 
@@ -1254,180 +1257,6 @@ NaN
 <td style="text-align:right;">
 
 3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0917500004813
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0002000155613
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1411100034409
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
 
 </td>
 
@@ -1474,6 +1303,180 @@ NaN
 <td style="text-align:right;">
 
 0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100581414
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000400317213
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1507500005612
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
 
 </td>
 
@@ -2151,7 +2154,13 @@ num\_coders
 
 <td style="text-align:left;">
 
-’27705
+’0000400317213
+
+</td>
+
+<td style="text-align:right;">
+
+0
 
 </td>
 
@@ -2164,6 +2173,58 @@ num\_coders
 <td style="text-align:right;">
 
 1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1507500005612
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
 
 </td>
 
@@ -2209,37 +2270,37 @@ NaN
 
 <td style="text-align:left;">
 
-’1111500024807
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
+’0000500047705
 
 </td>
 
 <td style="text-align:right;">
 
 0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
 
 </td>
 
@@ -2267,7 +2328,65 @@ NaN
 
 <td style="text-align:left;">
 
-’0001000019203
+’0000900248713
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000400190015
 
 </td>
 
@@ -2316,122 +2435,6 @@ NaN
 <td style="text-align:right;">
 
 2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1215100138911
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0416000007815
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
 
 </td>
 
@@ -3097,43 +3100,43 @@ num\_coders
 
 <td style="text-align:left;">
 
-’0917900001507
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
+’1116100021513
 
 </td>
 
 <td style="text-align:right;">
 
 1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
 
 </td>
 
@@ -3155,37 +3158,95 @@ NaN
 
 <td style="text-align:left;">
 
-’2510100061415
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
+’0210000015405
 
 </td>
 
 <td style="text-align:right;">
 
 1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001200265707
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
 
 </td>
 
@@ -3213,13 +3274,7 @@ NaN
 
 <td style="text-align:left;">
 
-’1111200025211
-
-</td>
-
-<td style="text-align:right;">
-
-0
+’1215100121912
 
 </td>
 
@@ -3244,40 +3299,6 @@ NaN
 <td style="text-align:right;">
 
 1
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1816400107212
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
 
 </td>
 
@@ -3290,24 +3311,6 @@ NaN
 <td style="text-align:right;">
 
 0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
 
 </td>
 
@@ -3329,13 +3332,7 @@ NaN
 
 <td style="text-align:left;">
 
-’0000800101312
-
-</td>
-
-<td style="text-align:right;">
-
-0
+’0064100581414
 
 </td>
 
@@ -3360,6 +3357,12 @@ NaN
 <td style="text-align:right;">
 
 NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
 
 </td>
 
@@ -4043,135 +4046,19 @@ num\_coders
 
 <td style="text-align:left;">
 
-’0063500110314
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
+’1111500024807
 
 </td>
 
 <td style="text-align:right;">
 
 0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
 
 </td>
 
 <td style="text-align:right;">
 
 1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0063700065013
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1857600005803
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
 
 </td>
 
@@ -4217,37 +4104,37 @@ NaN
 
 <td style="text-align:left;">
 
-’1615100031912
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
+’0064100060013
 
 </td>
 
 <td style="text-align:right;">
 
 1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
 
 </td>
 
@@ -4275,7 +4162,65 @@ NaN
 
 <td style="text-align:left;">
 
-’0001300041011
+’0681200028512
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0908500003207
 
 </td>
 
@@ -4312,6 +4257,64 @@ NaN
 <td style="text-align:right;">
 
 0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064103177313
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
 
 </td>
 
@@ -4989,25 +4992,31 @@ num\_coders
 
 <td style="text-align:left;">
 
-’0610100166512
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
+’0001000162110
 
 </td>
 
 <td style="text-align:right;">
 
 NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
 
 </td>
 
@@ -5020,6 +5029,58 @@ NaN
 <td style="text-align:right;">
 
 1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100060013
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
 
 </td>
 
@@ -5047,7 +5108,65 @@ NaN
 
 <td style="text-align:left;">
 
-’1511100022411
+’0001000087410
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1511100045309
 
 </td>
 
@@ -5105,7 +5224,7 @@ NaN
 
 <td style="text-align:left;">
 
-’0001100183308
+’0413100024507
 
 </td>
 
@@ -5117,123 +5236,7 @@ NaN
 
 <td style="text-align:right;">
 
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001300041011
-
-</td>
-
-<td style="text-align:right;">
-
 1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000700207914
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
 
 </td>
 
@@ -5935,64 +5938,6 @@ num\_coders
 
 <td style="text-align:left;">
 
-’1026500043108
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
 ’0002000155613
 
 </td>
@@ -6051,6 +5996,180 @@ NaN
 
 <td style="text-align:left;">
 
+’1610100144507
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0610100066912
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1857600008809
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
 ’0000900247913
 
 </td>
@@ -6058,122 +6177,6 @@ NaN
 <td style="text-align:right;">
 
 1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900156715
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’26625
-
-</td>
-
-<td style="text-align:right;">
-
-0
 
 </td>
 
@@ -6881,7 +6884,13 @@ num\_coders
 
 <td style="text-align:left;">
 
-’0063700328414
+’0413100058710
+
+</td>
+
+<td style="text-align:right;">
+
+1
 
 </td>
 
@@ -6911,71 +6920,7 @@ NaN
 
 <td style="text-align:right;">
 
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
 1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1511100067610
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
 
 </td>
 
@@ -6997,65 +6942,7 @@ NaN
 
 <td style="text-align:left;">
 
-’0817000010910
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001700078810
+’0063500015815
 
 </td>
 
@@ -7113,13 +7000,129 @@ NaN
 
 <td style="text-align:left;">
 
-’1119500000306
+’0001100171606
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
 
 </td>
 
 <td style="text-align:right;">
 
 1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’5311000000910
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0210000132008
+
+</td>
+
+<td style="text-align:right;">
+
+0
 
 </td>
 
@@ -7827,238 +7830,6 @@ num\_coders
 
 <td style="text-align:left;">
 
-’29725
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001200073410
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-4
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0063500015815
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0063700025011
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
 ’1412000005508
 
 </td>
@@ -8108,6 +7879,238 @@ NaN
 <td style="text-align:right;">
 
 2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1215100127013
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001100189506
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002200038205
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1220000000309
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
 
 </td>
 
@@ -8773,7 +8776,19 @@ num\_coders
 
 <td style="text-align:left;">
 
-’0210000015405
+’0064100940708
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
 
 </td>
 
@@ -8791,25 +8806,13 @@ NaN
 
 <td style="text-align:right;">
 
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
 0
 
 </td>
 
 <td style="text-align:right;">
 
-0
+1
 
 </td>
 
@@ -8831,65 +8834,7 @@ NaN
 
 <td style="text-align:left;">
 
-’1857600021710
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900247913
+’0064103230113
 
 </td>
 
@@ -9005,7 +8950,7 @@ NaN
 
 <td style="text-align:left;">
 
-’1116100021513
+’0001300010014
 
 </td>
 
@@ -9042,6 +8987,64 @@ NaN
 <td style="text-align:right;">
 
 0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063700025011
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
 
 </td>
 
@@ -9719,37 +9722,7 @@ num\_coders
 
 <td style="text-align:left;">
 
-’1026500043108
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
+’0001000146208
 
 </td>
 
@@ -9761,13 +9734,43 @@ NaN
 
 <td style="text-align:right;">
 
-0.50
+NaN
 
 </td>
 
 <td style="text-align:right;">
 
-2
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
 
 </td>
 
@@ -9777,7 +9780,71 @@ NaN
 
 <td style="text-align:left;">
 
-’0612100019614
+’0064100581414
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0673800138707
+
+</td>
+
+<td style="text-align:right;">
+
+1
 
 </td>
 
@@ -9790,6 +9857,58 @@ NaN
 <td style="text-align:right;">
 
 0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002000005615
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
 
 </td>
 
@@ -9835,135 +9954,19 @@ NaN
 
 <td style="text-align:left;">
 
-’0064103230113
+’0001700078810
+
+</td>
+
+<td style="text-align:right;">
+
+0
 
 </td>
 
 <td style="text-align:right;">
 
 1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1610100168713
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1215100061809
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
 
 </td>
 
@@ -10665,7 +10668,25 @@ num\_coders
 
 <td style="text-align:left;">
 
-’0912100016013
+’0064100730107
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
 
 </td>
 
@@ -10677,18 +10698,6 @@ num\_coders
 
 <td style="text-align:right;">
 
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
 NaN
 
 </td>
@@ -10701,19 +10710,13 @@ NaN
 
 <td style="text-align:right;">
 
-NaN
+0.50
 
 </td>
 
 <td style="text-align:right;">
 
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
+2
 
 </td>
 
@@ -10723,25 +10726,7 @@ NaN
 
 <td style="text-align:left;">
 
-’0610100092815
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
+’5311000000910
 
 </td>
 
@@ -10759,34 +10744,6 @@ NaN
 
 <td style="text-align:right;">
 
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064100319507
-
-</td>
-
-<td style="text-align:right;">
-
 NaN
 
 </td>
@@ -10806,18 +10763,6 @@ NaN
 <td style="text-align:right;">
 
 0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
 
 </td>
 
@@ -10897,19 +10842,13 @@ NaN
 
 <td style="text-align:left;">
 
-’0912100065110
+’0210000132008
 
 </td>
 
 <td style="text-align:right;">
 
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
+1
 
 </td>
 
@@ -10921,7 +10860,7 @@ NaN
 
 <td style="text-align:right;">
 
-0
+NaN
 
 </td>
 
@@ -10934,6 +10873,70 @@ NaN
 <td style="text-align:right;">
 
 1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100581414
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
 
 </td>
 
@@ -11611,7 +11614,65 @@ num\_coders
 
 <td style="text-align:left;">
 
-’1610100027310
+’0001000146208
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0610100064610
 
 </td>
 
@@ -11669,77 +11730,13 @@ NaN
 
 <td style="text-align:left;">
 
-’0001700078810
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
+’6184
 
 </td>
 
 <td style="text-align:right;">
 
 NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1411100030410
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
 
 </td>
 
@@ -11758,116 +11755,6 @@ NaN
 <td style="text-align:right;">
 
 1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001100373615
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1111200046115
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
 
 </td>
 
@@ -11892,6 +11779,122 @@ NaN
 <td style="text-align:right;">
 
 2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1610100091713
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0411100009107
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
 
 </td>
 
@@ -12557,13 +12560,13 @@ num\_coders
 
 <td style="text-align:left;">
 
-’1111200007709
+’0001200150109
 
 </td>
 
 <td style="text-align:right;">
 
-1
+0
 
 </td>
 
@@ -12615,7 +12618,7 @@ NaN
 
 <td style="text-align:left;">
 
-’1117100000109
+’0933800014509
 
 </td>
 
@@ -12673,7 +12676,7 @@ NaN
 
 <td style="text-align:left;">
 
-’2510100061415
+’0001200067405
 
 </td>
 
@@ -12685,65 +12688,7 @@ NaN
 
 <td style="text-align:right;">
 
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
 1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001100171309
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
 
 </td>
 
@@ -12789,7 +12734,37 @@ NaN
 
 <td style="text-align:left;">
 
-’0002700040515
+’0064101996410
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
 
 </td>
 
@@ -12801,31 +12776,59 @@ NaN
 
 <td style="text-align:right;">
 
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’3098
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
 1
 
 </td>
 
 <td style="text-align:right;">
 
-1
-
-</td>
-
-<td style="text-align:right;">
-
 NaN
 
 </td>
 
 <td style="text-align:right;">
 
-NaN
+0
 
 </td>
 
 <td style="text-align:right;">
 
-NaN
+0
 
 </td>
 
@@ -13503,25 +13506,25 @@ num\_coders
 
 <td style="text-align:left;">
 
-’1610100091713
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
+’0000400209014
 
 </td>
 
 <td style="text-align:right;">
 
 NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
 
 </td>
 
@@ -13539,7 +13542,7 @@ NaN
 
 <td style="text-align:right;">
 
-NaN
+1
 
 </td>
 
@@ -13561,31 +13564,7 @@ NaN
 
 <td style="text-align:left;">
 
-’0610100064610
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
+’0636300016008
 
 </td>
 
@@ -13598,6 +13577,30 @@ NaN
 <td style="text-align:right;">
 
 NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
 
 </td>
 
@@ -13619,37 +13622,37 @@ NaN
 
 <td style="text-align:left;">
 
-’1215100138911
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
+’0064103177313
 
 </td>
 
 <td style="text-align:right;">
 
 1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
 
 </td>
 
@@ -13735,13 +13738,19 @@ NaN
 
 <td style="text-align:left;">
 
-’0064103030312
+’1111200003612
 
 </td>
 
 <td style="text-align:right;">
 
 1
+
+</td>
+
+<td style="text-align:right;">
+
+0
 
 </td>
 
@@ -13760,12 +13769,6 @@ NaN
 <td style="text-align:right;">
 
 NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
 
 </td>
 
@@ -14449,129 +14452,7 @@ num\_coders
 
 <td style="text-align:left;">
 
-’0000400209014
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064101584110
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100023908
-
-</td>
-
-<td style="text-align:right;">
-
-0
+’2031200003314
 
 </td>
 
@@ -14596,6 +14477,12 @@ NaN
 <td style="text-align:right;">
 
 NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
 
 </td>
 
@@ -14623,7 +14510,65 @@ NaN
 
 <td style="text-align:left;">
 
-’2014300001807
+’0918900000214
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000600149312
 
 </td>
 
@@ -14641,7 +14586,65 @@ NaN
 
 <td style="text-align:right;">
 
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064101095409
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
 1
+
+</td>
+
+<td style="text-align:right;">
+
+0
 
 </td>
 
@@ -14681,7 +14684,13 @@ NaN
 
 <td style="text-align:left;">
 
-’2135500004809
+’0064103030312
+
+</td>
+
+<td style="text-align:right;">
+
+1
 
 </td>
 
@@ -14693,18 +14702,6 @@ NaN
 
 <td style="text-align:right;">
 
-1
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
 NaN
 
 </td>
@@ -14712,6 +14709,12 @@ NaN
 <td style="text-align:right;">
 
 NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
 
 </td>
 
@@ -15395,7 +15398,7 @@ num\_coders
 
 <td style="text-align:left;">
 
-’0000900247913
+’1857600021710
 
 </td>
 
@@ -15453,13 +15456,7 @@ NaN
 
 <td style="text-align:left;">
 
-’0001100570007
-
-</td>
-
-<td style="text-align:right;">
-
-0
+’1116100021513
 
 </td>
 
@@ -15483,13 +15480,19 @@ NaN
 
 <td style="text-align:right;">
 
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
 0
 
 </td>
 
 <td style="text-align:right;">
 
-NaN
+0
 
 </td>
 
@@ -15511,65 +15514,7 @@ NaN
 
 <td style="text-align:left;">
 
-’1615100031912
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000600149312
+’0064100740610
 
 </td>
 
@@ -15627,19 +15572,7 @@ NaN
 
 <td style="text-align:left;">
 
-’1857200172714
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
+’0001300010014
 
 </td>
 
@@ -15663,19 +15596,89 @@ NaN
 
 <td style="text-align:right;">
 
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
 0
 
 </td>
 
 <td style="text-align:right;">
 
-0.50
+0
 
 </td>
 
 <td style="text-align:right;">
 
-2
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0912100065110
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
 
 </td>
 
@@ -16341,6 +16344,64 @@ num\_coders
 
 <td style="text-align:left;">
 
+’0001100246213
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
 ’0002700053513
 
 </td>
@@ -16399,13 +16460,7 @@ NaN
 
 <td style="text-align:left;">
 
-’1511100015108
-
-</td>
-
-<td style="text-align:right;">
-
-1
+’1507500005612
 
 </td>
 
@@ -16430,6 +16485,12 @@ NaN
 <td style="text-align:right;">
 
 NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
 
 </td>
 
@@ -16457,7 +16518,25 @@ NaN
 
 <td style="text-align:left;">
 
-’0002700040515
+’0064100319507
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
 
 </td>
 
@@ -16469,43 +16548,25 @@ NaN
 
 <td style="text-align:right;">
 
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
 0
 
 </td>
 
 <td style="text-align:right;">
 
-0
+0.50
 
 </td>
 
 <td style="text-align:right;">
 
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
+2
 
 </td>
 
@@ -16515,13 +16576,7 @@ NaN
 
 <td style="text-align:left;">
 
-’0001200067405
-
-</td>
-
-<td style="text-align:right;">
-
-0
+’0001600284910
 
 </td>
 
@@ -16545,41 +16600,7 @@ NaN
 
 <td style="text-align:right;">
 
-1
-
-</td>
-
-<td style="text-align:right;">
-
 NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000700001309
-
-</td>
-
-<td style="text-align:right;">
-
-1
 
 </td>
 
@@ -16591,25 +16612,7 @@ NaN
 
 <td style="text-align:right;">
 
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
+1
 
 </td>
 
@@ -17287,7 +17290,7 @@ num\_coders
 
 <td style="text-align:left;">
 
-’0000800101312
+’0000500047705
 
 </td>
 
@@ -17305,19 +17308,19 @@ num\_coders
 
 <td style="text-align:right;">
 
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
 0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
 
 </td>
 
@@ -17345,7 +17348,7 @@ NaN
 
 <td style="text-align:left;">
 
-’0674700008307
+’0610100066912
 
 </td>
 
@@ -17358,6 +17361,122 @@ NaN
 <td style="text-align:right;">
 
 0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1610100168713
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001300002110
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
 
 </td>
 
@@ -17403,123 +17522,7 @@ NaN
 
 <td style="text-align:left;">
 
-’0000900005113
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064101095409
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001100570007
+’2510100061415
 
 </td>
 
@@ -18233,181 +18236,7 @@ num\_coders
 
 <td style="text-align:left;">
 
-’0064102522611
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001200073410
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.25
-
-</td>
-
-<td style="text-align:right;">
-
-4
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000030806
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’2014300001807
+’2135500004809
 
 </td>
 
@@ -18465,7 +18294,7 @@ NaN
 
 <td style="text-align:left;">
 
-’0002000005615
+’0064101095409
 
 </td>
 
@@ -18477,7 +18306,169 @@ NaN
 
 <td style="text-align:right;">
 
+1
+
+</td>
+
+<td style="text-align:right;">
+
 0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1220000015610
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000600035210
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000400209014
 
 </td>
 
@@ -18502,6 +18493,18 @@ NaN
 <td style="text-align:right;">
 
 NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
 
 </td>
 
@@ -19179,180 +19182,6 @@ num\_coders
 
 <td style="text-align:left;">
 
-’0064101996410
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001300003707
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1026500013908
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
 ’0064100522913
 
 </td>
@@ -19411,7 +19240,181 @@ NaN
 
 <td style="text-align:left;">
 
-’0610100066912
+’0001300002110
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’3098
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1111200025211
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000600286311
 
 </td>
 
@@ -19441,7 +19444,7 @@ NaN
 
 <td style="text-align:right;">
 
-0
+1
 
 </td>
 
@@ -20125,7 +20128,65 @@ num\_coders
 
 <td style="text-align:left;">
 
-’0002700053513
+’0001200265707
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001000062110
 
 </td>
 
@@ -20183,25 +20244,7 @@ NaN
 
 <td style="text-align:left;">
 
-’0064100319507
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
+’1613100056411
 
 </td>
 
@@ -20214,34 +20257,6 @@ NaN
 <td style="text-align:right;">
 
 NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001700203910
 
 </td>
 
@@ -20260,18 +20275,6 @@ NaN
 <td style="text-align:right;">
 
 0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
 
 </td>
 
@@ -20299,7 +20302,13 @@ NaN
 
 <td style="text-align:left;">
 
-’0001000162110
+’0000900005113
+
+</td>
+
+<td style="text-align:right;">
+
+1
 
 </td>
 
@@ -20329,25 +20338,19 @@ NaN
 
 <td style="text-align:right;">
 
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
 0
 
 </td>
 
 <td style="text-align:right;">
 
-0.50
+0.33
 
 </td>
 
 <td style="text-align:right;">
 
-2
+3
 
 </td>
 
@@ -20357,19 +20360,13 @@ NaN
 
 <td style="text-align:left;">
 
-’0912100016603
+’1507500005612
 
 </td>
 
 <td style="text-align:right;">
 
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
+0
 
 </td>
 
@@ -20399,13 +20396,19 @@ NaN
 
 <td style="text-align:right;">
 
-0.50
+NaN
 
 </td>
 
 <td style="text-align:right;">
 
-2
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
 
 </td>
 
@@ -21071,7 +21074,7 @@ num\_coders
 
 <td style="text-align:left;">
 
-’0817000010910
+’0000700049211
 
 </td>
 
@@ -21084,18 +21087,6 @@ NaN
 <td style="text-align:right;">
 
 NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
 
 </td>
 
@@ -21108,6 +21099,18 @@ NaN
 <td style="text-align:right;">
 
 1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
 
 </td>
 
@@ -21120,180 +21123,6 @@ NaN
 <td style="text-align:right;">
 
 2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000600291210
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0673800045808
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900248810
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
 
 </td>
 
@@ -21352,6 +21181,180 @@ NaN
 <td style="text-align:right;">
 
 3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0814000011913
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063700179110
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002700185215
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
 
 </td>
 
@@ -22017,7 +22020,13 @@ num\_coders
 
 <td style="text-align:left;">
 
-’0063500110314
+’0001300010014
+
+</td>
+
+<td style="text-align:right;">
+
+1
 
 </td>
 
@@ -22042,6 +22051,232 @@ NaN
 <td style="text-align:right;">
 
 1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000400317213
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100940708
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002700057714
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063700179110
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
 
 </td>
 
@@ -22066,238 +22301,6 @@ NaN
 <td style="text-align:right;">
 
 2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001200265707
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100092815
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0002200038205
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0612100019614
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
 
 </td>
 
@@ -22963,7 +22966,187 @@ num\_coders
 
 <td style="text-align:left;">
 
-’0000700048104
+’0001300000410
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002200038205
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063700025011
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0210000015405
+
+</td>
+
+<td style="text-align:right;">
+
+1
 
 </td>
 
@@ -22988,70 +23171,6 @@ NaN
 <td style="text-align:right;">
 
 0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1112500008310
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
 
 </td>
 
@@ -23079,19 +23198,7 @@ NaN
 
 <td style="text-align:left;">
 
-’1613100056411
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
+’0000500058507
 
 </td>
 
@@ -23110,6 +23217,18 @@ NaN
 <td style="text-align:right;">
 
 1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
 
 </td>
 
@@ -23128,122 +23247,6 @@ NaN
 <td style="text-align:right;">
 
 3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0063700328414
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0912100048710
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
 
 </td>
 
@@ -23909,7 +23912,7 @@ num\_coders
 
 <td style="text-align:left;">
 
-’0001100502111
+’0001100081703
 
 </td>
 
@@ -23922,18 +23925,6 @@ NaN
 <td style="text-align:right;">
 
 NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
 
 </td>
 
@@ -23946,6 +23937,18 @@ NaN
 <td style="text-align:right;">
 
 1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
 
 </td>
 
@@ -23967,25 +23970,19 @@ NaN
 
 <td style="text-align:left;">
 
-’2136
+’0002200038205
 
 </td>
 
 <td style="text-align:right;">
 
-NaN
+1
 
 </td>
 
 <td style="text-align:right;">
 
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
+1
 
 </td>
 
@@ -24003,19 +24000,25 @@ NaN
 
 <td style="text-align:right;">
 
-1
+NaN
 
 </td>
 
 <td style="text-align:right;">
 
-0.50
+NaN
 
 </td>
 
 <td style="text-align:right;">
 
-2
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
 
 </td>
 
@@ -24025,7 +24028,13 @@ NaN
 
 <td style="text-align:left;">
 
-’1857600018305
+’0908500003207
+
+</td>
+
+<td style="text-align:right;">
+
+0
 
 </td>
 
@@ -24038,12 +24047,6 @@ NaN
 <td style="text-align:right;">
 
 NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
 
 </td>
 
@@ -24083,7 +24086,13 @@ NaN
 
 <td style="text-align:left;">
 
-’0000700003014
+’1031500036414
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
 
 </td>
 
@@ -24102,12 +24111,6 @@ NaN
 <td style="text-align:right;">
 
 0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
 
 </td>
 
@@ -24141,13 +24144,7 @@ NaN
 
 <td style="text-align:left;">
 
-’1111200025211
-
-</td>
-
-<td style="text-align:right;">
-
-1
+’0637000025309
 
 </td>
 
@@ -24160,24 +24157,30 @@ NaN
 <td style="text-align:right;">
 
 NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
 
 </td>
 
 <td style="text-align:right;">
 
 0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
 
 </td>
 
@@ -24855,7 +24858,13 @@ num\_coders
 
 <td style="text-align:left;">
 
-’1816400010805
+’1116100021513
+
+</td>
+
+<td style="text-align:right;">
+
+1
 
 </td>
 
@@ -24885,25 +24894,19 @@ NaN
 
 <td style="text-align:right;">
 
-NaN
+0
 
 </td>
 
 <td style="text-align:right;">
 
-1
+0.33
 
 </td>
 
 <td style="text-align:right;">
 
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
+3
 
 </td>
 
@@ -24913,7 +24916,7 @@ NaN
 
 <td style="text-align:left;">
 
-’0064102522611
+’13434
 
 </td>
 
@@ -24971,65 +24974,7 @@ NaN
 
 <td style="text-align:left;">
 
-’0063700065013
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1857500071010
+’1610100091713
 
 </td>
 
@@ -25059,7 +25004,7 @@ NaN
 
 <td style="text-align:right;">
 
-0
+1
 
 </td>
 
@@ -25087,7 +25032,65 @@ NaN
 
 <td style="text-align:left;">
 
-’0001200067405
+’0063700381813
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002000100913
 
 </td>
 
@@ -25117,7 +25120,7 @@ NaN
 
 <td style="text-align:right;">
 
-1
+0
 
 </td>
 
@@ -25802,123 +25805,7 @@ num\_coders
 
 <td style="text-align:left;">
 
-’0064100060013
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0918600000510
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0063700261615
+’0210000030806
 
 </td>
 
@@ -25976,37 +25863,37 @@ NaN
 
 <td style="text-align:left;">
 
-’1113100032713
+’0064102219210
 
 </td>
 
 <td style="text-align:right;">
 
 1
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
 
 </td>
 
 <td style="text-align:right;">
 
 0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
 
 </td>
 
@@ -26034,7 +25921,65 @@ NaN
 
 <td style="text-align:left;">
 
-’0064103030312
+’0912100065110
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001700078810
 
 </td>
 
@@ -26071,6 +26016,64 @@ NaN
 <td style="text-align:right;">
 
 NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1613100056411
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
 
 </td>
 
@@ -26748,7 +26751,7 @@ num\_coders
 
 <td style="text-align:left;">
 
-’1857600021710
+’0002200158108
 
 </td>
 
@@ -26806,7 +26809,13 @@ NaN
 
 <td style="text-align:left;">
 
-’0001000087410
+’0063700065013
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
 
 </td>
 
@@ -26842,77 +26851,13 @@ NaN
 
 <td style="text-align:right;">
 
-1
+0.50
 
 </td>
 
 <td style="text-align:right;">
 
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0002700122913
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
+2
 
 </td>
 
@@ -26980,7 +26925,7 @@ NaN
 
 <td style="text-align:left;">
 
-’0002000100913
+’1857500071010
 
 </td>
 
@@ -27029,6 +26974,64 @@ NaN
 <td style="text-align:right;">
 
 3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1511100022411
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
 
 </td>
 
@@ -27752,7 +27755,7 @@ NaN
 
 <td style="text-align:left;">
 
-’0064100551415
+’0210000030806
 
 </td>
 
@@ -27810,7 +27813,7 @@ NaN
 
 <td style="text-align:left;">
 
-’1222600012909
+’13434
 
 </td>
 
@@ -27828,19 +27831,19 @@ NaN
 
 <td style="text-align:right;">
 
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
 1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
 
 </td>
 
@@ -27926,13 +27929,13 @@ NaN
 
 <td style="text-align:left;">
 
-’0000900185907
+’0810000004911
 
 </td>
 
 <td style="text-align:right;">
 
-1
+NaN
 
 </td>
 
@@ -27956,25 +27959,25 @@ NaN
 
 <td style="text-align:right;">
 
-1
-
-</td>
-
-<td style="text-align:right;">
-
 NaN
 
 </td>
 
 <td style="text-align:right;">
 
-0.33
+1
 
 </td>
 
 <td style="text-align:right;">
 
-3
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
 
 </td>
 
@@ -28640,7 +28643,7 @@ num\_coders
 
 <td style="text-align:left;">
 
-’0000900247913
+’0001100366708
 
 </td>
 
@@ -28698,123 +28701,7 @@ NaN
 
 <td style="text-align:left;">
 
-’2510100035511
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0681200014207
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0063700025011
+’13434
 
 </td>
 
@@ -28872,7 +28759,19 @@ NaN
 
 <td style="text-align:left;">
 
-’0001000162110
+’1215100061809
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
 
 </td>
 
@@ -28885,6 +28784,40 @@ NaN
 <td style="text-align:right;">
 
 NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0810000004911
 
 </td>
 
@@ -28897,6 +28830,18 @@ NaN
 <td style="text-align:right;">
 
 0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
 
 </td>
 
@@ -28921,6 +28866,64 @@ NaN
 <td style="text-align:right;">
 
 2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001700203910
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
 
 </td>
 
@@ -29587,180 +29590,6 @@ num\_coders
 
 <td style="text-align:left;">
 
-’1511100022411
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0002700122913
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0917900001507
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
 ’0064100332409
 
 </td>
@@ -29819,7 +29648,181 @@ NaN
 
 <td style="text-align:left;">
 
-’1610100091713
+’0063700065013
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001200067405
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1857500071010
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1610100013408
 
 </td>
 
@@ -30533,31 +30536,25 @@ num\_coders
 
 <td style="text-align:left;">
 
-’2136
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
+’0001000146208
 
 </td>
 
 <td style="text-align:right;">
 
 0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
 
 </td>
 
@@ -30575,13 +30572,19 @@ NaN
 
 <td style="text-align:right;">
 
-0.50
+1
 
 </td>
 
 <td style="text-align:right;">
 
-2
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
 
 </td>
 
@@ -30591,13 +30594,71 @@ NaN
 
 <td style="text-align:left;">
 
-’0064102525911
+’0917900001507
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
 
 </td>
 
 <td style="text-align:right;">
 
 0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100818910
+
+</td>
+
+<td style="text-align:right;">
+
+1
 
 </td>
 
@@ -30649,19 +30710,7 @@ NaN
 
 <td style="text-align:left;">
 
-’0810000004911
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
+’1511100022411
 
 </td>
 
@@ -30691,40 +30740,6 @@ NaN
 
 <td style="text-align:right;">
 
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1117100000109
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
 NaN
 
 </td>
@@ -30732,18 +30747,6 @@ NaN
 <td style="text-align:right;">
 
 0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
 
 </td>
 
@@ -31537,13 +31540,13 @@ NaN
 
 <td style="text-align:left;">
 
-’0064100029408
+’0674700008307
 
 </td>
 
 <td style="text-align:right;">
 
-NaN
+1
 
 </td>
 
@@ -31567,7 +31570,35 @@ NaN
 
 <td style="text-align:right;">
 
+0
+
+</td>
+
+<td style="text-align:right;">
+
 NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000900248713
 
 </td>
 
@@ -31579,13 +31610,43 @@ NaN
 
 <td style="text-align:right;">
 
-0.50
+0
 
 </td>
 
 <td style="text-align:right;">
 
-2
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
 
 </td>
 
@@ -31595,7 +31656,7 @@ NaN
 
 <td style="text-align:left;">
 
-’0413100024507
+’1219700011408
 
 </td>
 
@@ -31660,64 +31721,6 @@ NaN
 <td style="text-align:right;">
 
 1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001100183308
-
-</td>
-
-<td style="text-align:right;">
-
-0
 
 </td>
 
@@ -32425,13 +32428,129 @@ num\_coders
 
 <td style="text-align:left;">
 
-’0000700100909
+’1613100056411
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
 
 </td>
 
 <td style="text-align:right;">
 
 0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1610100027310
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0210000030806
+
+</td>
+
+<td style="text-align:right;">
+
+1
 
 </td>
 
@@ -32483,13 +32602,7 @@ NaN
 
 <td style="text-align:left;">
 
-’1215100127013
-
-</td>
-
-<td style="text-align:right;">
-
-0
+’1511100067610
 
 </td>
 
@@ -32513,65 +32626,13 @@ NaN
 
 <td style="text-align:right;">
 
-1
-
-</td>
-
-<td style="text-align:right;">
-
 NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0821000005107
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
 
 </td>
 
 <td style="text-align:right;">
 
 1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
 
 </td>
 
@@ -32599,65 +32660,7 @@ NaN
 
 <td style="text-align:left;">
 
-’0000700013215
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064101676309
+’0001700078810
 
 </td>
 
@@ -33372,71 +33375,13 @@ num\_coders
 
 <td style="text-align:left;">
 
-’0912100065110
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
+’0064100740610
 
 </td>
 
 <td style="text-align:right;">
 
 1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064101519911
-
-</td>
-
-<td style="text-align:right;">
-
-0
 
 </td>
 
@@ -33488,7 +33433,13 @@ NaN
 
 <td style="text-align:left;">
 
-’0063700025011
+’0000800101312
+
+</td>
+
+<td style="text-align:right;">
+
+1
 
 </td>
 
@@ -33500,7 +33451,117 @@ NaN
 
 <td style="text-align:right;">
 
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2510100035511
+
+</td>
+
+<td style="text-align:right;">
+
 1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0610100166512
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
 
 </td>
 
@@ -33546,13 +33607,7 @@ NaN
 
 <td style="text-align:left;">
 
-’1610100027310
-
-</td>
-
-<td style="text-align:right;">
-
-0
+’0000500102110
 
 </td>
 
@@ -33564,47 +33619,7 @@ NaN
 
 <td style="text-align:right;">
 
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
 0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0681200037513
 
 </td>
 
@@ -33629,18 +33644,6 @@ NaN
 <td style="text-align:right;">
 
 NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
 
 </td>
 
@@ -34319,19 +34322,7 @@ num\_coders
 
 <td style="text-align:left;">
 
-’0637000025309
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
+’0674700008307
 
 </td>
 
@@ -34343,7 +34334,13 @@ NaN
 
 <td style="text-align:right;">
 
-1
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
 
 </td>
 
@@ -34356,6 +34353,12 @@ NaN
 <td style="text-align:right;">
 
 0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
 
 </td>
 
@@ -34377,19 +34380,13 @@ NaN
 
 <td style="text-align:left;">
 
-’0001100183308
+’0002700002114
 
 </td>
 
 <td style="text-align:right;">
 
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0
+NaN
 
 </td>
 
@@ -34419,13 +34416,77 @@ NaN
 
 <td style="text-align:right;">
 
-0.33
+0
 
 </td>
 
 <td style="text-align:right;">
 
-3
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064101584110
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.50
+
+</td>
+
+<td style="text-align:right;">
+
+2
 
 </td>
 
@@ -34493,13 +34554,7 @@ NaN
 
 <td style="text-align:left;">
 
-’1215100127013
-
-</td>
-
-<td style="text-align:right;">
-
-1
+’13434
 
 </td>
 
@@ -34511,47 +34566,7 @@ NaN
 
 <td style="text-align:right;">
 
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
 0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900156715
 
 </td>
 
@@ -34575,19 +34590,7 @@ NaN
 
 <td style="text-align:right;">
 
-0
-
-</td>
-
-<td style="text-align:right;">
-
 NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
 
 </td>
 
@@ -35266,7 +35269,77 @@ num\_coders
 
 <td style="text-align:left;">
 
-’0821000005107
+’13434
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1816400083714
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
 
 </td>
 
@@ -35285,6 +35358,110 @@ NaN
 <td style="text-align:right;">
 
 0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000400124810
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002000155613
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
 
 </td>
 
@@ -35308,13 +35485,13 @@ NaN
 
 <td style="text-align:right;">
 
-0.33
+0.50
 
 </td>
 
 <td style="text-align:right;">
 
-3
+2
 
 </td>
 
@@ -35324,7 +35501,7 @@ NaN
 
 <td style="text-align:left;">
 
-’0001000062110
+’0002700002114
 
 </td>
 
@@ -35373,180 +35550,6 @@ NaN
 <td style="text-align:right;">
 
 2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1511100045309
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0063700057807
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0002200158108
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
 
 </td>
 
@@ -36212,123 +36215,7 @@ num\_coders
 
 <td style="text-align:left;">
 
-’0000400209014
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1610100144507
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-<td style="text-align:right;">
-
-NaN
-
-</td>
-
-<td style="text-align:right;">
-
-0
-
-</td>
-
-<td style="text-align:right;">
-
-0.33
-
-</td>
-
-<td style="text-align:right;">
-
-3
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000400124810
+’2015000003612
 
 </td>
 
@@ -36386,13 +36273,19 @@ NaN
 
 <td style="text-align:left;">
 
-’2510100035511
+’0001700027708
 
 </td>
 
 <td style="text-align:right;">
 
 1
+
+</td>
+
+<td style="text-align:right;">
+
+0
 
 </td>
 
@@ -36422,19 +36315,13 @@ NaN
 
 <td style="text-align:right;">
 
-NaN
+0.33
 
 </td>
 
 <td style="text-align:right;">
 
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
+3
 
 </td>
 
@@ -36444,13 +36331,135 @@ NaN
 
 <td style="text-align:left;">
 
-’0002700067612
+’0917900001507
 
 </td>
 
 <td style="text-align:right;">
 
 NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100740610
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+NaN
+
+</td>
+
+<td style="text-align:right;">
+
+0.33
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1816400134811
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+0
 
 </td>
 
@@ -36480,19 +36489,13 @@ NaN
 
 <td style="text-align:right;">
 
-0
+0.33
 
 </td>
 
 <td style="text-align:right;">
 
-0.50
-
-</td>
-
-<td style="text-align:right;">
-
-2
+3
 
 </td>
 
@@ -37104,12 +37107,13 @@ data_wide <-
       length(na.omit(x)))
   
   ratings_out <- data_wide %>%
-    filter(rater_var > 1)
+    filter(rater_var > 1) 
 
 #capture the number of coders, get observations with at least 2. 
 #output where there is disagreement only
   output <-  ratings_out %>% kable(., escape = TRUE, digit = 2)
   print(output)
+  
   bad_folios <- c(bad_folios, ratings_out$folio_id)
 
   to_stat <- select(data_wide, -folio_id, -rater_var, -num_coders)
@@ -45599,214 +45603,6 @@ Freq
 
 <td style="text-align:left;">
 
-’0000400020312
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000400111912
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000400190015
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000500058507
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000500102110
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000600019613
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000600021806
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000600024610
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000600035210
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000600149312
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000600170709
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000600247213
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000600291210
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
 ’0000700012515
 
 </td>
@@ -45823,231 +45619,7 @@ Freq
 
 <td style="text-align:left;">
 
-’0000700013215
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000700049211
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000700077705
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000700100909
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000800073014
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900130914
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000900216813
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001000057812
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001000062110
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001000146208
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001100081703
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001100171309
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001100289115
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001100366708
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001100373615
+’0000900060011
 
 </td>
 
@@ -46079,7 +45651,7 @@ Freq
 
 <td style="text-align:left;">
 
-’0001100502111
+’0001200061814
 
 </td>
 
@@ -46095,71 +45667,7 @@ Freq
 
 <td style="text-align:left;">
 
-’0001200150109
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001200202407
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001300003707
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001300010014
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001400025309
+’0001200121815
 
 </td>
 
@@ -46191,199 +45699,7 @@ Freq
 
 <td style="text-align:left;">
 
-’0001700020906
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001700027708
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001700203910
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0002000100913
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0002000120512
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0002100030807
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0002200038205
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0002200056808
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0002200158108
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0002700067612
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0002700099113
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0002700185215
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0063500015815
+’0002700057714
 
 </td>
 
@@ -46415,358 +45731,6 @@ Freq
 
 <td style="text-align:left;">
 
-’0063700057807
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0063700238212
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0063700261615
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0063700381813
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064100029408
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064100060013
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064100332409
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064100400810
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064100551415
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064100566114
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064100740610
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064100818910
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064101519911
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064101584110
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064101676309
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064101996410
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064103230113
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000015405
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000035314
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000090507
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000140808
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0411100009107
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
 ’0411100030814
 
 </td>
@@ -46783,7 +45747,7 @@ Freq
 
 <td style="text-align:left;">
 
-’0411100036106
+’0610100016512
 
 </td>
 
@@ -46799,7 +45763,7 @@ Freq
 
 <td style="text-align:left;">
 
-’0411100055106
+’0610100167711
 
 </td>
 
@@ -46815,7 +45779,7 @@ Freq
 
 <td style="text-align:left;">
 
-’0411100072013
+’0610400025214
 
 </td>
 
@@ -46831,87 +45795,7 @@ Freq
 
 <td style="text-align:left;">
 
-’0416000007815
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0441000013414
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100064610
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100066912
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100077906
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100166512
+’0632000013606
 
 </td>
 
@@ -46943,422 +45827,6 @@ Freq
 
 <td style="text-align:left;">
 
-’0674700008307
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0678000017911
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0681200014207
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0681200028512
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0681200032313
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0810000004911
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0912000029214
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0912100016013
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0912100016603
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0912100036110
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0917500004813
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0917600003408
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0918600000510
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0933800014509
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0944800002908
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1026500013908
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1111200003612
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1111200025508
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1111200046115
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1111500016413
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1113100013613
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1113100032713
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1114100004905
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1114100042113
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1114100052713
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1116100021513
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
 ’1119500000306
 
 </td>
@@ -47375,7 +45843,7 @@ Freq
 
 <td style="text-align:left;">
 
-’1215100061809
+’1132100010608
 
 </td>
 
@@ -47391,7 +45859,7 @@ Freq
 
 <td style="text-align:left;">
 
-’1215100121912
+’1810000004907
 
 </td>
 
@@ -47407,471 +45875,7 @@ Freq
 
 <td style="text-align:left;">
 
-’1220000000309
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1220000015610
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1222600012909
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1224500002815
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1411100030410
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1412000005508
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1610100144507
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1610100168713
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1615100020609
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1816400010805
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1816400083714
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1850000028006
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1850000101409
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1857200027005
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1857200172714
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1857500010303
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1857500022812
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1857500071010
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1857600008809
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1857600018305
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’2010000003412
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’2015000001314
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’2031200003314
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’2106800006205
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’252
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’27869
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’29725
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’3670000008013
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’7394
-
-</td>
-
-<td style="text-align:right;">
-
-1
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0000400124810
+’0000400111912
 
 </td>
 
@@ -47887,7 +45891,23 @@ Freq
 
 <td style="text-align:left;">
 
-’0000700001309
+’0000600007209
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000600170709
 
 </td>
 
@@ -47919,7 +45939,7 @@ Freq
 
 <td style="text-align:left;">
 
-’0000700048104
+’0000700049211
 
 </td>
 
@@ -47935,7 +45955,7 @@ Freq
 
 <td style="text-align:left;">
 
-’0000700207914
+’0000700069107
 
 </td>
 
@@ -47951,7 +45971,7 @@ Freq
 
 <td style="text-align:left;">
 
-’0000900005113
+’0000700077705
 
 </td>
 
@@ -47967,7 +45987,7 @@ Freq
 
 <td style="text-align:left;">
 
-’0000900185907
+’0001100502111
 
 </td>
 
@@ -47983,7 +46003,7 @@ Freq
 
 <td style="text-align:left;">
 
-’0000900248713
+’0001200384414
 
 </td>
 
@@ -47999,7 +46019,7 @@ Freq
 
 <td style="text-align:left;">
 
-’0000900248810
+’0001400025309
 
 </td>
 
@@ -48015,7 +46035,7 @@ Freq
 
 <td style="text-align:left;">
 
-’0001000019203
+’0002700158815
 
 </td>
 
@@ -48031,87 +46051,7 @@ Freq
 
 <td style="text-align:left;">
 
-’0001000087410
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001200265707
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001200313314
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0001600284910
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0002000005615
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0002700040515
+’0063500015815
 
 </td>
 
@@ -48143,7 +46083,7 @@ Freq
 
 <td style="text-align:left;">
 
-’0063700065013
+’0063700531114
 
 </td>
 
@@ -48159,7 +46099,7 @@ Freq
 
 <td style="text-align:left;">
 
-’0063700328414
+’0064100029003
 
 </td>
 
@@ -48175,199 +46115,7 @@ Freq
 
 <td style="text-align:left;">
 
-’0064100319507
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064100522913
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064101095409
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064101735111
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064102525911
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0064103030312
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0210000030806
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0413100024507
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100023908
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0610100092815
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0612100019614
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0637000025309
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’0673800045808
+’0210000090507
 
 </td>
 
@@ -48399,7 +46147,7 @@ Freq
 
 <td style="text-align:left;">
 
-’0681200037513
+’0917500004813
 
 </td>
 
@@ -48415,7 +46163,7 @@ Freq
 
 <td style="text-align:left;">
 
-’0817000010910
+’1031500027807
 
 </td>
 
@@ -48431,7 +46179,7 @@ Freq
 
 <td style="text-align:left;">
 
-’0912100048710
+’1110000000112
 
 </td>
 
@@ -48447,7 +46195,7 @@ Freq
 
 <td style="text-align:left;">
 
-’0912100065110
+’1113100013613
 
 </td>
 
@@ -48463,7 +46211,7 @@ Freq
 
 <td style="text-align:left;">
 
-’1111500024807
+’1114100004905
 
 </td>
 
@@ -48479,7 +46227,7 @@ Freq
 
 <td style="text-align:left;">
 
-’1111500050314
+’1115100056514
 
 </td>
 
@@ -48495,7 +46243,7 @@ Freq
 
 <td style="text-align:left;">
 
-’1112500008310
+’1220000006706
 
 </td>
 
@@ -48511,7 +46259,7 @@ Freq
 
 <td style="text-align:left;">
 
-’1117100000109
+’1222300007013
 
 </td>
 
@@ -48527,13 +46275,445 @@ Freq
 
 <td style="text-align:left;">
 
-’1215100138911
+’1407500014609
 
 </td>
 
 <td style="text-align:right;">
 
 2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1610100032814
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1613100027605
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1850000060008
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1857200172714
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1857600008809
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2099900021410
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’4220700001412
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’7394
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000900130914
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001100289115
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001300000410
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001500069106
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002100030807
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063700279309
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064101676309
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0210000140808
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0410100003506
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0413000000715
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0610100077906
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0917600003408
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1109000003915
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1111200046115
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1114100000412
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1114100052713
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1219700039614
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1220000000309
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1221500003113
+
+</td>
+
+<td style="text-align:right;">
+
+3
 
 </td>
 
@@ -48549,7 +46729,7 @@ Freq
 
 <td style="text-align:right;">
 
-2
+3
 
 </td>
 
@@ -48559,13 +46739,13 @@ Freq
 
 <td style="text-align:left;">
 
-’1511100015108
+’1412000005508
 
 </td>
 
 <td style="text-align:right;">
 
-2
+3
 
 </td>
 
@@ -48575,13 +46755,13 @@ Freq
 
 <td style="text-align:left;">
 
-’1511100045309
+’1816400174209
 
 </td>
 
 <td style="text-align:right;">
 
-2
+3
 
 </td>
 
@@ -48591,93 +46771,13 @@ Freq
 
 <td style="text-align:left;">
 
-’1511100067610
+’1857700015910
 
 </td>
 
 <td style="text-align:right;">
 
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1610100027310
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1613100056411
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1816400107212
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1857600005803
-
-</td>
-
-<td style="text-align:right;">
-
-2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-’1857600021710
-
-</td>
-
-<td style="text-align:right;">
-
-2
+3
 
 </td>
 
@@ -48693,7 +46793,7 @@ Freq
 
 <td style="text-align:right;">
 
-2
+3
 
 </td>
 
@@ -48703,13 +46803,13 @@ Freq
 
 <td style="text-align:left;">
 
-’2135500004809
+’2099900005613
 
 </td>
 
 <td style="text-align:right;">
 
-2
+3
 
 </td>
 
@@ -48719,13 +46819,13 @@ Freq
 
 <td style="text-align:left;">
 
-’2136
+’6184
 
 </td>
 
 <td style="text-align:right;">
 
-2
+3
 
 </td>
 
@@ -48735,13 +46835,493 @@ Freq
 
 <td style="text-align:left;">
 
-’2510100035511
+’0000600035210
 
 </td>
 
 <td style="text-align:right;">
 
-2
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000600199813
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000600247213
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000800013207
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000800073014
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000900216813
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001000057812
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001000062110
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001100171309
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001100171606
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001700020906
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063700328414
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100060013
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100940708
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0441000013414
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0636300016008
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0678000017911
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0681200014207
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0681200032313
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0681200050914
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0912100016013
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0912100016603
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0912100031114
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0912100048710
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1132100013412
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1511100045309
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1857200027005
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1857500022812
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1857600018305
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2010000003412
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2015000003612
+
+</td>
+
+<td style="text-align:right;">
+
+4
 
 </td>
 
@@ -48757,7 +47337,7 @@ Freq
 
 <td style="text-align:right;">
 
-2
+4
 
 </td>
 
@@ -48767,13 +47347,13 @@ Freq
 
 <td style="text-align:left;">
 
-’27705
+’27869
 
 </td>
 
 <td style="text-align:right;">
 
-2
+4
 
 </td>
 
@@ -48783,13 +47363,13 @@ Freq
 
 <td style="text-align:left;">
 
-’0000400209014
+’0000400124810
 
 </td>
 
 <td style="text-align:right;">
 
-3
+5
 
 </td>
 
@@ -48799,13 +47379,13 @@ Freq
 
 <td style="text-align:left;">
 
-’0000900156715
+’0000500047705
 
 </td>
 
 <td style="text-align:right;">
 
-3
+5
 
 </td>
 
@@ -48815,13 +47395,13 @@ Freq
 
 <td style="text-align:left;">
 
-’0001000162110
+’0000500058507
 
 </td>
 
 <td style="text-align:right;">
 
-3
+5
 
 </td>
 
@@ -48831,13 +47411,13 @@ Freq
 
 <td style="text-align:left;">
 
-’0001100183308
+’0000600019613
 
 </td>
 
 <td style="text-align:right;">
 
-3
+5
 
 </td>
 
@@ -48847,13 +47427,13 @@ Freq
 
 <td style="text-align:left;">
 
-’0001100570007
+’0000700001309
 
 </td>
 
 <td style="text-align:right;">
 
-3
+5
 
 </td>
 
@@ -48863,13 +47443,13 @@ Freq
 
 <td style="text-align:left;">
 
-’0001200067405
+’0001100109006
 
 </td>
 
 <td style="text-align:right;">
 
-3
+5
 
 </td>
 
@@ -48879,13 +47459,13 @@ Freq
 
 <td style="text-align:left;">
 
-’0001200073410
+’0001200202407
 
 </td>
 
 <td style="text-align:right;">
 
-3
+5
 
 </td>
 
@@ -48895,13 +47475,13 @@ Freq
 
 <td style="text-align:left;">
 
-’0001300041011
+’0001300003707
 
 </td>
 
 <td style="text-align:right;">
 
-3
+5
 
 </td>
 
@@ -48911,13 +47491,13 @@ Freq
 
 <td style="text-align:left;">
 
-’0001700078810
+’0002000120512
 
 </td>
 
 <td style="text-align:right;">
 
-3
+5
 
 </td>
 
@@ -48927,13 +47507,749 @@ Freq
 
 <td style="text-align:left;">
 
-’0002000155613
+’0002700185215
 
 </td>
 
 <td style="text-align:right;">
 
-3
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063700057807
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063700179110
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100029408
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064101996410
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064102525911
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0411100036106
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0610100064610
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0610100092815
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0673800045808
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0673800046914
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0817000010910
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0912100034910
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0912100036110
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0918600000510
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0918900000214
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0944800002908
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1026500058813
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1117100008409
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1219700011408
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1232900010213
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1411100030410
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1507500005612
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1610100109713
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’17765
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1816400083714
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1850000028006
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1850000101409
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’19213
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2000100002903
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2135500006106
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’252
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’3098
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000500062605
+
+</td>
+
+<td style="text-align:right;">
+
+6
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000600021806
+
+</td>
+
+<td style="text-align:right;">
+
+6
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000600286311
+
+</td>
+
+<td style="text-align:right;">
+
+6
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000700013215
+
+</td>
+
+<td style="text-align:right;">
+
+6
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000700207914
+
+</td>
+
+<td style="text-align:right;">
+
+6
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000900113814
+
+</td>
+
+<td style="text-align:right;">
+
+6
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001100081703
+
+</td>
+
+<td style="text-align:right;">
+
+6
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001100189506
+
+</td>
+
+<td style="text-align:right;">
+
+6
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001200292112
+
+</td>
+
+<td style="text-align:right;">
+
+6
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001200313314
+
+</td>
+
+<td style="text-align:right;">
+
+6
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001700203910
+
+</td>
+
+<td style="text-align:right;">
+
+6
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002000100913
+
+</td>
+
+<td style="text-align:right;">
+
+6
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002200038205
+
+</td>
+
+<td style="text-align:right;">
+
+6
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002200056808
+
+</td>
+
+<td style="text-align:right;">
+
+6
 
 </td>
 
@@ -48949,7 +48265,7 @@ Freq
 
 <td style="text-align:right;">
 
-3
+6
 
 </td>
 
@@ -48959,13 +48275,13 @@ Freq
 
 <td style="text-align:left;">
 
-’0002700122913
+’0063700065013
 
 </td>
 
 <td style="text-align:right;">
 
-3
+6
 
 </td>
 
@@ -48975,13 +48291,13 @@ Freq
 
 <td style="text-align:left;">
 
-’0063700025011
+’0063700238212
 
 </td>
 
 <td style="text-align:right;">
 
-3
+6
 
 </td>
 
@@ -48991,13 +48307,13 @@ Freq
 
 <td style="text-align:left;">
 
-’0064102522611
+’0064100319507
 
 </td>
 
 <td style="text-align:right;">
 
-3
+6
 
 </td>
 
@@ -49007,13 +48323,13 @@ Freq
 
 <td style="text-align:left;">
 
-’0821000005107
+’0064100551415
 
 </td>
 
 <td style="text-align:right;">
 
-3
+6
 
 </td>
 
@@ -49023,13 +48339,13 @@ Freq
 
 <td style="text-align:left;">
 
-’0917900001507
+’0064100566114
 
 </td>
 
 <td style="text-align:right;">
 
-3
+6
 
 </td>
 
@@ -49039,13 +48355,13 @@ Freq
 
 <td style="text-align:left;">
 
-’1026500043108
+’0064103177313
 
 </td>
 
 <td style="text-align:right;">
 
-3
+6
 
 </td>
 
@@ -49055,13 +48371,13 @@ Freq
 
 <td style="text-align:left;">
 
-’1111200007709
+’0064103230113
 
 </td>
 
 <td style="text-align:right;">
 
-3
+6
 
 </td>
 
@@ -49071,13 +48387,13 @@ Freq
 
 <td style="text-align:left;">
 
-’1111200025211
+’0411100009107
 
 </td>
 
 <td style="text-align:right;">
 
-3
+6
 
 </td>
 
@@ -49087,13 +48403,13 @@ Freq
 
 <td style="text-align:left;">
 
-’1215100127013
+’0411100055106
 
 </td>
 
 <td style="text-align:right;">
 
-3
+6
 
 </td>
 
@@ -49103,13 +48419,13 @@ Freq
 
 <td style="text-align:left;">
 
-’1511100022411
+’1031500036414
 
 </td>
 
 <td style="text-align:right;">
 
-3
+6
 
 </td>
 
@@ -49119,13 +48435,541 @@ Freq
 
 <td style="text-align:left;">
 
-’1610100091713
+’1112500008310
 
 </td>
 
 <td style="text-align:right;">
 
-3
+6
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1131800010115
+
+</td>
+
+<td style="text-align:right;">
+
+6
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1215100061809
+
+</td>
+
+<td style="text-align:right;">
+
+6
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1220000015610
+
+</td>
+
+<td style="text-align:right;">
+
+6
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1224500002815
+
+</td>
+
+<td style="text-align:right;">
+
+6
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1511100015108
+
+</td>
+
+<td style="text-align:right;">
+
+6
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1610100016415
+
+</td>
+
+<td style="text-align:right;">
+
+6
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1610100168713
+
+</td>
+
+<td style="text-align:right;">
+
+6
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1613100056411
+
+</td>
+
+<td style="text-align:right;">
+
+6
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1816400033115
+
+</td>
+
+<td style="text-align:right;">
+
+6
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2106800006205
+
+</td>
+
+<td style="text-align:right;">
+
+6
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2510100035511
+
+</td>
+
+<td style="text-align:right;">
+
+6
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’29725
+
+</td>
+
+<td style="text-align:right;">
+
+6
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000400020312
+
+</td>
+
+<td style="text-align:right;">
+
+7
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000400317213
+
+</td>
+
+<td style="text-align:right;">
+
+7
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001100077115
+
+</td>
+
+<td style="text-align:right;">
+
+7
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001300041011
+
+</td>
+
+<td style="text-align:right;">
+
+7
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001700027708
+
+</td>
+
+<td style="text-align:right;">
+
+7
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002000005615
+
+</td>
+
+<td style="text-align:right;">
+
+7
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100581414
+
+</td>
+
+<td style="text-align:right;">
+
+7
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064101519911
+
+</td>
+
+<td style="text-align:right;">
+
+7
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0411100072013
+
+</td>
+
+<td style="text-align:right;">
+
+7
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0612100019614
+
+</td>
+
+<td style="text-align:right;">
+
+7
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1026500013908
+
+</td>
+
+<td style="text-align:right;">
+
+7
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1111200003612
+
+</td>
+
+<td style="text-align:right;">
+
+7
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1111500016413
+
+</td>
+
+<td style="text-align:right;">
+
+7
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1111500045614
+
+</td>
+
+<td style="text-align:right;">
+
+7
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1113100032713
+
+</td>
+
+<td style="text-align:right;">
+
+7
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1117100054412
+
+</td>
+
+<td style="text-align:right;">
+
+7
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1215100121912
+
+</td>
+
+<td style="text-align:right;">
+
+7
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1615100020609
+
+</td>
+
+<td style="text-align:right;">
+
+7
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1800100011015
+
+</td>
+
+<td style="text-align:right;">
+
+7
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1816400107212
+
+</td>
+
+<td style="text-align:right;">
+
+7
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2031200003314
+
+</td>
+
+<td style="text-align:right;">
+
+7
 
 </td>
 
@@ -49141,7 +48985,7 @@ Freq
 
 <td style="text-align:right;">
 
-3
+7
 
 </td>
 
@@ -49151,13 +48995,13 @@ Freq
 
 <td style="text-align:left;">
 
-’0000800101312
+’0000600149312
 
 </td>
 
 <td style="text-align:right;">
 
-4
+8
 
 </td>
 
@@ -49167,13 +49011,413 @@ Freq
 
 <td style="text-align:left;">
 
-’1615100031912
+’0000700100909
 
 </td>
 
 <td style="text-align:right;">
 
-4
+8
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000900005113
+
+</td>
+
+<td style="text-align:right;">
+
+8
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000900156715
+
+</td>
+
+<td style="text-align:right;">
+
+8
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001000019203
+
+</td>
+
+<td style="text-align:right;">
+
+8
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001100366708
+
+</td>
+
+<td style="text-align:right;">
+
+8
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002700040515
+
+</td>
+
+<td style="text-align:right;">
+
+8
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002700122913
+
+</td>
+
+<td style="text-align:right;">
+
+8
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100332409
+
+</td>
+
+<td style="text-align:right;">
+
+8
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100818910
+
+</td>
+
+<td style="text-align:right;">
+
+8
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064101735111
+
+</td>
+
+<td style="text-align:right;">
+
+8
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064102219210
+
+</td>
+
+<td style="text-align:right;">
+
+8
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0210000132008
+
+</td>
+
+<td style="text-align:right;">
+
+8
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0413100024610
+
+</td>
+
+<td style="text-align:right;">
+
+8
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0416000007815
+
+</td>
+
+<td style="text-align:right;">
+
+8
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0810000004911
+
+</td>
+
+<td style="text-align:right;">
+
+8
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0814000011913
+
+</td>
+
+<td style="text-align:right;">
+
+8
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0908500003207
+
+</td>
+
+<td style="text-align:right;">
+
+8
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0933800014509
+
+</td>
+
+<td style="text-align:right;">
+
+8
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1026500043108
+
+</td>
+
+<td style="text-align:right;">
+
+8
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1108300002007
+
+</td>
+
+<td style="text-align:right;">
+
+8
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1111200025211
+
+</td>
+
+<td style="text-align:right;">
+
+8
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1111200025508
+
+</td>
+
+<td style="text-align:right;">
+
+8
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1610100027310
+
+</td>
+
+<td style="text-align:right;">
+
+8
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1613100039512
+
+</td>
+
+<td style="text-align:right;">
+
+8
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2901000001406
+
+</td>
+
+<td style="text-align:right;">
+
+8
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’3670000008013
+
+</td>
+
+<td style="text-align:right;">
+
+8
 
 </td>
 
@@ -49189,7 +49433,1479 @@ Freq
 
 <td style="text-align:right;">
 
-5
+9
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001000087410
+
+</td>
+
+<td style="text-align:right;">
+
+9
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001000162110
+
+</td>
+
+<td style="text-align:right;">
+
+9
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001200073410
+
+</td>
+
+<td style="text-align:right;">
+
+9
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001200265707
+
+</td>
+
+<td style="text-align:right;">
+
+9
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001300010014
+
+</td>
+
+<td style="text-align:right;">
+
+9
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001700078810
+
+</td>
+
+<td style="text-align:right;">
+
+9
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002000155613
+
+</td>
+
+<td style="text-align:right;">
+
+9
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002100021114
+
+</td>
+
+<td style="text-align:right;">
+
+9
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002700002114
+
+</td>
+
+<td style="text-align:right;">
+
+9
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002700067612
+
+</td>
+
+<td style="text-align:right;">
+
+9
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100272013
+
+</td>
+
+<td style="text-align:right;">
+
+9
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100522913
+
+</td>
+
+<td style="text-align:right;">
+
+9
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100730107
+
+</td>
+
+<td style="text-align:right;">
+
+9
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064101584110
+
+</td>
+
+<td style="text-align:right;">
+
+9
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0210000035314
+
+</td>
+
+<td style="text-align:right;">
+
+9
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0610100023908
+
+</td>
+
+<td style="text-align:right;">
+
+9
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0610100066912
+
+</td>
+
+<td style="text-align:right;">
+
+9
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0673800138707
+
+</td>
+
+<td style="text-align:right;">
+
+9
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0821000005107
+
+</td>
+
+<td style="text-align:right;">
+
+9
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1111500024807
+
+</td>
+
+<td style="text-align:right;">
+
+9
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1114100042113
+
+</td>
+
+<td style="text-align:right;">
+
+9
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1610100013408
+
+</td>
+
+<td style="text-align:right;">
+
+9
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1816400134811
+
+</td>
+
+<td style="text-align:right;">
+
+9
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1857500010303
+
+</td>
+
+<td style="text-align:right;">
+
+9
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1857600021710
+
+</td>
+
+<td style="text-align:right;">
+
+9
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2135500004809
+
+</td>
+
+<td style="text-align:right;">
+
+9
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2136
+
+</td>
+
+<td style="text-align:right;">
+
+9
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’5311000000910
+
+</td>
+
+<td style="text-align:right;">
+
+9
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000400209014
+
+</td>
+
+<td style="text-align:right;">
+
+10
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000900030811
+
+</td>
+
+<td style="text-align:right;">
+
+10
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000900248713
+
+</td>
+
+<td style="text-align:right;">
+
+10
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000900248810
+
+</td>
+
+<td style="text-align:right;">
+
+10
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001100246213
+
+</td>
+
+<td style="text-align:right;">
+
+10
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001100570007
+
+</td>
+
+<td style="text-align:right;">
+
+10
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001600284910
+
+</td>
+
+<td style="text-align:right;">
+
+10
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063700261615
+
+</td>
+
+<td style="text-align:right;">
+
+10
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064101095409
+
+</td>
+
+<td style="text-align:right;">
+
+10
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064102522611
+
+</td>
+
+<td style="text-align:right;">
+
+10
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0413100024507
+
+</td>
+
+<td style="text-align:right;">
+
+10
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0413100058710
+
+</td>
+
+<td style="text-align:right;">
+
+10
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0610100109913
+
+</td>
+
+<td style="text-align:right;">
+
+10
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0637000025309
+
+</td>
+
+<td style="text-align:right;">
+
+10
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0681200028512
+
+</td>
+
+<td style="text-align:right;">
+
+10
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1222600012909
+
+</td>
+
+<td style="text-align:right;">
+
+10
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1610100091713
+
+</td>
+
+<td style="text-align:right;">
+
+10
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1610100144507
+
+</td>
+
+<td style="text-align:right;">
+
+10
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1613100000607
+
+</td>
+
+<td style="text-align:right;">
+
+10
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1857200044606
+
+</td>
+
+<td style="text-align:right;">
+
+10
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’2015000001314
+
+</td>
+
+<td style="text-align:right;">
+
+10
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’27705
+
+</td>
+
+<td style="text-align:right;">
+
+10
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000400190015
+
+</td>
+
+<td style="text-align:right;">
+
+11
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000500102110
+
+</td>
+
+<td style="text-align:right;">
+
+11
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000600291210
+
+</td>
+
+<td style="text-align:right;">
+
+11
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000700048104
+
+</td>
+
+<td style="text-align:right;">
+
+11
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000900185907
+
+</td>
+
+<td style="text-align:right;">
+
+11
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064103030312
+
+</td>
+
+<td style="text-align:right;">
+
+11
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0681200037513
+
+</td>
+
+<td style="text-align:right;">
+
+11
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1111200007709
+
+</td>
+
+<td style="text-align:right;">
+
+11
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1111500050314
+
+</td>
+
+<td style="text-align:right;">
+
+11
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1215100138911
+
+</td>
+
+<td style="text-align:right;">
+
+11
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’13434
+
+</td>
+
+<td style="text-align:right;">
+
+11
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1511100067610
+
+</td>
+
+<td style="text-align:right;">
+
+11
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1857600005803
+
+</td>
+
+<td style="text-align:right;">
+
+11
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000600024610
+
+</td>
+
+<td style="text-align:right;">
+
+12
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001100183308
+
+</td>
+
+<td style="text-align:right;">
+
+12
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001200150109
+
+</td>
+
+<td style="text-align:right;">
+
+12
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001300002110
+
+</td>
+
+<td style="text-align:right;">
+
+12
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002700099113
+
+</td>
+
+<td style="text-align:right;">
+
+12
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0610100166512
+
+</td>
+
+<td style="text-align:right;">
+
+12
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1117100000109
+
+</td>
+
+<td style="text-align:right;">
+
+12
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1615100031912
+
+</td>
+
+<td style="text-align:right;">
+
+12
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1816400010805
+
+</td>
+
+<td style="text-align:right;">
+
+12
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001100373615
+
+</td>
+
+<td style="text-align:right;">
+
+13
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001700198605
+
+</td>
+
+<td style="text-align:right;">
+
+13
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100740610
+
+</td>
+
+<td style="text-align:right;">
+
+13
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0912000029214
+
+</td>
+
+<td style="text-align:right;">
+
+13
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0912100065110
+
+</td>
+
+<td style="text-align:right;">
+
+13
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1116100021513
+
+</td>
+
+<td style="text-align:right;">
+
+13
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001000146208
+
+</td>
+
+<td style="text-align:right;">
+
+14
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0674700008307
+
+</td>
+
+<td style="text-align:right;">
+
+14
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0917900001507
+
+</td>
+
+<td style="text-align:right;">
+
+14
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1511100022411
+
+</td>
+
+<td style="text-align:right;">
+
+14
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1857500071010
+
+</td>
+
+<td style="text-align:right;">
+
+14
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0000800101312
+
+</td>
+
+<td style="text-align:right;">
+
+15
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063700025011
+
+</td>
+
+<td style="text-align:right;">
+
+15
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0063700381813
+
+</td>
+
+<td style="text-align:right;">
+
+15
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0064100400810
+
+</td>
+
+<td style="text-align:right;">
+
+15
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’1215100127013
+
+</td>
+
+<td style="text-align:right;">
+
+15
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0001200067405
+
+</td>
+
+<td style="text-align:right;">
+
+16
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0002200158108
+
+</td>
+
+<td style="text-align:right;">
+
+16
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0210000015405
+
+</td>
+
+<td style="text-align:right;">
+
+17
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+’0210000030806
+
+</td>
+
+<td style="text-align:right;">
+
+17
 
 </td>
 

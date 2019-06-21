@@ -147,11 +147,14 @@ for(i in 1:length(all_dummy)) {
   print( sprintf("Binary variable %s", all_dummy[i]))
   
   ratings_out <- data_wide %>%
-    filter(rater_var > 0 | is.na(rater_var)) %>% sample_n(5)
+    filter(rater_var > 0 | is.na(rater_var)) 
 
 #capture the number of coders, get observations with at least 2. 
 #output where there is disagreement only
-  output <-  ratings_out %>% kable(., escape = TRUE, digit = 2)
+  output <-  ratings_out %>% 
+    sample_n(5) %>%
+    kable(., escape = TRUE, digit = 2)
+  
   print(output)
 
   bad_folios <- c(bad_folios, ratings_out$folio_id)
@@ -189,12 +192,13 @@ data_wide <-
       length(na.omit(x)))
   
   ratings_out <- data_wide %>%
-    filter(rater_var > 1)
+    filter(rater_var > 1) 
 
 #capture the number of coders, get observations with at least 2. 
 #output where there is disagreement only
   output <-  ratings_out %>% kable(., escape = TRUE, digit = 2)
   print(output)
+  
   bad_folios <- c(bad_folios, ratings_out$folio_id)
 
   to_stat <- select(data_wide, -folio_id, -rater_var, -num_coders)
