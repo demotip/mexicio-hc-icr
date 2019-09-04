@@ -1,9 +1,12 @@
 pacman::p_load(tidyverse, tidyselect, irr, kableExtra, irrNA, lubridate, splitstackshape)
 
-icr <- read_csv("./data_raw/Big Data y Acceso a Info en México_August 9, 2019_14.44.csv")
+#deal with weird Qualtrics export
+icr <- read_csv("./data_raw/Big Data y Acceso a Info en México_September 4, 2019_09.43.csv")
 icr_names <- names(icr)
 rm(icr)
-icr <- read_csv("./data_raw/Big Data y Acceso a Info en México_August 9, 2019_14.44.csv",
+
+#now read back in
+icr <- read_csv("./data_raw/Big Data y Acceso a Info en México_September 4, 2019_09.43.csv",
                 skip  =3,
                 col_names = icr_names)
 icr2 <- icr %>% 
@@ -40,9 +43,12 @@ icr2 <- icr2 %>% add_count(folio_id, coder_id, name = "dup_code_folio")
 icr2_dups <- icr2 %>% filter(n>1)
 icr2_nodups <- icr2 %>% filter(n==1)
 
+write_csv(x = icr2_nodups, "./data_clean/handcoding_once_only.csv")
+
 icr_vars <- quo(c(S2, S3,                   
               S4_2, S5,S6_1, S6_2, S6_3, S6_4, S7, S8, S9, S10_1, S10_2, S10_3, S10_4, S11,
               R1, R2, R3, R4, R5, R6, R7, R8, R9, R10, R11)  )
+
 icr_vars_q <- c("S2", "S3",                   
                   "S4_2", "S5","S6_1", "S6_2", "S6_3", "S6_4", "S7"," S8", "S9", "S10_1", "S10_2", "S10_3"," S10_4", "S11",
                   "R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8", "R9", "R10", "R11") 
