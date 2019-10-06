@@ -612,4 +612,4 @@ all_handcoding <- all_handcoding %>% select(-matches("_NA$")) %>%
 #nor rowse so looks good
 filter(all_handcoding, R10_dummy_NoInfo == 1 && (R10_dummy_MachineEdit == 1 | R10_dummy_MachineRead | R10_dummy_NotMachineRead == 1)) %>% select(matches("R10"))
 write_rds(all_handcoding, "./data_clean/handcoding_forML.rds")
-write_csv(all_handcoding, "./data_clean/hancoding_forML.csv")
+write_csv(all_handcoding, "./data_clean/handcoding_forML.csv")
