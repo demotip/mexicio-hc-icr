@@ -42,3 +42,5 @@ Icon[^M]
 .DS_Store
 /data_raw/*
 /data_clean/*
+/related_presentations/*
+

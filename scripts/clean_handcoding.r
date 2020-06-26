@@ -1,5 +1,5 @@
 pacman::p_load(dplyr, stringr, readr, irr, kableExtra, irrNA, lubridate, splitstackshape, statip, fastDummies)
-devtools::install_github("tidyverse/tidyr")
+#devtools::install_github("tidyverse/tidyr")
 library(tidyr)
 #deal with weird Qualtrics export
 icr <- read_csv("./data_raw/Big Data y Acceso a Info en México_September 4, 2019_09.43.csv")
@@ -8,9 +8,10 @@ rm(icr)
 
 #now read back in
 icr <- read_csv("./data_raw/Big Data y Acceso a Info en México_September 4, 2019_09.43.csv",
-                skip  =3,
+                skip = 3,
                 col_names = icr_names)
 
+sampled_ids <- read_rds("./data_raw/full_sample_post_p1b4.rds")
 
 #deal with problematic cases
 
@@ -35,7 +36,7 @@ icr2 <- icr2 %>%
   mutate(start_date = date(StartDate)) %>%
   filter(start_date >= date("2019-06-08") )
 
-#get rid of duplicated by taking the one with the last start time time
+#get rid of duplicated by taking the one with the last start time
 icr2 <- icr2 %>% group_by(folio_id, coder_id ) %>%
   filter(StartDate==max(StartDate)) %>%
   mutate(duplicate = n()>1) %>%
@@ -44,12 +45,13 @@ icr2 <- icr2 %>% group_by(folio_id, coder_id ) %>%
 #check
 stopifnot(sum(icr2$duplicate) ==0)
 
+#THESES ARE VARIABLES WITH MULTIPLE POSSIBLE ANSWERS (check_alls)
+##EACH ONE OF THESE will be stored as R/S[NUM]_dummy_*** in the final dataset
 
 check_all_vars <- c("S7", "S8", "S11", "R4", "R6", "R10")
 
 #split the string. there are not any spaces, so it's a pain and `Csplit only takes one space'`
 #use a pipe to split. 
-
 icr2 <- icr2 %>%
   mutate_at(check_all_vars,
             funs(new = (str_replace_all(. ,
@@ -216,12 +218,45 @@ icr2 <- dummy_cols(icr2, select_columns = c("R4_dummy"), ignore_na = TRUE, split
 icr2 <- dummy_cols(icr2, select_columns = c("R6_dummy"), ignore_na = TRUE, split = "_")
 icr2 <- dummy_cols(icr2, select_columns = c("R10_dummy"), ignore_na = TRUE, split = "_")
 
+icr2 <- icr2 %>%
+  dplyr::rename(
+        Duration = `Duration (in seconds)`,
+        S2_has_attachment = S2,
+        S3_num_attachment_pages = S3,
+        S4_num_info_queries = S4_1,
+        S4_num_areas = S4_2,
+        S5_requests_related = S5,
+        S6_is_formal = S6_1,
+        S6_is_legal = S6_2,
+        S6_is_technical = S6_3,
+        S6_is_aggressive = S6_4,
+        S9_likely_use = S9,
+        S10_is_clear = S10_1,
+        S10_is_competency = S10_2,
+        S10_is_public = S10_3,
+        S10_is_existant = S10_4,
+        R1_has_letter_addressed = R1,
+        R2_num_pages_letter = R2,
+        R3_readability = R3,
+        R5_num_referenced_requests = R5,
+        R7_proportion_answered = R7,
+        R8_is_link_correct  = R8,
+        R9_diff_find_info = R9,
+        R11_is_req_interesting = R11)
+
 
 #get all the double coded things and then use majority rule for those observations
-
 icr2 <- icr2 %>% add_count(folio_id)
 #check if the same coder coded the same folio multiple times
 icr2 <- icr2 %>% add_count(folio_id, coder_id, name = "dup_code_folio") 
+
+icr2 %>% dplyr::select(StartDate, EndDate, Status, IPAddress, Progress, Duration, Finished,RecordedDate, ResponseId,
+RecipientLastName, RecipientFirstName, RecipientEmail, ExternalReference, LocationLatitude, LocationLongitude,
+DistributionChannel, UserLanguage, 
+  matches("S[1-9].*"),
+  matches("R[1-9].*"))
+
+#could put in correct order
 
 write_csv(x = icr2, "./data_clean/handcoding_all.csv")
 write_rds(x = icr2, "./data_clean/handcoding_all.rds")

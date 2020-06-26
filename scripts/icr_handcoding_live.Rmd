@@ -33,49 +33,49 @@ fs_ps1 <- readRDS("./data_raw/full_sample_post_p1.rds") %>%
 #remove garbage rows
 #omit all dates before June 8 
 #or where there is no associated email
-icr2 <- icr %>% 
-  filter(!(is.na(RecipientEmail)), Progress==100) 
-
-#cleanup folio_id
-icr2 <- mutate(icr2, folio_id = ifelse(grepl("'", S1),
-                                    trimws(S1),
-                                    trimws(str_c("'", S1))))
-
-#get short coder_id
-icr2 <- mutate(icr2, coder_id = str_extract(RecipientEmail, "^[[:alnum:]]+"))
-
-#omit earlier coding
-icr2 <- icr2 %>%
-  mutate(start_date = date(StartDate)) %>%
-  filter(start_date >= date("2019-06-08") )
-
-#get rid of dublicated by taking the one with the last start time time
-icr2 <- icr2 %>% group_by(folio_id, coder_id ) %>%
-  filter(StartDate==max(StartDate)) %>%
-    mutate(duplicate = n()>1) %>%
-  ungroup()
-
-#check
-stopifnot(sum(icr2$duplicate) ==0)
+# icr2 <- icr %>% 
+#   filter(!(is.na(RecipientEmail)), Progress==100) 
+# 
+# #cleanup folio_id
+# icr2 <- mutate(icr2, folio_id = ifelse(grepl("'", S1),
+#                                     trimws(S1),
+#                                     trimws(str_c("'", S1))))
+# 
+# #get short coder_id
+# icr2 <- mutate(icr2, coder_id = str_extract(RecipientEmail, "^[[:alnum:]]+"))
+# 
+# #omit earlier coding
+# icr2 <- icr2 %>%
+#   mutate(start_date = date(StartDate)) %>%
+#   filter(start_date >= date("2019-06-08") )
+# 
+# #get rid of dublicated by taking the one with the last start time time
+# icr2 <- icr2 %>% group_by(folio_id, coder_id ) %>%
+#   filter(StartDate==max(StartDate)) %>%
+#     mutate(duplicate = n()>1) %>%
+#   ungroup()
+# 
+# #check
+# stopifnot(sum(icr2$duplicate) ==0)
 
 #where there are checkboxes
 check_alls <- c("S7", "S8", "S11")
 
-icr2 <- concat.split.expanded(icr2, "S7", sep = ",", 
-                      mode = "binary", 
-                      type = "character",
-                      fill = 0, drop = FALSE)
+# icr2 <- concat.split.expanded(icr2, "S7", sep = ",", 
+#                       mode = "binary", 
+#                       type = "character",
+#                       fill = 0, drop = FALSE)
 
-icr2 <- concat.split.expanded(icr2, "S8", sep = ",", 
-                      mode = "binary", 
-                      type = "character",
-                      fill = 0, drop = FALSE)
+# icr2 <- concat.split.expanded(icr2, "S8", sep = ",", 
+#                       mode = "binary", 
+#                       type = "character",
+#                       fill = 0, drop = FALSE)
 
 
-icr2 <- concat.split.expanded(icr2, "S11", sep = ",", 
-                      mode = "binary", 
-                      type = "character",
-                      fill = 0, drop = FALSE)
+# icr2 <- concat.split.expanded(icr2, "S11", sep = ",", 
+#                       mode = "binary", 
+#                       type = "character",
+#                       fill = 0, drop = FALSE)
 
 #icr2 <- bind_cols(icr2, s7_cols, s8_cols, s11_cols)
 
@@ -102,8 +102,10 @@ to_eval <- filter(icr2, folio_id %in% fs_ps1$FOLIO)
 
 missing_folios <- fs_ps1$FOLIO[!(fs_ps1$FOLIO %in% to_eval$folio_id)]
 
+#get all the binary variables
 binary_vars <- vars_select(names(to_eval), matches("S7_|S8_[^4]|S11_"))
 
+#get all the yes, nos
 yes_nos <- vars_select(names(to_eval), matches("S6_|S10_"))
 
 all_dummy <- str_sort(c(binary_vars, yes_nos), numeric = TRUE)
@@ -137,6 +139,7 @@ coder_ids <- unique(to_eval$coder_id)
 
 bad_folios <- vector()
 
+#iterate through dummy variables
 for(i in 1:length(all_dummy)) {
   data_wide <- reshape2::dcast(to_eval,  folio_id ~ coder_id , value.var= all_dummy[i], mean)
   #data_wide <- data_wide %>% select(-folio_id) %>%
