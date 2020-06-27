@@ -244,6 +244,12 @@ icr2 <- icr2 %>%
         R9_diff_find_info = R9,
         R11_is_req_interesting = R11)
 
+# ord_diff_class <- c("Very easy", "Normal", "Very difficult")
+# ord_num_req <- c("Little or none", "Less than half", "Approximately half", "The majority", "All")
+# icr2 <- icr2 %>% 
+#   mutate(R3_readability = fct_relevel(R3_readability, ord_diff_class),
+#          R5_num_referenced_requests = fct_relevel(R5_num_referenced_requests, ord_num_req),
+#          R7_proportion_answered = fct_relevel(R7_proportion_answered, ord_num_req))
 
 #get all the double coded things and then use majority rule for those observations
 icr2 <- icr2 %>% add_count(folio_id)

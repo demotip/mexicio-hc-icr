@@ -1,6 +1,6 @@
 pacman::p_load(dplyr, stringr, readr, irr, kableExtra, 
                irrNA, lubridate, splitstackshape, statip,
-               fastDummies, gtools)
+               fastDummies, gtools, forcats)
 #devtools::install_github("tidyverse/tidyr") #dev version required
 library(tidyr)
 #deal with weird Qualtrics export
@@ -8,18 +8,20 @@ library(tidyr)
 rm(list=ls())
 #need to do error checking here. You can't specify a both skip_col and skip_match
 
+ORD_DIFF_CLASS <- c("Very easy", "Normal", "Very difficult")
+ORD_NUM_REQ <- c("Little or none", "Less than half", "Approximately half", "The majority", "All")
 
 agreeement_cat_fn <- function(wide_dups, col_regex, skip_df = NULL, skip_col = NULL, skip_match = NULL) {
   new_df <- select(wide_dups, folio_id, matches(col_regex)) #get only the questions for this
   if(!is.null(skip_df)) {
-    new_df <- full_join(new_df, select(skip_df, folio_id, !! skip_col), by = "folio_id") #deal with skipp pattern
+    new_df <- full_join(new_df, select(skip_df, folio_id, !!skip_col), by = "folio_id") #deal with skip pattern
   }
   
   if(!is.null(skip_match)) {
     new_df <- full_join(new_df, select(skip_df, folio_id, matches(skip_match)), by = "folio_id")
   }
   new_df$Count <- apply(select(new_df, matches(col_regex)), 1, function(x) length(na.omit(unique(x))))
-  new_df$modes <- apply(select(new_df, matches(col_regex)), 1,  mfv, na.rm=TRUE)
+  new_df$modes <- apply(select(new_df, matches(col_regex)), 1,  mfv, na.rm = TRUE)
   return(new_df)
 }
 
@@ -202,7 +204,7 @@ S4_2 <- S4_2 %>% rowwise %>%
 to_stat_s_41 <- dplyr::select(S4_1, starts_with("S4_num_info"))
 to_stat_s_42 <- dplyr::select(S4_2, starts_with("S4_num_areas"))
 
-stats_df <- bind_rows(stats_df, get_icr_stats(to_stat_s_41, "S4_num_info", kripp.method = "interval"))
+stats_df <- bind_rows(stats_df, get_icr_stats(to_stat_s_41, "S4_num_info",  kripp.method = "interval"))
 stats_df <- bind_rows(stats_df, get_icr_stats(to_stat_s_42, "S4_num_areas", kripp.method = "interval"))
 
 
@@ -236,7 +238,7 @@ S5 <- S5 %>% rowwise() %>%
 
 
 final_dups <- final_dups %>%
-  left_join(select(S5, folio_id, S5= S5_final_code), by = "folio_id") 
+  left_join(select(S5, folio_id, S5_requests_related = S5_final_code), by = "folio_id") 
 
 question <- "S9_likely_use_"
 S9 <- select(wide_dups, folio_id, matches("S9_.*"))
@@ -260,10 +262,13 @@ S9 <- S9 %>% rowwise() %>%
 
 to_stat_s9<- dplyr::select(S9, starts_with("S9_likely_use"))
 
-stats_df <- bind_rows(stats_df, get_icr_stats(to_stat_s_41, "S4_num_info", kripp.method = "nominal"))
+stats_df <- bind_rows(stats_df, get_icr_stats(to_stat_s9, "S9_likely_use",
+                                              ICC = FALSE,
+                                              kendall = FALSE,
+                                              kripp.method = "nominal"))
 
 final_dups <- final_dups %>%
-  left_join(select(S9, folio_id, S9= S9_final_code), by = "folio_id")
+  left_join(select(S9, folio_id, S9_likely_use = S9_final_code), by = "folio_id")
 
 
 #S6_1-4 and S10 are binary and all yes no
@@ -341,7 +346,6 @@ S_bin_list_dummy2_noNA <- S_bin_list_dummy2[!grepl("_NA", names(S_bin_list_dummy
 for(i in 1:length(S_bin_list_dummy2_noNA)) {
   to_stat <- dplyr::select(S_bin_list_dummy2_noNA[[i]], -folio_id, -total_yes, -non_na, -ratio, -contains("final_code"))
   stats_df <- bind_rows(stats_df, get_icr_stats(to_stat, names(S_bin_list_dummy2_noNA[i]), kripp.method = "nominal"))
-  
 }
 
 for(i in 1:length(S_bin_list_dummy2)) {
@@ -355,6 +359,7 @@ write_excel_csv(stats_df, "./data_clean/requests_icr.csv")
 ###############
 ######RESPONSES
 ################
+stats_df_rep <- tibble(stat=NA_character_, question = NA_character_, value = NA, .rows = 0)
 
 R1 <- agreeement_cat_fn(wide_dups, "R1_.*")
 
@@ -387,9 +392,14 @@ R1 <- R1 %>% rowwise()  %>%
                                                      !! sym(paste0(question, "edithimg")), NA_character_)) ) ) ) ) )
 
 
-to_stat_r1 <- select(R1, contains("R1_has"))
-
-stats_df <- bind_rows(stats_df, get_icr_stats(to_stat_r1, "R1_has_letter_addressed", kripp.method = "nominal"))
+to_stat_r1 <- R1 %>% select(contains("R1_has"))
+#this is nominal because of the weird link answer possiblility
+stats_df_rep <- 
+  bind_rows(stats_df_rep,
+            get_icr_stats(to_stat_r1,
+                          "R1_has_letter_addressed",
+                          ICC=FALSE, kendall = FALSE, 
+                          kripp.method = "nominal"))
 
 
 final_dups <- final_dups %>%
@@ -429,23 +439,30 @@ R2 <- R2 %>% rowwise() %>%
                                                                           ifelse(!is.na(!! sym(paste0(question, "edithimg"))),
                                                                                  !! sym(paste0(question, "edithimg")), NA )))))))))
 
+#makefactor ordinal for conversion
+to_stat_r2 <- filter(R2, R1_final_code == "Yes") %>%
+                       select(contains("R2_num")) %>%
+  purrr::map_df(~as.numeric(as.factor(.)))
 
-to_stat_r2 <- select(R2, contains("R2_num"))
 
-stats_df <- bind_rows(stats_df, get_icr_stats(to_stat_r2, "R2_num_pages_letter", kripp.method = "nominal"))
+
+stats_df_rep <- bind_rows(stats_df_rep, get_icr_stats(to_stat_r2, "R2_num_pages_letter", kripp.method = "ordinal"))
 
 
 final_dups <- final_dups %>%
-  left_join(select(R2, folio_id, R2= R2_final_code), by = "folio_id")
+  left_join(select(R2, folio_id, R2_num_pages_letter = R2_final_code), by = "folio_id")
 
 
 question <- "R3_readability_"
 R3 <- agreeement_cat_fn(wide_dups, "R3_.*", skip_df = R1, skip_col = quo(R1_final_code))
 
+# R3$R3_final_code <-NA
+# R3$R3_final_code <-as.factor(R3$R3_final_code )
 
+#WHAT IS THE PROBLEM HERE??? has to do with
 R3 <- R3 %>% rowwise() %>% 
   mutate(R3_final_code = ifelse(R1_final_code %in% c("No", "Yes, but cannot open link", "End"),
-                                NA, 
+                                NA_character_, 
                                 ifelse(Count == 1 | (length(modes) == 1 & !is.nan(modes)),
                                        modes[[1]], 
                                        ifelse(length(modes) > 1,
@@ -458,10 +475,27 @@ R3 <- R3 %>% rowwise() %>%
                                                                    ifelse(!is.na(!! sym(paste0(question, "sandra"))),
                                                                           !! sym(paste0(question, "sandra")),
                                                                           ifelse(!is.na(!! sym(paste0(question, "edithimg"))),
-                                                                                 !! sym(paste0(question, "edithimg")), NA )))))))))
+                                                                                 !! sym(paste0(question, "edithimg")), NA_character_ )))))))))
+   
+
+                                                                                                                                                                  
+# icr2 <- icr2 %>% 
+#   mutate(R3_readability = fct_relevel(R3_readability, ord_diff_class),
+#          R5_num_referenced_requests = fct_relevel(R5_num_referenced_requests, ord_num_req),
+#          R7_proportion_answered = fct_relevel(R7_proportion_answered, ord_num_req))
+
+#makefactor ordinal for conversion
+to_stat_r3 <- filter(R3, R1_final_code == "Yes")  %>%
+  select(contains("R3_re")) %>%
+  purrr::map_df(~fct_relevel(., ORD_DIFF_CLASS)) %>%
+  purrr::map_df(~as.numeric(as.factor(.)))
+
+
+stats_df_rep <- bind_rows(stats_df_rep, get_icr_stats(to_stat_r3, "R3_readability", kripp.method = "ordinal"))
 
 final_dups <- final_dups %>%
-  left_join(select(R3, folio_id, R3 = R3_final_code), by = "folio_id")
+  left_join(select(R3, folio_id, R3_readability = R3_final_code), by = "folio_id") %>%
+  dplyr::mutate(R3_readability = fct_relevel(R3_readability, ORD_DIFF_CLASS))
 
 
 
@@ -497,6 +531,17 @@ for(i in dummy_r_cols) {
   R_bin_list_dummy[[question]] <- element 
 }
 
+
+#only calculate for non missing
+R_bin_list_dummy_noNA <- R_bin_list_dummy[!grepl("_NA", names(R_bin_list_dummy))] %>%
+  purrr::map(~filter(., R1_final_code != "End"))
+
+for(i in 1:length(R_bin_list_dummy_noNA)) {
+  to_stat_Rdummy <- dplyr::select(R_bin_list_dummy_noNA[[i]], -folio_id, -total_yes, -non_na, -ratio, -contains("final_code"))
+  stats_df_rep <- bind_rows(stats_df_rep, get_icr_stats(to_stat_Rdummy, names(R_bin_list_dummy_noNA[i]), kripp.method = "nominal"))
+  
+}
+
 for(i in 1:length(R_bin_list_dummy)) {
   final_dups[ , names(R_bin_list_dummy[i]) ] <- R_bin_list_dummy[[i]]$final_code
 }
@@ -523,17 +568,25 @@ R5 <- R5 %>% rowwise() %>%
 
 
 final_dups <- final_dups %>%
-  left_join(select(R5, folio_id, R5 = R5_final_code), by = "folio_id")
+  left_join(select(R5, folio_id, R5_num_referenced_requests = R5_final_code), by = "folio_id") %>%
+  mutate(R5_num_referenced_requests = fct_relevel(R5_num_referenced_requests, ORD_NUM_REQ))
+
+to_stat_r5 <- filter(R5, S4_1_final_code == 1 | S4_2_final_code == 1) %>%
+  select(contains("R5_num_referenced_requests")) %>%
+  purrr::map_df(~fct_relevel(., ORD_NUM_REQ)) %>%
+  purrr::map_df(~as.numeric(as.factor(.)))
+
+stats_df_rep <- bind_rows(stats_df_rep, get_icr_stats(to_stat_r5, "R5_num_referenced_requests", kripp.method = "ordinal"))
 
 
 
 #R7 You need to have answered R6  if you sayed tehre was no information then you went to the end
-question <- "R7_proportion_answered"
+question <- "R7_proportion_answered_"
 R7 <- agreeement_cat_fn(wide_dups, "R7_.*", skip_df = R_bin_list_dummy$R6_dummy_NoInfo, skip_col  = quo(final_code))
 R7 <- full_join(R7, select(R1, folio_id, R1_final_code))
 R7 <- R7 %>% rowwise() %>% 
-  mutate(R7_final_code = ifelse( (final_code == 1 | R1_final_code == "End"),
-                                 NA, 
+  mutate(R7_final_code = ifelse((final_code == 1 | R1_final_code == "End"),
+                                 NA_character_, 
                                  ifelse(Count == 1 | (length(modes) == 1 & !is.nan(modes) ),
                                        modes[[1]], 
                                        ifelse(length(modes) > 1,
@@ -546,16 +599,24 @@ R7 <- R7 %>% rowwise() %>%
                                                                    ifelse(!is.na(!! sym(paste0(question, "sandra"))),
                                                                           !! sym(paste0(question, "sandra")),
                                                                           ifelse(!is.na(!! sym(paste0(question, "edithimg"))),
-                                                                                 !! sym(paste0(question, "edithimg"))))))), NA))))
+                                                                                 !! sym(paste0(question, "edithimg"))))))), NA_character_))))
 
+#makefactor ordinal for conversion
+to_stat_r7 <- filter(R7, final_code ==0 ) %>% #filter if dummy_NoInfo is true
+  select(contains("R7_pro")) %>%
+  purrr::map_df(~fct_relevel(., ORD_NUM_REQ)) %>%
+  purrr::map_df(~as.numeric(as.factor(.)))
+  
+
+stats_df_rep <- bind_rows(stats_df_rep, get_icr_stats(to_stat_r7, "R7_proportion_answered", kripp.method = "ordinal"))
 
 final_dups <- final_dups %>%
-  left_join(select(R7, folio_id, R7 = R7_final_code), by = "folio_id")
+  left_join(select(R7, folio_id, R7_proportion_answered = R7_final_code), by = "folio_id") %>%
+  mutate(R7_proportion_answered  = fct_relevel(R7_proportion_answered, ORD_NUM_REQ))
 
 
-
-#R8 - ONLY For those who got a link!
-question <- "R8_is_link_correct"
+#R8 - ONLY For those who got a link! -- SKIP FOR NOW
+question <- "R8_is_link_correct_"
 R8 <- agreeement_cat_fn(wide_dups, "R8_.*", skip_df = R_bin_list_dummy$R6_dummy_Links, skip_col  = quo(final_code))
 R8 <- full_join(R8, select(R1, folio_id, R1_final_code))
 R8 <- R8 %>% rowwise() %>% 
@@ -574,14 +635,21 @@ R8 <- R8 %>% rowwise() %>%
                                                                            !! sym(paste0(question, "sandra")),
                                                                            ifelse(!is.na(!! sym(paste0(question, "edithimg"))),
                                                                                   !! sym(paste0(question, "edithimg"))))))), NA))))
+# Because small subset
+# to_stat_r8 <- filter(R8, R1_final_code == "Yes" | is.na(R1_final_code)) %>%
+#   select(contains("R7_pro")) %>%
+#   purrr::map_df(~as.numeric(as.factor(.)))
+# 
+# 
+# stats_df_rep <- bind_rows(stats_df_rep, get_icr_stats(to_stat_r7, "R7_proportion_answered", kripp.method = "ordinal"))
 
 
 final_dups <- final_dups %>%
-  left_join(select(R8, folio_id, R8 = R8_final_code), by = "folio_id")
+  left_join(select(R8, folio_id, R8_is_link_correct = R8_final_code), by = "folio_id")
 
 
 
-#R9
+#R9 --SKip for now since there is a skip pattern
 question <- "R9_diff_find_info_"
 R9 <- agreeement_cat_fn(wide_dups, "R9_.*", skip_df = R_bin_list_dummy$R6_dummy_InLetter, skip_col  = quo(final_code))
 R9 <- full_join(R9, select(R_bin_list_dummy$R6_dummy_Attached, folio_id, R6_attachment_final_code = final_code))
@@ -606,7 +674,7 @@ R9 <- R9 %>% rowwise() %>%
 
 
 final_dups <- final_dups %>%
-  left_join(select(R9, folio_id, R9 = R9_final_code), by = "folio_id")
+  left_join(select(R9, folio_id, R9_diff_find_info = R9_final_code), by = "folio_id")
 
 
 
@@ -638,6 +706,15 @@ for(i in dummy_r10_cols) {
   R_bin_list_dummy2[[question]] <- element 
 }
 
+R_bin_list_dummy2_noNA <- R_bin_list_dummy2[!grepl("_NA", names(R_bin_list_dummy2))] %>%
+  purrr::map(~filter(., R1_final_code != "End"))
+
+for(i in 1:length(R_bin_list_dummy2_noNA)) {
+  to_stat_Rdummy <- dplyr::select(R_bin_list_dummy2_noNA[[i]], -folio_id, -total_yes, -non_na, -ratio, -contains("final_code"))
+  stats_df_rep <- bind_rows(stats_df_rep, get_icr_stats(to_stat_Rdummy, names(R_bin_list_dummy2_noNA[i]), kripp.method = "nominal"))
+  
+}
+
 for(i in 1:length(R_bin_list_dummy2)) {
   final_dups[ , names(R_bin_list_dummy2[i]) ] <- R_bin_list_dummy2[[i]]$final_code
 }
@@ -662,9 +739,12 @@ R11 <- select(wide_dups, folio_id, matches("R11_.*")) %>%
                                                                     !! sym(paste0(question, "sandra")),
                                                                     ifelse(!is.na(!! sym(paste0(question, "edithimg"))), NA))))))))
 final_dups <- final_dups %>%
-  left_join(select(R11, folio_id, R11 = R11_final_code), by = "folio_id")  
+  left_join(select(R11, folio_id, R11_is_req_interesting = R11_final_code), by = "folio_id")  
 
 final_dups <- final_dups[, mixedsort(names(final_dups))]
+
+write_rds(stats_df_rep, "./data_clean/responses_icr.rds")
+write_csv(stats_df_rep, "./data_clean/responses_icr.csv")
 
 write_csv(final_dups, "./data_clean/unique_dups_only.csv")
 
