@@ -1,5 +1,5 @@
 
-full_sample_post_p1b4 <- readRDS("~/Documents/data_project/mexico_hand_coding/mexico-hc-icr/data_raw/full_sample_post_p1b4.rds")
+full_sample_post_p1b4 <- readRDS("./data_raw/full_sample_post_p1b4.rds")
 clean_handcoding <- readRDS("./data_clean/handcoding_all.rds")
 
 #first set of missing values here, was done from no upds from some reason

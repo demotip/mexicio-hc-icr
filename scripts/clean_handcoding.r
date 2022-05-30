@@ -1,20 +1,14 @@
+rm(list= ls())
 pacman::p_load(dplyr, stringr, readr, irr, kableExtra, irrNA, lubridate, splitstackshape, statip, fastDummies)
 #devtools::install_github("tidyverse/tidyr")
 library(tidyr)
-#deal with weird Qualtrics export
+#deal with weird Qualtrics export by removing two rows
 icr <- read_csv("./data_raw/Big Data y Acceso a Info en México_September 4, 2019_09.43.csv")
-icr_names <- names(icr)
-rm(icr)
-
-#now read back in
-icr <- read_csv("./data_raw/Big Data y Acceso a Info en México_September 4, 2019_09.43.csv",
-                skip = 3,
-                col_names = icr_names)
+icr <- slice(icr, 3:n()) %>% rename(RecipientEmail = `RecipientEmail...12`)
 
 sampled_ids <- read_rds("./data_raw/full_sample_post_p1b4.rds")
 
 #deal with problematic cases
-
 icr2 <- icr %>% 
   filter(!(is.na(RecipientEmail)), Progress==100) 
 
@@ -28,7 +22,7 @@ icr2 <- mutate(icr2, folio_id = ifelse(grepl("'", S1),
 #icr2s <- separate(icr2, S11,  into = new_S11, sep= "\\W,\\W", "fi")
 
 
-#gshort coder_id
+#create  coder_id out of email
 icr2 <- mutate(icr2, coder_id = str_extract(RecipientEmail, "^[[:alnum:]]+"))
 
 #omit earlier coding
@@ -256,11 +250,12 @@ icr2 <- icr2 %>% add_count(folio_id)
 #check if the same coder coded the same folio multiple times
 icr2 <- icr2 %>% add_count(folio_id, coder_id, name = "dup_code_folio") 
 
-icr2 %>% dplyr::select(StartDate, EndDate, Status, IPAddress, Progress, Duration, Finished,RecordedDate, ResponseId,
-RecipientLastName, RecipientFirstName, RecipientEmail, ExternalReference, LocationLatitude, LocationLongitude,
-DistributionChannel, UserLanguage, 
-  matches("S[1-9].*"),
-  matches("R[1-9].*"))
+# icr2 %>% 
+#   dplyr::select(StartDate, EndDate, Status, IPAddress, Progress, Duration, Finished,RecordedDate, ResponseId,
+# RecipientLastName, RecipientFirstName, RecipientEmail, ExternalReference, LocationLatitude, LocationLongitude,
+# DistributionChannel, UserLanguage, 
+#   matches("S[1-9].*"),
+#   matches("R[1-9].*"))
 
 #could put in correct order
 
